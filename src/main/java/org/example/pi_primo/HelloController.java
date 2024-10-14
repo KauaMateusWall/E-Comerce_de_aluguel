@@ -18,12 +18,19 @@ import java.sql.SQLException;
 
 public class HelloController {
 
+    @FXML
     public static PasswordField CadastroSenha;
+    @FXML
     public static TextField CadastroEndereco;
+    @FXML
     public static TextField CadastroEmail;
+    @FXML
     public static TextField CadastroCpf;
+    @FXML
     public static TextField CadastroUsuario;
+    @FXML
     public static DatePicker Data_Nacimento;
+    @FXML
     public static TextField CadastroTelefone;
     @FXML
     private TextField UsuarioTXT;

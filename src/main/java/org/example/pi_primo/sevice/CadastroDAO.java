@@ -24,9 +24,10 @@ public class CadastroDAO {
     }
 
     public void Cadastrar(TextField nome, TextField cpf, TextField email, TextField telefone, TextField endereco, DatePicker data_nascimento) throws SQLException {
+        conection();
         String InserSQL = "INSERT INTO Cliente (nome, cpf, email, telefone, endereco, data_nascimento) VALUES (?, ?, ?, ?, ?, ?)";
 
-        PreparedStatement InsertSMT = CadastroDAO.conn.prepareStatement(InserSQL);
+        PreparedStatement InsertSMT = conn.prepareStatement(InserSQL);
 
         InsertSMT.setString(1, nome.getText());
         InsertSMT.setString(2, cpf.getText());
