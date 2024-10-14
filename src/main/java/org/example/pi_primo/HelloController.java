@@ -14,6 +14,7 @@ import javafx.event.ActionEvent;  // Certifique-se de que está usando javafx.ev
 import org.example.pi_primo.sevice.CadastroDAO;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class HelloController {
 
@@ -35,7 +36,7 @@ public class HelloController {
         String usuario = UsuarioTXT.getText();
         String senha = SenhaTXT.getText();
 
-        if (usuario.equals(UsuarioTXT) && senha.equals(SenhaTXT)) {
+        if (usuario.equals(administrator) && senha.equals(SenhaTXT)) {
             showAlert("Login bem-sucedido", "Bem-vindo, " + usuario + "!");
         } else {
             showAlert("Falha no login", "Nome de usuário ou senha incorretos.");
@@ -85,9 +86,9 @@ public class HelloController {
     }
 
     @FXML
-    public void Cadastrar(){
+    public void Cadastrar() throws SQLException {
         CadastroDAO cadastroDAO = new CadastroDAO();
 
-        cadastroDAO.Cadastrar(CadastroUsuario,);
+        cadastroDAO.Cadastrar(CadastroUsuario,CadastroCpf,CadastroEmail,CadastroTelefone,CadastroEndereco,Data_Nacimento);
     }
 }
