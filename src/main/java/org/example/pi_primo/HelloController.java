@@ -36,7 +36,7 @@ public class HelloController {
         String usuario = UsuarioTXT.getText();
         String senha = SenhaTXT.getText();
 
-        if (usuario.equals(administrator) && senha.equals(SenhaTXT)) {
+        if (usuario.equals(UsuarioTXT) && senha.equals(SenhaTXT)) {
             showAlert("Login bem-sucedido", "Bem-vindo, " + usuario + "!");
         } else {
             showAlert("Falha no login", "Nome de usuário ou senha incorretos.");
