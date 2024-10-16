@@ -23,21 +23,20 @@ public class CadastroDAO {
         conn.close();
     }
 
-    public void Cadastrar(TextField nome, TextField cpf, TextField email, TextField telefone, TextField endereco, DatePicker data_nascimento) throws SQLException {
+    public void Cadastrar(String nome, String cpf, String email, String telefone, String endereco, LocalDate data_nascimento) throws SQLException {
         conection();
         String InserSQL = "INSERT INTO Cliente (nome, cpf, email, telefone, endereco, data_nascimento) VALUES (?, ?, ?, ?, ?, ?)";
 
         PreparedStatement InsertSMT = conn.prepareStatement(InserSQL);
 
-        InsertSMT.setString(1, nome.getText());
-        InsertSMT.setString(2, cpf.getText());
-        InsertSMT.setString(3, email.getText());
-        InsertSMT.setString(4, telefone.getText());
-        InsertSMT.setString(5, endereco.getText());
+        InsertSMT.setString(1, nome);
+        InsertSMT.setString(2, cpf);
+        InsertSMT.setString(3, email);
+        InsertSMT.setString(4, telefone);
+        InsertSMT.setString(5, endereco);
 
-        LocalDate localDate = data_nascimento.getValue();
-        if (localDate != null) {
-            InsertSMT.setDate(6, Date.valueOf(localDate));
+        if (data_nascimento != null) {
+            InsertSMT.setDate(6, Date.valueOf(data_nascimento));
         } else {
             InsertSMT.setNull(6, java.sql.Types.DATE);
         }

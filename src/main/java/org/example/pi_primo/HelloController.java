@@ -15,6 +15,7 @@ import org.example.pi_primo.sevice.CadastroDAO;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 public class HelloController {
 
@@ -96,6 +97,13 @@ public class HelloController {
     public void Cadastrar() throws SQLException {
         CadastroDAO cadastroDAO = new CadastroDAO();
 
-        cadastroDAO.Cadastrar(CadastroUsuario,CadastroCpf,CadastroEmail,CadastroTelefone,CadastroEndereco,Data_Nacimento);
+        String nome = CadastroUsuario.getText();
+        String senha = CadastroSenha.getText();
+        String cpf = CadastroCpf.getText();
+        String endereço = CadastroEndereco.getText();
+        String telefone = CadastroTelefone.getText();
+        LocalDate dataNascimento = Data_Nacimento.getValue();
+
+        cadastroDAO.Cadastrar(nome,senha,cpf,endereço,telefone,dataNascimento);
     }
 }

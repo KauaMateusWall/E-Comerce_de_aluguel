@@ -13,12 +13,12 @@
     <children>
         <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="423.0" prefWidth="585.0">
             <children>
-                <PasswordField fx:id="CadastroSenha" layoutX="205.0" layoutY="66.0" prefHeight="25.0" prefWidth="216.0" text="1"/>
-                <TextField fx:id="CadastroEndereco" layoutX="201.0" layoutY="171.0" prefHeight="25.0" prefWidth="216.0" text="2"/>
-                <TextField fx:id="CadastroEmail" layoutX="201.0" layoutY="140.0" prefHeight="25.0" prefWidth="216.0"  text="3"/>
-                <TextField fx:id="CadastroCpf" layoutX="201.0" layoutY="104.0" prefHeight="25.0" prefWidth="216.0"  text="4"/>
-                <TextField fx:id="CadastroUsuario" layoutX="201.0" layoutY="28.0" prefHeight="25.0" prefWidth="216.0"  text="5"/>
-                <TextField fx:id="CadastroTelefone" layoutX="201.0" layoutY="205.0" prefHeight="25.0" prefWidth="216.0"  text="6"/>
+                <PasswordField fx:id="CadastroSenha" layoutX="205.0" layoutY="66.0" prefHeight="25.0" prefWidth="216.0"/>
+                <TextField fx:id="CadastroEndereco" layoutX="201.0" layoutY="171.0" prefHeight="25.0" prefWidth="216.0"/>
+                <TextField fx:id="CadastroEmail" layoutX="201.0" layoutY="140.0" prefHeight="25.0" prefWidth="216.0" />
+                <TextField fx:id="CadastroCpf" layoutX="201.0" layoutY="104.0" prefHeight="25.0" prefWidth="216.0"  />
+                <TextField fx:id="CadastroUsuario" layoutX="201.0" layoutY="28.0" prefHeight="25.0" prefWidth="216.0"  />
+                <TextField fx:id="CadastroTelefone" layoutX="201.0" layoutY="205.0" prefHeight="25.0" prefWidth="216.0" />
                 <DatePicker fx:id="Data_Nacimento" layoutX="205.0" layoutY="239.0" prefHeight="25.0" prefWidth="216.0" />
                 <Label layoutX="160.0" layoutY="108.0" text="CPF:" />
                 <Label layoutX="156.0" layoutY="70.0" text="Senha:" />
