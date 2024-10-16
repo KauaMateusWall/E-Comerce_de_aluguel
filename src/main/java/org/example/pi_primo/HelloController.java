@@ -51,7 +51,7 @@ public class HelloController {
         }
     }
 
-    private void showAlert(String titulo, String mensagem) {
+    public static void showAlert(String titulo, String mensagem) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(titulo);
         alert.setHeaderText(null);
