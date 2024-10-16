@@ -22,7 +22,7 @@ public class HelloController {
     private static final String PASSWORD = "0000";
     public static Connection conn;
 
-    public static void conection() throws SQLException {
+    public  void conection() throws SQLException {
         conn = DriverManager.getConnection(URL, USER, PASSWORD);
     }
 
@@ -50,7 +50,7 @@ public class HelloController {
     private PasswordField SenhaTXT;
 
     @FXML
-    public void onEntrarClicked() throws SQLException {
+    public void onEntrarClicked(ActionEvent event) throws SQLException {
         String usuario = UsuarioTXT.getText();
         String senha = SenhaTXT.getText();
 
@@ -63,7 +63,23 @@ public class HelloController {
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
+
+                try {
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("paginaCadastroProduto.fxml"));
+                    Parent root = fxmlLoader.load();
+
+                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    Scene scene = new Scene(root, 640, 400);
+
+                    stage.setTitle("Empréstimo VK - Cadastro");
+                    stage.setScene(scene);
+                    stage.show();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+
                 showAlert("Login bem-sucedido", "Bem-vindo, " + usuario + "!");
+
             } else {
                 showAlert("Falha no login", "Nome de usuário ou senha incorretos.");
             }
