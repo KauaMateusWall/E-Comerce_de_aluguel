@@ -13,6 +13,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
 <StackPane xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1"
            fx:controller="org.example.pi_primo.TelaCadastroProduto">
     <VBox/>
@@ -40,7 +43,17 @@
                 <Label text="Descrição" GridPane.rowIndex="3"/>
                 <TextField fx:id="nomeText" prefHeight="25.0" prefWidth="310.0" GridPane.columnIndex="1"/>
                 <TextField fx:id="precoText" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-                <TextField fx:id="tipoText" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                <ChoiceBox fx:id="tipoChoiceBox" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="Eletrodomestico" />
+                            <String fx:value="Movel" />
+                            <String fx:value="Veículo" />
+                            <String fx:value="Ferramenta" />
+                            <String fx:value="Equipamento de segurança"/>
+                        </FXCollections>
+                    </items>
+                </ChoiceBox>
                 <TextArea fx:id="descricaoText" prefHeight="200.0" prefWidth="310.0"
                           GridPane.columnIndex="1" GridPane.rowIndex="3"/>
                 <Button fx:id="voltarButton" mnemonicParsing="false" onAction="#voltarClicked"
