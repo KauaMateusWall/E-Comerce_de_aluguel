@@ -10,44 +10,67 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import javafx.event.ActionEvent;  // Certifique-se de que está usando javafx.event.ActionEvent
-import org.example.pi_primo.sevice.CadastroDAO;
-
+import javafx.event.ActionEvent;
 import java.io.IOException;
-import java.sql.SQLException;
+import java.sql.*;
 import java.time.LocalDate;
 
 public class HelloController {
 
+    private static final String URL = "jdbc:mysql://localhost:3306/PI_Primo";
+    private static final String USER = "root";
+    private static final String PASSWORD = "0000";
+    public static Connection conn;
+
+    public static void conection() throws SQLException {
+        conn = DriverManager.getConnection(URL, USER, PASSWORD);
+    }
+
+    public void closeConection() throws SQLException {
+        conn.close();
+    }
+
     @FXML
-    public static PasswordField CadastroSenha;
+    public PasswordField CadastroSenha;
     @FXML
-    public static TextField CadastroEndereco;
+    public TextField CadastroEndereco;
     @FXML
-    public static TextField CadastroEmail;
+    public TextField CadastroEmail;
     @FXML
-    public static TextField CadastroCpf;
+    public TextField CadastroCpf;
     @FXML
-    public static TextField CadastroUsuario;
+    public TextField CadastroUsuario;
     @FXML
-    public static DatePicker Data_Nacimento;
+    public DatePicker Data_Nascimento;
     @FXML
-    public static TextField CadastroTelefone;
+    public TextField CadastroTelefone;
     @FXML
     private TextField UsuarioTXT;
-
     @FXML
     private PasswordField SenhaTXT;
 
     @FXML
-    public void onEntrarClicked() {
+    public void onEntrarClicked() throws SQLException {
         String usuario = UsuarioTXT.getText();
         String senha = SenhaTXT.getText();
 
-        if (usuario.equals(UsuarioTXT) && senha.equals(SenhaTXT)) {
-            showAlert("Login bem-sucedido", "Bem-vindo, " + usuario + "!");
-        } else {
-            showAlert("Falha no login", "Nome de usuário ou senha incorretos.");
+        try {
+            conection();
+            String query = "SELECT * FROM Cliente WHERE nome = ? AND senha = ?";
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setString(1, usuario);
+            stmt.setString(2, senha);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                showAlert("Login bem-sucedido", "Bem-vindo, " + usuario + "!");
+            } else {
+                showAlert("Falha no login", "Nome de usuário ou senha incorretos.");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConection();
         }
     }
 
@@ -95,15 +118,39 @@ public class HelloController {
 
     @FXML
     public void Cadastrar() throws SQLException {
-        CadastroDAO cadastroDAO = new CadastroDAO();
+        try {
+            conection();
+            String InserSQL = "INSERT INTO Cliente (nome, senha, cpf, Data_Nascimento, endereco, email, telefone) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            try (PreparedStatement InsertSMT = conn.prepareStatement(InserSQL)) {
+                String nome = CadastroUsuario.getText();
+                String cpf = CadastroCpf.getText();
+                String senha = CadastroSenha.getText();
+                String email = CadastroEmail.getText();
+                String telefone = CadastroTelefone.getText();
+                String endereco = CadastroEndereco.getText();
+                LocalDate Data_Nacsimento = Data_Nascimento.getValue();
 
-        String nome = CadastroUsuario.getText();
-        String senha = CadastroSenha.getText();
-        String cpf = CadastroCpf.getText();
-        String endereço = CadastroEndereco.getText();
-        String telefone = CadastroTelefone.getText();
-        LocalDate dataNascimento = Data_Nacimento.getValue();
+                if (nome.isEmpty() || cpf.isEmpty() || senha.isEmpty() || email.isEmpty() || telefone.isEmpty() || endereco.isEmpty() || Data_Nacsimento == null) {
+                    showAlert("Campos vazios", "Por favor, preencha todos os campos.");
+                    return;
+                }
 
-        cadastroDAO.Cadastrar(nome,senha,cpf,endereço,telefone,dataNascimento);
+                InsertSMT.setString(1, nome);
+                InsertSMT.setString(2, senha);
+                InsertSMT.setString(3, cpf);
+                InsertSMT.setDate(4, Date.valueOf(Data_Nacsimento));
+                InsertSMT.setString(5, endereco);
+                InsertSMT.setString(6, email);
+                InsertSMT.setString(7, telefone);
+
+                InsertSMT.execute();
+                showAlert("Cadastro bem-sucedido", "Cadastro de " + nome + " foi um sucesso!!!");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConection();
+        }
     }
 }
