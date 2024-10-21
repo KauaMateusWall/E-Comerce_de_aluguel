@@ -70,7 +70,7 @@ public class HelloController {
             if (rs.next()) {
 
                 try {
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("paginaCadastroProduto.fxml"));
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("paginaMenu.fxml"));
                     Parent root = fxmlLoader.load();
 
                     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
