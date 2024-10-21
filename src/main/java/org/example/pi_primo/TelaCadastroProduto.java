@@ -14,8 +14,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.time.LocalDate;
-
 import static org.example.pi_primo.HelloController.*;
 
 public class TelaCadastroProduto {
@@ -24,7 +22,7 @@ public class TelaCadastroProduto {
     public TextField precoText;
     public TextField nomeText;
     public TextArea descricaoText;
-    public ChoiceBox<String> tipoChoiceBox;  // Adicionei <String> para especificar o tipo
+    public ChoiceBox<String> tipoChoiceBox;
 
     public void voltarClicked(ActionEvent event) {
         try {
