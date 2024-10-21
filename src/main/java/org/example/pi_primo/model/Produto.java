@@ -1,47 +1,51 @@
 package org.example.pi_primo.model;
 
 public class Produto {
-    private int ID;
-    private String nome;
-    private String TIPO;
-    private double preco;
 
-    public Produto(int ID, String nome, String TIPO, double preco) {
-        this.ID = ID;
-        this.nome = nome;
-        this.TIPO = TIPO;
-        this.preco = preco;
-    }
+        private String nome;
+        private String tipo;
+        private double preco;
+        private int id;
 
-    public int getID() {
-        return ID;
-    }
+        public Produto(String nome, String tipo, double preco, int id) {
+            this.nome = nome;
+            this.tipo = tipo;
+            this.preco = preco;
+            this.id = id;
+        }
 
-    public void setID(int ID) {
-        this.ID = ID;
-    }
 
     public String getNome() {
-        return nome;
+            return nome;
+        }
+
+        public void setNome(String nome) {
+            this.nome = nome;
+        }
+
+        public String getTipo() {
+            return tipo;
+        }
+
+        public void setTipo(String tipo) {
+            this.tipo = tipo;
+        }
+
+        public double getPreco() {
+            return preco;
+        }
+
+        public void setPreco(double preco) {
+            this.preco = preco;
+        }
+
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
 
-    public String getTIPO() {
-        return TIPO;
-    }
-
-    public void setTIPO(String TIPO) {
-        this.TIPO = TIPO;
-    }
-
-    public double getPreco() {
-        return preco;
-    }
-
-    public void setPreco(double preco) {
-        this.preco = preco;
-    }
-}

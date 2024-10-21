@@ -9,6 +9,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
+import org.example.pi_primo.model.Produto;
 
 import java.awt.*;
 import java.io.IOException;
@@ -16,6 +17,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.sql.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class HelloController {
 
@@ -60,7 +62,8 @@ public class HelloController {
         String senha = SenhaTXT.getText();
 
         try {
-            conection();
+            conection();  // Establishing the database connection once
+
             String query = "SELECT * FROM Cliente WHERE nome = ? AND senha = ?";
             PreparedStatement stmt = conn.prepareStatement(query);
             stmt.setString(1, usuario);
@@ -68,17 +71,17 @@ public class HelloController {
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
-
                 try {
                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("paginaMenu.fxml"));
                     Parent root = fxmlLoader.load();
 
                     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                    Scene scene = new Scene(root, 640, 400);
+                    Scene scene = new Scene(root);
 
-                    stage.setTitle("Empréstimo VK - Cadastro");
+                    stage.setTitle("Empréstimo VK - Menu");
                     stage.setScene(scene);
                     stage.show();
+
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -88,12 +91,14 @@ public class HelloController {
             } else {
                 showAlert("Falha no login", "Nome de usuário ou senha incorretos.");
             }
+
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             closeConection();
         }
     }
+
 
     public static void showAlert(String titulo, String mensagem) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -110,7 +115,7 @@ public class HelloController {
             Parent root = fxmlLoader.load();
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root, 650, 450);
+            Scene scene = new Scene(root);
 
             stage.setTitle("Empréstimo VK - Cadastro");
             stage.setScene(scene);
@@ -127,7 +132,7 @@ public class HelloController {
             Parent root = fxmlLoader.load();
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root, 640, 400);
+            Scene scene = new Scene(root);
 
             stage.setTitle("Empréstimo VK - Cadastro");
             stage.setScene(scene);
