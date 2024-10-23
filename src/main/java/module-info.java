@@ -7,4 +7,6 @@ module org.example.pi_primo {
 
     opens org.example.pi_primo to javafx.fxml;
     exports org.example.pi_primo;
+    exports org.example.pi_primo.model;
+    opens org.example.pi_primo.model to javafx.fxml;
 }
