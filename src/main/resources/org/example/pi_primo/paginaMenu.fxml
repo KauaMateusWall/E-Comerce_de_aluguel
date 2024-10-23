@@ -35,7 +35,7 @@
                                 <MenuItem mnemonicParsing="false" text="Meus pedidos" />
                                 <MenuItem mnemonicParsing="false" text="Meus Produtos" />
                                 <MenuItem fx:id="menu" mnemonicParsing="false" text="Usuário" />
-                                <MenuItem mnemonicParsing="false" text="Sair da Conta" onAction="#VoltarTelaLogin"/>
+                                <MenuItem mnemonicParsing="false" text="Sair da Conta" onAction="#sairContaClicked"/>
                                 <MenuItem mnemonicParsing="false" text="Sair da Aplicação" onAction="#sairApicacaoClicked"/>
                             </items>
                             <HBox.margin>

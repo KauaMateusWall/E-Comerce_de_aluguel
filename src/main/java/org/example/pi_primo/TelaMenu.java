@@ -48,12 +48,9 @@ public class TelaMenu {
     }
 
     @FXML
-    public void sairContaClicked(ActionEvent actionEvent) {
-    }
-
-    @FXML
-    public void VoltarTelaLogin(ActionEvent event){
+    public void sairContaClicked(ActionEvent event) {
         loadScreen("paginaLogin.fxml","Empréstimo VK",event);
+
     }
 
     public void loadScreen(String fxmlFile, String title,ActionEvent event) {
