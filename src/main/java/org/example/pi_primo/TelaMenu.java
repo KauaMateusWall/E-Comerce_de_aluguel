@@ -2,8 +2,14 @@ package org.example.pi_primo;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.MenuItem;
+import javafx.stage.Stage;
 
 public class TelaMenu {
 
@@ -14,6 +20,7 @@ public class TelaMenu {
 
     @FXML
     public Insets ListaProdutoMenu;
+    public MenuItem menu;
 
     @FXML
     public void meuUsuarioClicked(ActionEvent actionEvent) {
@@ -37,10 +44,29 @@ public class TelaMenu {
 
     @FXML
     public void sairApicacaoClicked(ActionEvent actionEvent) {
+        System.exit(0);
     }
 
     @FXML
     public void sairContaClicked(ActionEvent actionEvent) {
     }
+
+    @FXML
+    public void VoltarTelaLogin(ActionEvent event){
+        loadScreen("paginaLogin.fxml","Empréstimo VK",event);
+    }
+
+    public void loadScreen(String fxmlFile, String title,ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource(fxmlFile));
+            Stage stage = (Stage) menu.getParentPopup().getOwnerWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle(title);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }
