@@ -62,7 +62,7 @@ public class HelloController {
         String senha = SenhaTXT.getText();
 
         try {
-            conection();  // Establishing the database connection once
+            conection();
 
             String query = "SELECT * FROM Cliente WHERE nome = ? AND senha = ?";
             PreparedStatement stmt = conn.prepareStatement(query);

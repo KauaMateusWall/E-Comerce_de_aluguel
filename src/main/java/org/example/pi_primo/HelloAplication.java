@@ -15,7 +15,7 @@ public class HelloAplication extends Application {
         Scene scene = new Scene(fxmlLoader.load());  // Carregando o layout da cena
         stage.setTitle("Empréstimo VK - Login");  // Definindo o título da janela
         stage.setScene(scene);  // Definindo a cena no palco
-        stage.show();  // Exibindo o palco
+        stage.show();
     }
 
     public static void main(String[] args) {
