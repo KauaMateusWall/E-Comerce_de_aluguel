@@ -16,7 +16,7 @@
    <left>
       <VBox alignment="CENTER" prefHeight="419.0" prefWidth="335.0" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fx:id="ProdutoImage" fitHeight="373.0" fitWidth="246.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="ProdutoImage" fitHeight="261.0" fitWidth="199.0" pickOnBounds="true" preserveRatio="true" />
             <Label fx:id="nomeProdutoText" text="Nome_Produto">
                <font>
                   <Font size="24.0" />
