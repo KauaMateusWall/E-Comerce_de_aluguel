@@ -38,7 +38,7 @@
             <HBox alignment="CENTER">
                <children>
                   <Label text="Emprestador: " />
-                  <Label fx:id="donoText" text="Nome_Emprestador" />
+                  <Label text="Nome_Emprestador" />
                </children>
             </HBox>
          </children>
