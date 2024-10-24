@@ -30,6 +30,7 @@ public class TelaProduto {
         precoText.setText(String.valueOf(Session.produto.getPreco()));
         nomeProdutoText.setText(Session.produto.getNome());
         donoText.setText(Session.dono.getNome());
+        descricaoText.setText(Session.produto.getDescricao());
         
     }
 
