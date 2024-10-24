@@ -1,4 +1,4 @@
-package org.example.pi_primo.model;
+package org.example.pi_primo.bah;
 
 public class Cliente {
     private int ID;

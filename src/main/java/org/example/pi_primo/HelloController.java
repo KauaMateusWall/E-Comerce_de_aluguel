@@ -9,7 +9,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
-import org.example.pi_primo.model.Produto;
 
 import java.awt.*;
 import java.io.IOException;
@@ -17,7 +16,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.sql.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 public class HelloController {
 
