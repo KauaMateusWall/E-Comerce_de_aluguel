@@ -71,20 +71,7 @@ public class HelloController {
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
-                try {
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("paginaMenu.fxml"));
-                    Parent root = fxmlLoader.load();
-
-                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                    Scene scene = new Scene(root);
-
-                    stage.setTitle("Empréstimo VK - Menu");
-                    stage.setScene(scene);
-                    stage.show();
-
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
+                helloAplication.loadScreen("paginaMenu.fxml","VK",event);
 
                 showAlert("Login bem-sucedido", "Bem-vindo, " + usuario + "!");
 
@@ -115,19 +102,7 @@ public class HelloController {
 
     @FXML
     public void voltarTelaLogin(ActionEvent event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("paginaLogin.fxml"));
-            Parent root = fxmlLoader.load();
-
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root);
-
-            stage.setTitle("Empréstimo VK - Cadastro");
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        helloAplication.loadScreen("paginaLogin.fxml","VK",event);
     }
 
     @FXML
