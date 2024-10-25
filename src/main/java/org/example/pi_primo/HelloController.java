@@ -150,4 +150,8 @@ public class HelloController {
     public void TermosTelaCadastro(ActionEvent event) throws URISyntaxException, IOException {
         Desktop.getDesktop().browse(new URI("https://docs.google.com/document/d/1r3z3w2721rs7Jqg07W7eNpVwm8qyVrQ9KSICxcLpeag/edit?usp=sharing"));
     }
+
+    public void EnviodDaSenhaPorEmail() throws IOException {
+        Desktop.getDesktop().mail();
+    }
 }

@@ -16,11 +16,25 @@ import java.util.Objects;
 
 public class TelaMenu {
 
-    @FXML public Button meusProdutosButton;
-    @FXML public Button meusPedidosButton;
-    @FXML public Button pesquisarProdutosButton;
-    @FXML public Button meuUsuarioButton;
+    HelloAplication helloAplication = new HelloAplication();
 
+    @FXML
+    public Button meusProdutosButton;
+
+    @FXML
+    public Button meusPedidosButton;
+
+    @FXML
+    public Button pesquisarProdutosButton;
+
+    @FXML
+    public Button meuUsuarioButton;
+
+    @FXML
+    public Button sairAplicacaoButton;
+
+    @FXML
+    public Button sairContaButton;
 
 
 
@@ -34,7 +48,7 @@ public class TelaMenu {
 
     @FXML
     public void sairUsuarioClicked(ActionEvent event) throws IOException {
-       loadScreen("paginaMeuUsuario.fxml","Empréstimo VK",event);
+       helloAplication.loadScreen("paginaMeuUsuario.fxml","Empréstimo VK",event);
 
     }
 
@@ -46,10 +60,6 @@ public class TelaMenu {
     public void meusProdutosClicked(ActionEvent actionEvent) {
     }
 
-
-    @FXML public Button sairAplicacaoButton;
-    @FXML public Button sairContaButton;
-
     @FXML
     public void sairApicacaoClicked(ActionEvent actionEvent) {
         System.exit(0);
@@ -57,21 +67,7 @@ public class TelaMenu {
 
     @FXML
     public void sairContaClicked(ActionEvent event) {
-        loadScreen("paginaLogin.fxml","Empréstimo VK",event);
+        helloAplication.loadScreen("paginaLogin.fxml","Empréstimo VK",event);
 
     }
-
-    public void loadScreen(String fxmlFile, String title,ActionEvent event) {
-        try {
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlFile)));
-            Stage stage = (Stage) menu.getParentPopup().getOwnerWindow();
-            stage.setScene(new Scene(root));
-            stage.setTitle(title);
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-
 }

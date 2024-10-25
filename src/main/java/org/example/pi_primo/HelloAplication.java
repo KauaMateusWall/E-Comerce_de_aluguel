@@ -16,7 +16,7 @@ public class HelloAplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         // Carregar o arquivo FXML
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloAplication.class.getResource("paginaCadastroProduto.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloAplication.class.getResource("paginaLogin.fxml"));
         Scene scene = new Scene(fxmlLoader.load());  // Carregando o layout da cena
         stage.setTitle("Empréstimo VK - Login");  // Definindo o título da janela
         stage.setScene(scene);  // Definindo a cena no palco
