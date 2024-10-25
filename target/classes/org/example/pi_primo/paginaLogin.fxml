@@ -14,22 +14,26 @@
     <children>
         <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="276.0" prefWidth="640.0" VBox.vgrow="ALWAYS">
             <children>
-                <Button fx:id="BotaoEntrar" layoutX="296.0" layoutY="247.0" mnemonicParsing="false" onAction="#onEntrarClicked" style="-fx-background-color: #0000FF;" text="Entrar" textAlignment="CENTER" />
-                <Button fx:id="BotaoCadastrar" layoutX="287.0" layoutY="279.0" mnemonicParsing="false" onAction="#omCadastroClicked" style="-fx-background-color: #0000FF;" text="Cadastrar" textAlignment="CENTER" />
-                <TextField fx:id="UsuarioTXT" layoutX="219.0" layoutY="134.0" prefHeight="25.0" prefWidth="202.0" />
-                <CheckBox layoutX="219.0" layoutY="209.0" mnemonicParsing="false">
-                    <graphic>
-                        <Hyperlink fx:id="HiperLinkTelaLogin" focusTraversable="false" text="Esqueceu a senha?" />
-                    </graphic>
-                </CheckBox>
-                <Label layoutX="171.0" layoutY="138.0" text="Usuário:" />
-                <Label layoutX="179.0" layoutY="179.0" text="Senha:" />
                 <Label layoutX="213.0" layoutY="40.0" prefHeight="56.0" prefWidth="215.0" text="Alugues VK" textOverrun="CLIP" AnchorPane.bottomAnchor="304.0" AnchorPane.leftAnchor="213.0" AnchorPane.rightAnchor="212.0" AnchorPane.topAnchor="40.0">
                     <font>
                         <Font name="System Bold Italic" size="38.0" />
                     </font>
                 </Label>
+                <Label layoutX="171.0" layoutY="138.0" text="Usuário:" />
+                <Label layoutX="179.0" layoutY="179.0" text="Senha:" />
+
+                <TextField fx:id="UsuarioTXT" layoutX="219.0" layoutY="134.0" prefHeight="25.0" prefWidth="202.0" />
                 <PasswordField fx:id="SenhaTXT" layoutX="220.0" layoutY="175.0" prefHeight="25.0" prefWidth="202.0" />
+
+                <CheckBox layoutX="219.0" layoutY="209.0" mnemonicParsing="false">
+                    <graphic>
+                        <Hyperlink fx:id="HiperLinkTelaLogin" focusTraversable="false" text="Esqueceu a senha?" />
+                    </graphic>
+                </CheckBox>
+
+                <Button fx:id="BotaoEntrar" layoutX="296.0" layoutY="247.0" mnemonicParsing="false" onAction="#onEntrarClicked" style="-fx-background-color: #0000FF;" text="Entrar" textAlignment="CENTER" />
+                <Button fx:id="BotaoCadastrar" layoutX="287.0" layoutY="279.0" mnemonicParsing="false" onAction="#omCadastroClicked" style="-fx-background-color: #0000FF;" text="Cadastrar" textAlignment="CENTER" />
+
             </children>
         </AnchorPane>
     </children>

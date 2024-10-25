@@ -16,27 +16,6 @@
     <children>
         <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="457.0" prefWidth="559.0">
             <children>
-                <PasswordField fx:id="CadastroSenha" layoutX="200.0" layoutY="130.0" prefHeight="25.0" prefWidth="216.0" />
-                <TextField fx:id="CadastroEndereco" layoutX="196.0" layoutY="235.0" prefHeight="25.0" prefWidth="216.0" />
-                <TextField fx:id="CadastroEmail" layoutX="196.0" layoutY="204.0" prefHeight="25.0" prefWidth="216.0" />
-                <TextField fx:id="CadastroCpf" layoutX="196.0" layoutY="168.0" prefHeight="25.0" prefWidth="216.0" />
-                <TextField fx:id="CadastroUsuario" layoutX="196.0" layoutY="92.0" prefHeight="25.0" prefWidth="216.0" />
-                <TextField fx:id="CadastroTelefone" layoutX="196.0" layoutY="269.0" prefHeight="25.0" prefWidth="216.0" />
-                <DatePicker fx:id="Data_Nascimento" layoutX="200.0" layoutY="303.0" prefHeight="25.0" prefWidth="216.0" />
-                <Label layoutX="155.0" layoutY="172.0" text="CPF:" />
-                <Label layoutX="151.0" layoutY="134.0" text="Senha:" />
-                <Label layoutX="138.0" layoutY="273.0" text="Telefone:" />
-                <Label layoutX="153.0" layoutY="208.0" text="Email:" />
-                <Label layoutX="136.0" layoutY="239.0" text="Endereço:" />
-                <Label layoutX="71.0" layoutY="307.0" prefHeight="18.0" prefWidth="127.0" text="Data de nascimento:" />
-                <Button layoutX="272.0" layoutY="352.0" mnemonicParsing="false" onAction="#Cadastrar" text="Cadastrar" />
-                <Button layoutX="277.0" layoutY="390.0" mnemonicParsing="false" onAction="#voltarTelaLogin" text="Voltar" />
-                <Label layoutX="147.0" layoutY="96.0" text="Usuario:" />
-                <CheckBox fx:id="CheckBoxcadastro" layoutX="200.0" layoutY="334.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="78.0">
-                    <graphic>
-                        <Hyperlink prefHeight="23.0" prefWidth="139.0" onAction="#TermosTelaCadastro" text="Termos" />
-                    </graphic>
-                </CheckBox>
                 <Label layoutX="191.0" layoutY="14.0" prefHeight="54.0" prefWidth="233.0" text="Aluguel VK ">
                     <font>
                         <Font size="37.0" />
@@ -45,6 +24,32 @@
                         <DropShadow />
                     </effect>
                 </Label>
+
+                <Label layoutX="147.0" layoutY="96.0" text="Usuario:" />
+                <Label layoutX="151.0" layoutY="134.0" text="Senha:" />
+                <Label layoutX="155.0" layoutY="172.0" text="CPF:" />
+                <Label layoutX="153.0" layoutY="208.0" text="Email:" />
+                <Label layoutX="136.0" layoutY="239.0" text="Endereço:" />
+                <Label layoutX="138.0" layoutY="273.0" text="Telefone:" />
+                <Label layoutX="71.0" layoutY="307.0" prefHeight="18.0" prefWidth="127.0" text="Data de nascimento:" />
+
+                <TextField fx:id="CadastroUsuario" layoutX="196.0" layoutY="92.0" prefHeight="25.0" prefWidth="216.0" />
+                <PasswordField fx:id="CadastroSenha" layoutX="200.0" layoutY="130.0" prefHeight="25.0" prefWidth="216.0" />
+                <TextField fx:id="CadastroCpf" layoutX="196.0" layoutY="168.0" prefHeight="25.0" prefWidth="216.0" />
+                <TextField fx:id="CadastroEmail" layoutX="196.0" layoutY="204.0" prefHeight="25.0" prefWidth="216.0" />
+                <TextField fx:id="CadastroEndereco" layoutX="196.0" layoutY="235.0" prefHeight="25.0" prefWidth="216.0" />
+                <TextField fx:id="CadastroTelefone" layoutX="196.0" layoutY="269.0" prefHeight="25.0" prefWidth="216.0" />
+                <DatePicker fx:id="Data_Nascimento" layoutX="200.0" layoutY="303.0" prefHeight="25.0" prefWidth="216.0" />
+
+                <CheckBox fx:id="CheckBoxcadastro" layoutX="200.0" layoutY="334.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="78.0">
+                    <graphic>
+                        <Hyperlink prefHeight="23.0" prefWidth="139.0" onAction="#TermosTelaCadastro" text="Termos" />
+                    </graphic>
+                </CheckBox>
+
+                <Button layoutX="272.0" layoutY="352.0" mnemonicParsing="false" onAction="#Cadastrar" text="Cadastrar" />
+                <Button layoutX="277.0" layoutY="390.0" mnemonicParsing="false" onAction="#voltarTelaLogin" text="Voltar" />
+
             </children>
         </AnchorPane>
     </children>

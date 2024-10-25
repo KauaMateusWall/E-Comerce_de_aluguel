@@ -32,6 +32,8 @@ public class HelloController {
         conn.close();
     }
 
+    HelloAplication helloAplication = new HelloAplication();
+
     @FXML
     public CheckBox CheckBoxcadastro;
     @FXML
@@ -108,19 +110,7 @@ public class HelloController {
 
     @FXML
     public void omCadastroClicked(ActionEvent event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("paginaCadastro.fxml"));
-            Parent root = fxmlLoader.load();
-
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root);
-
-            stage.setTitle("Empréstimo VK - Cadastro");
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        helloAplication.loadScreen("paginaCadastro.fxml","VK",event);
     }
 
     @FXML
@@ -141,7 +131,7 @@ public class HelloController {
     }
 
     @FXML
-    public void Cadastrar() throws SQLException {
+    public void Cadastrar(ActionEvent event) throws SQLException {
         try {
             if (CheckBoxcadastro.isSelected()) {
                 conection();
@@ -170,6 +160,7 @@ public class HelloController {
 
                     InsertSMT.execute();
                     showAlert("Cadastro bem-sucedido", "Cadastro de " + nome + " foi um sucesso!!!");
+                    helloAplication.loadScreen("paginalogin.fxml", "VK",event);
                 }
             } else {
                 showAlert("Atenção", "Por favor, aceite os termos de cadastro.");

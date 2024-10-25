@@ -11,6 +11,7 @@ import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Objects;
 
 
 public class TelaMenu {
@@ -62,7 +63,7 @@ public class TelaMenu {
 
     public void loadScreen(String fxmlFile, String title,ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource(fxmlFile));
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlFile)));
             Stage stage = (Stage) menu.getParentPopup().getOwnerWindow();
             stage.setScene(new Scene(root));
             stage.setTitle(title);
