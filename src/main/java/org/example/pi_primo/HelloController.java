@@ -9,6 +9,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
+import org.springframework.mail.SimpleMailMessage;
 
 import java.awt.*;
 import java.io.IOException;
@@ -151,7 +152,4 @@ public class HelloController {
         Desktop.getDesktop().browse(new URI("https://docs.google.com/document/d/1r3z3w2721rs7Jqg07W7eNpVwm8qyVrQ9KSICxcLpeag/edit?usp=sharing"));
     }
 
-    public void EnviodDaSenhaPorEmail() throws IOException {
-        Desktop.getDesktop().mail();
-    }
 }

@@ -37,14 +37,6 @@
       <version>3.3.5</version>
     </dependency>
 
-    <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
-    <dependency>
-      <groupId>org.projectlombok</groupId>
-      <artifactId>lombok</artifactId>
-      <version>0.9.2</version>
-      <scope>provided</scope>
-    </dependency>
-
     <!-- JavaFX Controls -->
     <dependency>
       <groupId>org.openjfx</groupId>
