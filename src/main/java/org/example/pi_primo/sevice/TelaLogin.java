@@ -1,9 +1,11 @@
-package org.example.pi_primo;
+package org.example.pi_primo.sevice;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import org.example.pi_primo.HelloApplication;
+import org.example.pi_primo.HelloController;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

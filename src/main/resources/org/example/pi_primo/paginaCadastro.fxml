@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="448.0" prefWidth="559.0" xmlns="http://javafx.com/javafx/1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.pi_primo.TelaCadastro">
+<VBox prefHeight="448.0" prefWidth="559.0" xmlns="http://javafx.com/javafx/1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.pi_primo.sevice.TelaCadastro">
     <children>
         <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="457.0" prefWidth="559.0">
             <children>
