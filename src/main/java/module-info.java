@@ -3,6 +3,8 @@ module org.example.pi_primo {
     requires javafx.fxml;
     requires java.desktop;
     requires java.sql;
+    requires spring.context.support;
+    requires commons.email;
 
 
     opens org.example.pi_primo to javafx.fxml;
