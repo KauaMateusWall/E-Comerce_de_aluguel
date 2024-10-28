@@ -33,7 +33,7 @@ public class HelloController {
         conn.close();
     }
 
-    HelloAplication helloAplication = new HelloAplication();
+    HelloApplication HelloApplication = new HelloApplication();
 
     @FXML
     public CheckBox CheckBoxcadastro;
@@ -72,7 +72,7 @@ public class HelloController {
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
-                helloAplication.loadScreen("paginaMenu.fxml","VK",event);
+                HelloApplication.loadScreen("paginaMenu.fxml","VK",event);
 
                 showAlert("Login bem-sucedido", "Bem-vindo, " + usuario + "!");
 
@@ -98,12 +98,12 @@ public class HelloController {
 
     @FXML
     public void omCadastroClicked(ActionEvent event) {
-        helloAplication.loadScreen("paginaCadastro.fxml","VK",event);
+        HelloApplication.loadScreen("paginaCadastro.fxml","VK",event);
     }
 
     @FXML
     public void voltarTelaLogin(ActionEvent event) {
-        helloAplication.loadScreen("paginaLogin.fxml","VK",event);
+        HelloApplication.loadScreen("paginaLogin.fxml","VK",event);
     }
 
     @FXML
@@ -136,7 +136,7 @@ public class HelloController {
 
                     InsertSMT.execute();
                     showAlert("Cadastro bem-sucedido", "Cadastro de " + nome + " foi um sucesso!!!");
-                    helloAplication.loadScreen("paginalogin.fxml", "VK",event);
+                    HelloApplication.loadScreen("paginalogin.fxml", "VK",event);
                 }
             } else {
                 showAlert("Atenção", "Por favor, aceite os termos de cadastro.");

@@ -16,7 +16,7 @@ import java.util.Objects;
 
 public class TelaMenu {
 
-    HelloAplication helloAplication = new HelloAplication();
+    HelloApplication helloAplication = new HelloApplication();
 
     @FXML
     public Button meusProdutosButton;

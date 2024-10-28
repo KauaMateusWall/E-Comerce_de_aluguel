@@ -18,7 +18,7 @@ import static org.example.pi_primo.HelloController.*;
 
 public class TelaCadastroProduto {
 
-    HelloAplication helloAplication = new HelloAplication();
+    HelloApplication helloAplication = new HelloApplication();
 
     public Button cadastrarButton;
     public Button voltarButton;
