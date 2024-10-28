@@ -17,6 +17,9 @@ import java.sql.SQLException;
 import static org.example.pi_primo.HelloController.*;
 
 public class TelaCadastroProduto {
+
+    HelloApplication helloAplication = new HelloApplication();
+
     public Button cadastrarButton;
     public Button voltarButton;
     public TextField precoText;
@@ -25,19 +28,7 @@ public class TelaCadastroProduto {
     public ChoiceBox<String> tipoChoiceBox;
 
     public void voltarClicked(ActionEvent event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("paginaLogin.fxml"));
-            Parent root = fxmlLoader.load();
-
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root, 640, 400);
-
-            stage.setTitle("Empréstimo VK - Cadastro");
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        helloAplication.loadScreen("paginaLogin.fxml","VK",event);
     }
 
     public void cadastrarClicked(ActionEvent actionEvent) throws SQLException {

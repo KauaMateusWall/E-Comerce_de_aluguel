@@ -9,6 +9,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
+import org.springframework.mail.SimpleMailMessage;
 
 import java.awt.*;
 import java.io.IOException;
@@ -31,6 +32,8 @@ public class HelloController {
     public void closeConection() throws SQLException {
         conn.close();
     }
+
+    HelloApplication HelloApplication = new HelloApplication();
 
     @FXML
     public CheckBox CheckBoxcadastro;
@@ -69,20 +72,7 @@ public class HelloController {
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
-                try {
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("paginaMenu.fxml"));
-                    Parent root = fxmlLoader.load();
-
-                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                    Scene scene = new Scene(root);
-
-                    stage.setTitle("Empréstimo VK - Menu");
-                    stage.setScene(scene);
-                    stage.show();
-
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
+                HelloApplication.loadScreen("paginaMenu.fxml","VK",event);
 
                 showAlert("Login bem-sucedido", "Bem-vindo, " + usuario + "!");
 
@@ -108,40 +98,16 @@ public class HelloController {
 
     @FXML
     public void omCadastroClicked(ActionEvent event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("paginaCadastro.fxml"));
-            Parent root = fxmlLoader.load();
-
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root);
-
-            stage.setTitle("Empréstimo VK - Cadastro");
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        HelloApplication.loadScreen("paginaCadastro.fxml","VK",event);
     }
 
     @FXML
     public void voltarTelaLogin(ActionEvent event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("paginaLogin.fxml"));
-            Parent root = fxmlLoader.load();
-
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root);
-
-            stage.setTitle("Empréstimo VK - Cadastro");
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        HelloApplication.loadScreen("paginaLogin.fxml","VK",event);
     }
 
     @FXML
-    public void Cadastrar() throws SQLException {
+    public void Cadastrar(ActionEvent event) throws SQLException {
         try {
             if (CheckBoxcadastro.isSelected()) {
                 conection();
@@ -170,6 +136,7 @@ public class HelloController {
 
                     InsertSMT.execute();
                     showAlert("Cadastro bem-sucedido", "Cadastro de " + nome + " foi um sucesso!!!");
+                    HelloApplication.loadScreen("paginalogin.fxml", "VK",event);
                 }
             } else {
                 showAlert("Atenção", "Por favor, aceite os termos de cadastro.");
@@ -184,4 +151,5 @@ public class HelloController {
     public void TermosTelaCadastro(ActionEvent event) throws URISyntaxException, IOException {
         Desktop.getDesktop().browse(new URI("https://docs.google.com/document/d/1r3z3w2721rs7Jqg07W7eNpVwm8qyVrQ9KSICxcLpeag/edit?usp=sharing"));
     }
+
 }
