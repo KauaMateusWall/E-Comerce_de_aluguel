@@ -16,7 +16,7 @@
 
 <?import javafx.collections.FXCollections?>
 <?import java.lang.String?>
-<StackPane xmlns="http://javafx.com/javafx/1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.pi_primo.TelaCadastroProduto">
+<StackPane xmlns="http://javafx.com/javafx/1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.pi_primo.service.TelaCadastroProduto">
     <VBox />
     <BorderPane>
         <center>
