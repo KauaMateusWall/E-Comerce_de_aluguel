@@ -1,4 +1,4 @@
-package org.example.pi_primo.sevice;
+package org.example.pi_primo.service;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -8,6 +8,7 @@ import org.apache.commons.mail.DefaultAuthenticator;
 import org.apache.commons.mail.SimpleEmail;
 import org.example.pi_primo.HelloApplication;
 import org.example.pi_primo.HelloController;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -27,12 +28,18 @@ public class ServicoEmail {
     @FXML
     public Button voltarButton;
 
-    HelloApplication helloApplication = new HelloApplication();
-    HelloController helloController = new HelloController();
+    private final HelloApplication helloApplication;
+    private final HelloController helloController;
+
+    @Autowired
+    public ServicoEmail(HelloApplication helloApplication, HelloController helloController) {
+        this.helloApplication = helloApplication;
+        this.helloController = helloController;
+    }
 
     public static void EnviarDaSenhaPorEmail(String para, String titulo, String conteudo) {
-        String MeuEmail = "vk.alugueis@gmail.com";
-        String MinhaSenha = "VK-99088";
+        String MeuEmail = "vk.alugueis@gmail.com";  // Considere usar variáveis de ambiente
+        String MinhaSenha = "VK-99088";  // Considere usar variáveis de ambiente
 
         SimpleEmail email = new SimpleEmail();
         email.setHostName("smtp.gmail.com");
@@ -49,6 +56,7 @@ public class ServicoEmail {
             System.out.println("E-mail enviado com sucesso");
         } catch (Exception e) {
             System.err.println("Erro ao enviar e-mail: " + e.getMessage());
+            e.printStackTrace();  // Exibe o stack trace para ajudar na depuração
         }
     }
 
@@ -72,8 +80,9 @@ public class ServicoEmail {
 
             rs.close();
             stmt.close();
-        } catch (Exception e) {
-            showAlert("Erro", "Erro ao enviar senha: " + e.getMessage());
+        } catch (SQLException e) {
+            showAlert("Erro", "Erro ao acessar o banco de dados: " + e.getMessage());
+            e.printStackTrace();
         } finally {
             try {
                 helloController.closeConection();

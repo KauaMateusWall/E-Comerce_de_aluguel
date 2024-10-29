@@ -1,4 +1,4 @@
-package org.example.pi_primo.sevice;
+package org.example.pi_primo.service;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
