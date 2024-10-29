@@ -13,7 +13,7 @@ module org.example.pi_primo {
     requires spring.core;
     requires spring.context.support;
     requires java.mail;
-    requires commons.email; // Inclui java.awt e outros
+    requires commons.email;
 
     opens org.example.pi_primo to javafx.fxml;
     exports org.example.pi_primo;
@@ -21,4 +21,6 @@ module org.example.pi_primo {
     opens org.example.pi_primo.model to javafx.fxml;
     exports org.example.pi_primo.service; // Corrigido de "sevice" para "service"
     opens org.example.pi_primo.service to javafx.fxml;
+    exports org.example.pi_primo.emailServico;
+    opens org.example.pi_primo.emailServico to javafx.fxml;
 }

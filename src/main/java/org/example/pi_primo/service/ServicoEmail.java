@@ -17,7 +17,8 @@ import java.sql.SQLException;
 import static org.example.pi_primo.HelloController.conn;
 import static org.example.pi_primo.HelloController.showAlert;
 
-public class ServicoEmail {
+public class
+ServicoEmail {
 
     @FXML
     private TextField emailText;
