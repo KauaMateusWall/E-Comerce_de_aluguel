@@ -41,7 +41,7 @@ public class TelaCadastro {
     @FXML public ChoiceBox<String> EstadoChoice;
 
     public void cadastrarClicked(ActionEvent event) throws SQLException {
-        conection();
+        hc.conection();
         String InserSQL = "INSERT INTO Cliente (nome, senha, cpf, Data_Nascimento, endereco, email, telefone) VALUES (?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement InsertSMT = conn.prepareStatement(InserSQL)) {
 
@@ -58,7 +58,7 @@ public class TelaCadastro {
             String numero = ruaNumeroText.getText();
             String bairro = bairroText.getText();
             String complemento = complementoText.getText();
-            String Estado = (String) EstadoChoice.getValue();
+            String Estado =  EstadoChoice.getValue();
             LocalDate nascimento = nascimentoText.getValue();
             System.out.println(nascimento);
 
@@ -120,7 +120,7 @@ public class TelaCadastro {
                 return;
             }
 
-            if(!Pattern.matches("[@]",email)){
+            if(!Pattern.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",email)){
                 showAlert("Email inválido","Digite corretamente seu email: nome@vk.com; nome123@gmail.com; etc...");
                 return;
             }

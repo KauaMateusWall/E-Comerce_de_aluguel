@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="336.0" prefWidth="693.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.pi_primo.TelaCadastro">
+<VBox prefHeight="336.0" prefWidth="693.0" xmlns="http://javafx.com/javafx/1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.pi_primo.TelaCadastro">
     <AnchorPane prefHeight="360.0" prefWidth="693.0">
         <Label layoutX="57.0" layoutY="102.0" text="Usuario:" />
         <TextField fx:id="usuarioText" layoutX="114.0" layoutY="99.0" prefHeight="25.0" prefWidth="210.0" promptText="Somente letras" />
