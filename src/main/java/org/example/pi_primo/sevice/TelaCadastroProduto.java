@@ -1,17 +1,13 @@
-package org.example.pi_primo;
+package org.example.pi_primo.sevice;
 
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
+import org.example.pi_primo.HelloApplication;
+import org.example.pi_primo.HelloController;
 
-import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import static org.example.pi_primo.HelloController.*;

@@ -1,17 +1,13 @@
-package org.example.pi_primo;
+package org.example.pi_primo.sevice;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
-import javafx.stage.Stage;
+import org.example.pi_primo.HelloApplication;
 
 import java.io.IOException;
-import java.util.Objects;
 
 
 public class TelaMenu {
