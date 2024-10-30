@@ -1,7 +1,7 @@
 package org.example.pi_primo.model;
 
 public class Cliente {
-    private int ID;
+    private int id;
     private String nome;
     private String CPF;
     private String email;
@@ -9,8 +9,8 @@ public class Cliente {
     private String telefone;
     private String nascimento;
 
-    public Cliente(int ID, String nome, String CPF, String email, String endereco, String telefone, String nascimento) {
-        this.ID = ID;
+    public Cliente(int id, String nome, String CPF, String email, String endereco, String telefone, String nascimento) {
+        this.id = id;
         this.nome = nome;
         this.CPF = CPF;
         this.email = email;
@@ -19,12 +19,12 @@ public class Cliente {
         this.nascimento = nascimento;
     }
 
-    public int getID() {
-        return ID;
+    public int getid() {
+        return id;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setid(int id) {
+        this.id = id;
     }
 
     public String getNome() {

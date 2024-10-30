@@ -2,22 +2,23 @@ package org.example.pi_primo.service;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import org.example.pi_primo.HelloApplication;
-import org.example.pi_primo.HelloController;
+import org.example.pi_primo.config.ConexaoDB;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import static org.example.pi_primo.HelloController.conn;
-import static org.example.pi_primo.HelloController.showAlert;
+import static org.example.pi_primo.config.ConexaoDB.conn;
+import static org.example.pi_primo.config.ConexaoDB.showAlert;
 
 public class TelaLogin {
 
     HelloApplication helloApplication = new HelloApplication();
-    HelloController helloController = new HelloController();
+    ConexaoDB helloController = new ConexaoDB();
 
     @FXML
     private TextField UsuarioTXT;
@@ -43,10 +44,10 @@ public class TelaLogin {
             if (rs.next()) {
                 helloApplication.loadScreen("paginaMenu.fxml", "VK", event);
 
-                showAlert("Login bem-sucedido", "Bem-vindo, " + usuario + "!");
+                showAlert("Login bem-sucedido", "Bem-vindo, " + usuario + "!", Alert.AlertType.ERROR);
 
             } else {
-                showAlert("Falha no login", "Nome de usuário ou senha incorretos.");
+                showAlert("Falha no login", "Nome de usuário ou senha incorretos.", Alert.AlertType.ERROR);
             }
 
         } catch (SQLException e) {
@@ -62,9 +63,9 @@ public class TelaLogin {
         helloApplication.loadScreen("paginaCadastro.fxml", "VK", event);
     }
 
-    public void RecuperarSenha(ActionEvent event) throws SQLException {
+    @FXML
+    public void RecuperarSenha(ActionEvent event) {
         helloApplication.loadScreen("paginaRecuperarSenha.fxml", "Vk", event);
-
     }
 
 }

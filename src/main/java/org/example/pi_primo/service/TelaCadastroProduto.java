@@ -1,16 +1,13 @@
 package org.example.pi_primo.service;
 
 import javafx.event.ActionEvent;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import org.example.pi_primo.HelloApplication;
-import org.example.pi_primo.HelloController;
+import org.example.pi_primo.config.ConexaoDB;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import static org.example.pi_primo.HelloController.*;
+import static org.example.pi_primo.config.ConexaoDB.*;
 
 public class TelaCadastroProduto {
 
@@ -28,7 +25,7 @@ public class TelaCadastroProduto {
     }
 
     public void cadastrarClicked(ActionEvent actionEvent) throws SQLException {
-        HelloController helloController = new HelloController();
+        ConexaoDB helloController = new ConexaoDB();
         try {
             helloController.conection();
             String InserSQL = "INSERT INTO Produto (nome, descricao, categoria_Produto, preco) VALUES (?, ?, ?, ?)";
@@ -39,7 +36,7 @@ public class TelaCadastroProduto {
                 String tipo = (String) tipoChoiceBox.getValue();
 
                 if (nome.isEmpty() || preco.isEmpty() || descricao.isEmpty() || tipo == null) {
-                    showAlert("Campos vazios", "Por favor, preencha todos os campos.");
+                    showAlert("Campos vazios", "Por favor, preencha todos os campos.", Alert.AlertType.ERROR);
                     return;
                 }
 
@@ -47,7 +44,7 @@ public class TelaCadastroProduto {
                 try {
                     precoValue = Double.parseDouble(preco);
                 } catch (NumberFormatException e) {
-                    showAlert("Erro no Preço", "Por favor, insira um valor numérico válido para o preço.");
+                    showAlert("Erro no Preço", "Por favor, insira um valor numérico válido para o preço.", Alert.AlertType.ERROR);
                     return;
                 }
 
@@ -57,7 +54,7 @@ public class TelaCadastroProduto {
                 InsertSMT.setDouble(4, precoValue);
 
                 InsertSMT.execute();
-                showAlert("Cadastro bem-sucedido", "Cadastro de " + nome + " foi um sucesso!!!");
+                showAlert("Cadastro bem-sucedido", "Cadastro de " + nome + " foi um sucesso!!!", Alert.AlertType.ERROR);
             }
 
         } catch (SQLException e) {

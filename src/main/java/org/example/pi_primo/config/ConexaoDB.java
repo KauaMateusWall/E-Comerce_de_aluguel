@@ -1,25 +1,10 @@
-package org.example.pi_primo;
+package org.example.pi_primo.config;
 
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import javafx.stage.Stage;
-import javafx.event.ActionEvent;
-import org.springframework.mail.SimpleMailMessage;
 
-import java.awt.*;
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.sql.*;
-import java.time.LocalDate;
 
-public class HelloController {
+public class ConexaoDB {
 
     private static final String URL = "jdbc:mysql://localhost:3306/PI_Primo";
     private static final String USER = "root";
@@ -34,7 +19,7 @@ public class HelloController {
         conn.close();
     }
 
-    public static void showAlert(String titulo, String mensagem) {
+    public static void showAlert(String titulo, String mensagem, Alert.AlertType error) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(titulo);
         alert.setHeaderText(null);

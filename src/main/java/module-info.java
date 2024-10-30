@@ -23,4 +23,6 @@ module org.example.pi_primo {
     opens org.example.pi_primo.service to javafx.fxml;
     exports org.example.pi_primo.emailServico;
     opens org.example.pi_primo.emailServico to javafx.fxml;
+    exports org.example.pi_primo.config;
+    opens org.example.pi_primo.config to javafx.fxml;
 }

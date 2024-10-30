@@ -6,7 +6,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import org.example.pi_primo.HelloApplication;
-import org.example.pi_primo.HelloController;
+import org.example.pi_primo.config.ConexaoDB;
 
 import java.awt.*;
 import java.net.URI;
@@ -17,11 +17,11 @@ import java.time.LocalDate;
 import java.util.regex.Pattern;
 
 
-import static org.example.pi_primo.HelloController.*;
+import static org.example.pi_primo.config.ConexaoDB.*;
 
 public class TelaCadastro {
 
-    HelloController hc= new HelloController();
+    ConexaoDB hc= new ConexaoDB();
     HelloApplication ha= new HelloApplication();
 
     @FXML public TextField usuarioText;
@@ -76,14 +76,30 @@ public class TelaCadastro {
                     bairro.isEmpty() ||
                     Estado.isEmpty() ||
                     nascimento == null) {
-                showAlert("Campos vazios", "Por favor, preencha todos os campos.");
+                showAlert("Campos vazios", "Por favor, preencha todos os campos.", Alert.AlertType.ERROR);
                 return;
             }
 
             if (!CheckBoxcadastro.isSelected()) {
-                showAlert("Aceite os termos!","Clique em cima de termos, leia, e aceite, clicando na caixinha ao lado de \"Termos\" em azul.");
+                showAlert("Aceite os termos!","Clique em cima de termos, leia, e aceite, clicando na caixinha ao lado de \"Termos\" em azul.", Alert.AlertType.ERROR);
                 return;
             }
+
+
+            if (!nome.matches("[A-Za-zÀ-ÿ\\s]+")) {
+                hc.showAlert("Nome inválido", "O campo 'Nome' deve conter apenas letras e espaços.", Alert.AlertType.ERROR);
+                return;
+            }
+
+            if (!senha.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+\\-={}|:;\"'<>,.?/~`]).+$")) {
+                hc.showAlert("Senha inválida", "A senha deve conter pelo menos uma letra maiúscula, uma letra minúscula e um caractere especial.", Alert.AlertType.ERROR);
+                return;
+            }
+            if (!cpf.matches("[0-9]{11}")) {
+                hc.showAlert("CPF inválido", "O CPF deve conter exatamente 11 números.", Alert.AlertType.ERROR);
+                return;
+            }
+
 
             StringBuilder stringBuilder =new StringBuilder();
 
@@ -104,26 +120,33 @@ public class TelaCadastro {
             stringBuilder.append('(').append(ddd).append(')').append(numeroTelefone);
 
             String telefone=stringBuilder.toString();
+
             if(Pattern.matches("[a-z][A-Z]",cpf)){
-                showAlert("Somente números","Coloque somente números no número de CPF.");
-                return;
-            }
-            if(Pattern.matches("[a-z][A-Z]",telefone)){
-                showAlert("Somente números","Coloque somente números no número de telefone");
-                return;
-            }
-            if(Pattern.matches("[a-z][A-Z]",CEP)){
-                showAlert("Somente números","Coloque somente números no número de telefone");
+                showAlert("Somente números","Coloque somente números no número de CPF.", Alert.AlertType.ERROR);
                 return;
             }
 
-            if(senha.length()<12 || senha.length()>32){
-                showAlert("Sua senha não é válida","Temanho mínomo:12; Máximo: 32");
+            if (cpf.matches("[0-9]")){
+                showAlert("Somente números","Coloque somente números no número de CPF.", Alert.AlertType.ERROR);
+                return;
+            }
+
+            if(Pattern.matches("[a-z][A-Z]",telefone)){
+                showAlert("Somente números","Coloque somente números no número de telefone", Alert.AlertType.ERROR);
+                return;
+            }
+            if(Pattern.matches("[a-z][A-Z]",CEP)){
+                showAlert("Somente números","Coloque somente números no número de telefone", Alert.AlertType.ERROR);
+                return;
+            }
+
+            if(senha.length()<6 || senha.length()>12){
+                showAlert("Sua senha não é válida","Temanho mínomo:12; Máximo: 32", Alert.AlertType.ERROR);
                 return;
             }
 
             if(!Pattern.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",email)){
-                showAlert("Email inválido","Digite corretamente seu email: nome@vk.com; nome123@gmail.com; etc...");
+                showAlert("Email inválido","Digite corretamente seu email: nome@vk.com; nome123@gmail.com; etc...", Alert.AlertType.ERROR);
                 return;
             }
 
@@ -136,7 +159,7 @@ public class TelaCadastro {
             InsertSMT.setString(7, telefone);
 
             InsertSMT.execute();
-            showAlert("Cadastro bem-sucedido", "Cadastro de " + nome + " foi um sucesso!!!");
+            showAlert("Cadastro bem-sucedido", "Cadastro de " + nome + " foi um sucesso!!!", Alert.AlertType.ERROR);
             ha.loadScreen("paginalogin.fxml", "VK", event);
         } catch (SQLException e) {
             throw new RuntimeException(e);

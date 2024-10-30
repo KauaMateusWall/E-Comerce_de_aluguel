@@ -1,16 +1,20 @@
 package org.example.pi_primo;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
+import org.example.pi_primo.config.ConexaoDB;
 
 import java.io.IOException;
-import java.util.Objects;
 
 public class HelloApplication extends Application {
+
+    ConexaoDB conexaoDB = new ConexaoDB();
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -21,17 +25,21 @@ public class HelloApplication extends Application {
         stage.show();
     }
 
-    public void loadScreen(String fxmlFile, String title, javafx.event.ActionEvent event) {
+    public void loadScreen(String fxmlFile, String title, ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlFile)));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
+            Parent root = loader.load();
+
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
             stage.setTitle(title);
+            stage.setScene(new Scene(root));
             stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
+
+        } catch (IOException e) {
+            ConexaoDB.showAlert("Erro", "Não foi possível carregar a página: " + e.getMessage(), Alert.AlertType.ERROR);
         }
     }
+
 
     public static void main(String[] args) {
         launch();
