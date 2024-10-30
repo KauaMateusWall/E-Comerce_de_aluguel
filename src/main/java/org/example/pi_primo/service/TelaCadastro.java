@@ -160,7 +160,7 @@ public class TelaCadastro {
 
             InsertSMT.execute();
             showAlert("Cadastro bem-sucedido", "Cadastro de " + nome + " foi um sucesso!!!", Alert.AlertType.ERROR);
-            ha.loadScreen("paginalogin.fxml", "VK", event);
+            ha.loadScreen("paginalogin.fxml", "VK", cadastrarButton);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -168,7 +168,7 @@ public class TelaCadastro {
     }
 
     public void voltarClicked(ActionEvent actionEvent) {
-        ha.loadScreen("paginaLogin.fxml", "VK", actionEvent);
+        ha.loadScreen("paginaLogin.fxml", "VK", voltarButton);
     }
 
     public void termosClicked(ActionEvent actionEvent) {
