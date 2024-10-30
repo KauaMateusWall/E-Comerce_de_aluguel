@@ -6,9 +6,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import org.example.pi_primo.HelloApplication;
 import org.example.pi_primo.config.ConexaoDB;
 import org.example.pi_primo.model.Produto;
+import org.example.pi_primo.model.Session;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -130,5 +132,17 @@ public class TelaMenu {
 
         TabelaListaProduto.getColumns().clear();
         TabelaListaProduto.getColumns().addAll(nomeColuna, tipoColuna, descricaoColuna, quantidadeColuna, precoColuna, idColuna);
+    }
+
+    public void MANO(ActionEvent event) {
+        Produto TOMAKAUA=TabelaListaProduto.getSelectionModel().getSelectedItem();
+        Session.produto.setId(TOMAKAUA.getId());
+        Session.produto.setNome(TOMAKAUA.getNome());
+        Session.produto.setDescricao(TOMAKAUA.getDescricao());
+        Session.produto.setPreco(TOMAKAUA.getPreco());
+        Session.produto.setTipo(TOMAKAUA.getTipo());
+        Session.produto.setQuantidadeDeEmprestimos(TOMAKAUA.getQuantidadeDeEmprestimos());
+
+        helloApplication.loadScreen("paginaProduto.fxml", "VK",event);
     }
 }
