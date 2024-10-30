@@ -10,11 +10,16 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import org.example.pi_primo.HelloApplication;
+import org.example.pi_primo.config.ConexaoDB;
 import org.example.pi_primo.model.Session;
 
 import java.io.IOException;
 
 public class TelaProduto {
+    HelloApplication helloApplication = new HelloApplication();
+    ConexaoDB helloController = new ConexaoDB();
+
     @FXML public Button alugarButton;
     @FXML public Button voltarButton;
 
@@ -42,18 +47,6 @@ public class TelaProduto {
 
     @FXML
     public void voltarClicked(ActionEvent actionEvent) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("paginaMenu.fxml"));
-            Parent root = fxmlLoader.load();
-
-            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root);
-
-            stage.setTitle("Empréstimo VK - Menu");
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        helloApplication.loadScreen("paginaMenu.fxml","Empréstimo VK - Menu",voltarButton);
     }
 }

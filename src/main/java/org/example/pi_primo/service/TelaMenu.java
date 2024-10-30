@@ -58,7 +58,7 @@ public class TelaMenu {
 
     @FXML
     public void sairUsuarioClicked(ActionEvent event) throws IOException {
-        helloApplication.loadScreen("paginaMeuUsuario.fxml", "Empréstimo VK", event);
+        helloApplication.loadScreen("paginaMeuUsuario.fxml", "Empréstimo VK", sairContaButton);
     }
 
     @FXML
@@ -84,7 +84,7 @@ public class TelaMenu {
 
     @FXML
     public void sairContaClicked(ActionEvent event) {
-        helloApplication.loadScreen("paginaLogin.fxml", "Empréstimo VK", event);
+        helloApplication.loadScreen("paginaLogin.fxml", "Empréstimo VK", sairContaButton);
     }
 
     public void listarProduto() throws SQLException {
@@ -143,6 +143,6 @@ public class TelaMenu {
         Session.produto.setTipo(TOMAKAUA.getTipo());
         Session.produto.setQuantidadeDeEmprestimos(TOMAKAUA.getQuantidadeDeEmprestimos());
 
-        helloApplication.loadScreen("paginaProduto.fxml", "VK",event);
+        helloApplication.loadScreen("paginaProduto.fxml", "VK", TabelaListaProduto);
     }
 }
