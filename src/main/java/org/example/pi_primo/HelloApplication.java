@@ -7,10 +7,12 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import org.example.pi_primo.config.ConexaoDB;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class HelloApplication extends Application {
 
@@ -18,27 +20,36 @@ public class HelloApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("paginaLogin.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("paginalogin.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Empréstimo VK - Login");
         stage.setScene(scene);
         stage.show();
     }
 
-    public void loadScreen(String fxmlFile, String title, Node main) {
+    public void loadScreen(String fxmlFile, String title, javafx.event.ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
-            Parent root = loader.load();
-
-            Stage stage = (Stage) main.getScene().getWindow();
-            stage.setTitle(title);
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlFile)));
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
+            stage.setTitle(title);
             stage.show();
-
-        } catch (IOException e) {
-            ConexaoDB.showAlert("Erro", "Não foi possível carregar a página: " + e.getMessage(), Alert.AlertType.ERROR);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
+
+
+    public void loadScreenMouse(String fxml, String title, MouseEvent event) throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle(title);
+        stage.show();
+    }
+
 
 
     public static void main(String[] args) {

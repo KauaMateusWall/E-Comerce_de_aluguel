@@ -42,7 +42,7 @@ public class TelaLogin {
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
-                helloApplication.loadScreen("paginaMenu.fxml", "VK", UsuarioTXT);
+                helloApplication.loadScreen("paginaMenu.fxml", "VK", event);
 
                 showAlert("Login bem-sucedido", "Bem-vindo, " + usuario + "!", Alert.AlertType.ERROR);
 
@@ -60,12 +60,12 @@ public class TelaLogin {
 
     @FXML
     public void omCadastroClicked(ActionEvent event) {
-        helloApplication.loadScreen("paginaCadastro.fxml", "VK", SenhaTXT);
+        helloApplication.loadScreen("paginaCadastro.fxml", "VK", event);
     }
 
     @FXML
     public void RecuperarSenha(ActionEvent event) {
-        helloApplication.loadScreen("paginaRecuperarSenha.fxml", "Vk", SenhaTXT);
+        helloApplication.loadScreen("paginaRecuperarSenha.fxml", "Vk", event);
     }
 
 }

@@ -43,7 +43,8 @@ public class TelaMenu {
     public MenuItem menu;
 
     @FXML
-    public void initialize() {
+    public void initialize() throws SQLException {
+        conexaoDB.conection();
         setupTableColumns();
         try {
             listarProduto();
@@ -58,7 +59,7 @@ public class TelaMenu {
 
     @FXML
     public void sairUsuarioClicked(ActionEvent event) throws IOException {
-        helloApplication.loadScreen("paginaMeuUsuario.fxml", "Empréstimo VK", sairContaButton);
+        helloApplication.loadScreen("paginaMeuUsuario.fxml", "Empréstimo VK", event);
     }
 
     @FXML
@@ -84,7 +85,7 @@ public class TelaMenu {
 
     @FXML
     public void sairContaClicked(ActionEvent event) {
-        helloApplication.loadScreen("paginaLogin.fxml", "Empréstimo VK", sairContaButton);
+        helloApplication.loadScreen("paginaLogin.fxml", "Empréstimo VK", event);
     }
 
     public void listarProduto() throws SQLException {
@@ -134,15 +135,23 @@ public class TelaMenu {
         TabelaListaProduto.getColumns().addAll(nomeColuna, tipoColuna, descricaoColuna, quantidadeColuna, precoColuna, idColuna);
     }
 
-    public void MANO(ActionEvent event) {
-        Produto TOMAKAUA=TabelaListaProduto.getSelectionModel().getSelectedItem();
-        Session.produto.setId(TOMAKAUA.getId());
-        Session.produto.setNome(TOMAKAUA.getNome());
-        Session.produto.setDescricao(TOMAKAUA.getDescricao());
-        Session.produto.setPreco(TOMAKAUA.getPreco());
-        Session.produto.setTipo(TOMAKAUA.getTipo());
-        Session.produto.setQuantidadeDeEmprestimos(TOMAKAUA.getQuantidadeDeEmprestimos());
+    public void handleProductSelection(MouseEvent mouseEvent) throws Exception {
+        Produto produto=TabelaListaProduto.getSelectionModel().getSelectedItem();
+        Session.produto.setId(produto.getId());
+        Session.produto.setNome(produto.getNome());
+        Session.produto.setDescricao(produto.getDescricao());
+        Session.produto.setPreco(produto.getPreco());
+        Session.produto.setTipo(produto.getTipo());
+        Session.produto.setQuantidadeDeEmprestimos(produto.getQuantidadeDeEmprestimos());
 
-        helloApplication.loadScreen("paginaProduto.fxml", "VK", TabelaListaProduto);
+        if(produto == null){
+            conexaoDB.showAlert("VK","O produto não existe!!", Alert.AlertType.ERROR);
+        }
+
+        helloApplication.loadScreenMouse("paginaProduto.fxml", "VK",mouseEvent);
+    }
+
+    public void CadastrarProduto(ActionEvent event) {
+        helloApplication.loadScreen("","",event);
     }
 }

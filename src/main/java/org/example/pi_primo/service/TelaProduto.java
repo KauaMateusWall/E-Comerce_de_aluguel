@@ -47,6 +47,6 @@ public class TelaProduto {
 
     @FXML
     public void voltarClicked(ActionEvent actionEvent) {
-        helloApplication.loadScreen("paginaMenu.fxml","Empréstimo VK - Menu",voltarButton);
+        helloApplication.loadScreen("paginaMenu.fxml","Empréstimo VK - Menu",actionEvent);
     }
 }
