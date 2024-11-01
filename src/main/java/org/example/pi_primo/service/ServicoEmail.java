@@ -2,6 +2,7 @@ package org.example.pi_primo.service;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -20,6 +21,8 @@ import static org.example.pi_primo.config.ConexaoDB.showAlert;
 
 public class ServicoEmail {
 
+
+    public Scene mainScene;
     @FXML
     private TextField emailText;
     @FXML
@@ -97,6 +100,6 @@ public class ServicoEmail {
 
     @FXML
     public void voltarClicked(ActionEvent event) {
-        helloApplication.loadScreen("paginaLogin.fxml", "Vk", event);
+        helloApplication.loadScreen("paginaLogin.fxml", "Vk", mainScene);
     }
 }

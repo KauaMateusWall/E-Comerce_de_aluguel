@@ -1,6 +1,7 @@
 package org.example.pi_primo.service;
 
 import javafx.event.ActionEvent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import org.example.pi_primo.HelloApplication;
 import org.example.pi_primo.config.ConexaoDB;
@@ -11,6 +12,7 @@ import static org.example.pi_primo.config.ConexaoDB.*;
 
 public class TelaCadastroProduto {
 
+    public Scene mainScene;
     HelloApplication helloAplication = new HelloApplication();
 
     public Button cadastrarButton;
@@ -21,7 +23,7 @@ public class TelaCadastroProduto {
     public ChoiceBox<String> tipoChoiceBox;
 
     public void voltarClicked(ActionEvent event) {
-        helloAplication.loadScreen("paginaLogin.fxml","VK",event);
+        helloAplication.loadScreen("paginaLogin.fxml","VK",mainScene);
     }
 
     public void cadastrarClicked(ActionEvent actionEvent) throws SQLException {

@@ -5,8 +5,10 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
+<?import javafx.scene.Scene?>
+<Scene fx:id="mainScene" xmlns="http://javafx.com/javafx/1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.pi_primo.service.ServicoEmail">
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.pi_primo.service.ServicoEmail">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" >
    <children>
       <TextField fx:id="emailText" layoutX="256.0" layoutY="188.0" prefHeight="25.0" prefWidth="193.0" />
       <Label layoutX="184.0" layoutY="192.0" text="Email:" />
@@ -17,3 +19,4 @@
       <Label layoutX="272.0" layoutY="64.0" text="Recuperação de senha" />
    </children>
 </AnchorPane>
+</Scene>

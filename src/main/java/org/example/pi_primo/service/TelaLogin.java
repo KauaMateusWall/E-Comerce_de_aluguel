@@ -2,6 +2,7 @@ package org.example.pi_primo.service;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -17,6 +18,7 @@ import static org.example.pi_primo.config.ConexaoDB.showAlert;
 
 public class TelaLogin {
 
+    public Scene mainScene;
     HelloApplication helloApplication = new HelloApplication();
     ConexaoDB helloController = new ConexaoDB();
 
@@ -42,7 +44,7 @@ public class TelaLogin {
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
-                helloApplication.loadScreen("paginaMenu.fxml", "VK", event);
+                helloApplication.loadScreen("paginaMenu.fxml", "VK", mainScene);
 
                 showAlert("Login bem-sucedido", "Bem-vindo, " + usuario + "!", Alert.AlertType.ERROR);
 
@@ -60,12 +62,12 @@ public class TelaLogin {
 
     @FXML
     public void omCadastroClicked(ActionEvent event) {
-        helloApplication.loadScreen("paginaCadastro.fxml", "VK", event);
+        helloApplication.loadScreen("paginaCadastro.fxml", "VK", mainScene);
     }
 
     @FXML
     public void RecuperarSenha(ActionEvent event) {
-        helloApplication.loadScreen("paginaRecuperarSenha.fxml", "Vk", event);
+        helloApplication.loadScreen("paginaRecuperarSenha.fxml", "Vk", mainScene);
     }
 
 }

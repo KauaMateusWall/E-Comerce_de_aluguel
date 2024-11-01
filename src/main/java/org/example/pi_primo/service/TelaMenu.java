@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
@@ -21,6 +22,7 @@ import java.util.Optional;
 
 public class TelaMenu {
 
+    public Scene mainScene;
     ConexaoDB conexaoDB = new ConexaoDB();
     private final HelloApplication helloApplication = new HelloApplication();
     private final ObservableList<Produto> produtos = FXCollections.observableArrayList();
@@ -59,7 +61,7 @@ public class TelaMenu {
 
     @FXML
     public void sairUsuarioClicked(ActionEvent event) throws IOException {
-        helloApplication.loadScreen("paginaMeuUsuario.fxml", "Empréstimo VK", event);
+        helloApplication.loadScreen("paginaMeuUsuario.fxml", "Empréstimo VK", mainScene);
     }
 
     @FXML
@@ -85,7 +87,7 @@ public class TelaMenu {
 
     @FXML
     public void sairContaClicked(ActionEvent event) {
-        helloApplication.loadScreen("paginaLogin.fxml", "Empréstimo VK", event);
+        helloApplication.loadScreen("paginaLogin.fxml", "Empréstimo VK", mainScene);
     }
 
     public void listarProduto() throws SQLException {
@@ -148,10 +150,10 @@ public class TelaMenu {
             conexaoDB.showAlert("VK","O produto não existe!!", Alert.AlertType.ERROR);
         }
 
-        helloApplication.loadScreenMouse("paginaProduto.fxml", "VK",mouseEvent);
+        helloApplication.loadScreen("paginaProduto.fxml", "VK",mainScene);
     }
 
     public void CadastrarProduto(ActionEvent event) {
-        helloApplication.loadScreen("","",event);
+        helloApplication.loadScreen("","",mainScene);
     }
 }

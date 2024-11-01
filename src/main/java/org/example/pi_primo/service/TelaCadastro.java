@@ -2,6 +2,7 @@ package org.example.pi_primo.service;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -21,6 +22,7 @@ import static org.example.pi_primo.config.ConexaoDB.*;
 
 public class TelaCadastro {
 
+    public Scene mainScene;
     ConexaoDB hc= new ConexaoDB();
     HelloApplication ha= new HelloApplication();
 
@@ -160,7 +162,7 @@ public class TelaCadastro {
 
             InsertSMT.execute();
             showAlert("Cadastro bem-sucedido", "Cadastro de " + nome + " foi um sucesso!!!", Alert.AlertType.ERROR);
-            ha.loadScreen("paginalogin.fxml", "VK", event);
+            ha.loadScreen("paginalogin.fxml", "VK", mainScene);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -168,7 +170,7 @@ public class TelaCadastro {
     }
 
     public void voltarClicked(ActionEvent event) {
-        ha.loadScreen("paginaLogin.fxml", "VK", event);
+        ha.loadScreen("paginaLogin.fxml", "VK", mainScene);
     }
 
     public void termosClicked(ActionEvent actionEvent) {

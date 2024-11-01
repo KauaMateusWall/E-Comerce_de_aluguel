@@ -21,17 +21,17 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("paginalogin.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
+        Scene scene = fxmlLoader.load();
         stage.setTitle("Empréstimo VK - Login");
         stage.setScene(scene);
         stage.show();
     }
 
-    public void loadScreen(String fxmlFile, String title, javafx.event.ActionEvent event) {
+    public void loadScreen(String fxmlFile, String title, Scene sceneOriginal) {
         try {
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlFile)));
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
+            Scene sceneNova = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlFile)));
+            Stage stage = (Stage) sceneOriginal.getWindow();
+            stage.setScene(sceneNova);
             stage.setTitle(title);
             stage.show();
         } catch (Exception e) {
@@ -39,16 +39,6 @@ public class HelloApplication extends Application {
         }
     }
 
-
-    public void loadScreenMouse(String fxml, String title, MouseEvent event) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.setTitle(title);
-        stage.show();
-    }
 
 
 

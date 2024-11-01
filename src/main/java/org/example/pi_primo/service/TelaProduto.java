@@ -17,6 +17,7 @@ import org.example.pi_primo.model.Session;
 import java.io.IOException;
 
 public class TelaProduto {
+    public Scene mainScene;
     HelloApplication helloApplication = new HelloApplication();
     ConexaoDB helloController = new ConexaoDB();
 
@@ -47,6 +48,6 @@ public class TelaProduto {
 
     @FXML
     public void voltarClicked(ActionEvent actionEvent) {
-        helloApplication.loadScreen("paginaMenu.fxml","Empréstimo VK - Menu",actionEvent);
+        helloApplication.loadScreen("paginaMenu.fxml","Empréstimo VK - Menu", mainScene);
     }
 }
