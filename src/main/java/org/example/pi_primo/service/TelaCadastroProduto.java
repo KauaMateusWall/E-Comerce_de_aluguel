@@ -5,6 +5,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import org.example.pi_primo.HelloApplication;
 import org.example.pi_primo.config.ConexaoDB;
+import org.example.pi_primo.model.Produto;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -30,12 +31,13 @@ public class TelaCadastroProduto {
         ConexaoDB helloController = new ConexaoDB();
         try {
             helloController.conection();
-            String InserSQL = "INSERT INTO Produto (nome, descricao, categoria_Produto, preco) VALUES (?, ?, ?, ?)";
+            String InserSQL = "INSERT INTO Produto (nome, descricao, categoria_Produto, situação, preco) VALUES (?, ?, ?, ?, ?)";
             try (PreparedStatement InsertSMT = conn.prepareStatement(InserSQL)) {
                 String nome = nomeText.getText();
                 String preco = precoText.getText();
                 String descricao = descricaoText.getText();
                 String tipo = (String) tipoChoiceBox.getValue();
+
 
                 if (nome.isEmpty() || preco.isEmpty() || descricao.isEmpty() || tipo == null) {
                     showAlert("Campos vazios", "Por favor, preencha todos os campos.", Alert.AlertType.ERROR);
@@ -50,10 +52,14 @@ public class TelaCadastroProduto {
                     return;
                 }
 
+                Produto produto= new Produto(nome,tipo,descricao,0,precoValue,0,"DISPONIVEL");
+
                 InsertSMT.setString(1, nome);
                 InsertSMT.setString(2, descricao);
                 InsertSMT.setString(3, tipo);
-                InsertSMT.setDouble(4, precoValue);
+                InsertSMT.setDouble(5, precoValue);
+                InsertSMT.setString(4,produto.getSituacao());
+
 
                 InsertSMT.execute();
                 showAlert("Cadastro bem-sucedido", "Cadastro de " + nome + " foi um sucesso!!!", Alert.AlertType.ERROR);

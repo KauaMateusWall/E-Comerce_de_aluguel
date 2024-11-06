@@ -61,7 +61,7 @@ public class TelaMenu {
 
     @FXML
     public void sairUsuarioClicked(ActionEvent event) throws IOException {
-        helloApplication.loadScreen("paginaMeuUsuario.fxml", "Empréstimo VK", mainScene);
+        helloApplication.loadScreen("paginaMeuUsuario.fxml", "Empréstimo VK",mainScene );
     }
 
     @FXML
@@ -105,7 +105,8 @@ public class TelaMenu {
                         rs.getString("descricao"),
                         rs.getInt("quantidadeDeEmprestimos"),
                         rs.getDouble("preco"),
-                        rs.getInt("id")
+                        rs.getInt("id"),
+                        rs.getString("situacao")
                 );
                 produtos.add(produto);
             }
@@ -127,6 +128,9 @@ public class TelaMenu {
         TableColumn<Produto, Integer> quantidadeColuna = new TableColumn<>("Quantidade de Empréstimos");
         quantidadeColuna.setCellValueFactory(new PropertyValueFactory<>("quantidadeDeEmprestimos"));
 
+        TableColumn<Produto, Integer> situacaoColuna = new TableColumn<>("Situação");
+        situacaoColuna.setCellValueFactory(new PropertyValueFactory<>("situacao"));
+
         TableColumn<Produto, Double> precoColuna = new TableColumn<>("Preço");
         precoColuna.setCellValueFactory(new PropertyValueFactory<>("preco"));
 
@@ -134,26 +138,30 @@ public class TelaMenu {
         idColuna.setCellValueFactory(new PropertyValueFactory<>("id"));
 
         TabelaListaProduto.getColumns().clear();
-        TabelaListaProduto.getColumns().addAll(nomeColuna, tipoColuna, descricaoColuna, quantidadeColuna, precoColuna, idColuna);
+        TabelaListaProduto.getColumns().addAll(nomeColuna, tipoColuna, descricaoColuna, quantidadeColuna, situacaoColuna, precoColuna, idColuna);
     }
 
     public void handleProductSelection(MouseEvent mouseEvent) throws Exception {
         Produto produto=TabelaListaProduto.getSelectionModel().getSelectedItem();
+
+        if(produto == null){
+            conexaoDB.showAlert("VK","O produto não existe!!", Alert.AlertType.ERROR);
+            return;
+        }
+
         Session.produto.setId(produto.getId());
         Session.produto.setNome(produto.getNome());
         Session.produto.setDescricao(produto.getDescricao());
         Session.produto.setPreco(produto.getPreco());
         Session.produto.setTipo(produto.getTipo());
         Session.produto.setQuantidadeDeEmprestimos(produto.getQuantidadeDeEmprestimos());
+        Session.produto.setSituacao(produto.getSituacao());
 
-        if(produto == null){
-            conexaoDB.showAlert("VK","O produto não existe!!", Alert.AlertType.ERROR);
-        }
 
         helloApplication.loadScreen("paginaProduto.fxml", "VK",mainScene);
     }
 
     public void CadastrarProduto(ActionEvent event) {
-        helloApplication.loadScreen("","",mainScene);
+        helloApplication.loadScreen("paginaCadastroProduto.fxml","VK",mainScene);
     }
 }
