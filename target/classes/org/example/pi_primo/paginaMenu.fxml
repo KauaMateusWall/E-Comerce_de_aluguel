@@ -13,7 +13,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="586.0" prefWidth="1034.0" xmlns="http://javafx.com/javafx/1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.pi_primo.service.TelaMenu">
+<?import javafx.scene.Scene?>
+<Scene fx:id="mainScene" xmlns="http://javafx.com/javafx/1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.pi_primo.service.TelaMenu">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="586.0" prefWidth="1034.0" >
     <top>
         <VBox alignment="CENTER" prefHeight="528.0" prefWidth="1014.0" BorderPane.alignment="CENTER">
             <BorderPane.margin>
@@ -65,6 +67,7 @@
                 <TableView fx:id="TabelaListaProduto" prefHeight="267.0" prefWidth="1014.0" onMouseClicked="#handleProductSelection">
                     <columns>
                         <TableColumn fx:id="nomeColumn" prefWidth="390.0" text="Nome" />
+                        <TableColumn fx:id="situacaoColumn" prefWidth="390.0" text="Situação" />
                         <TableColumn fx:id="idColumn" minWidth="0.0" prefWidth="0.0" text="ID" />
                         <TableColumn fx:id="precoColumn" minWidth="0.0" prefWidth="0.0" text="Preço" />
                         <TableColumn fx:id="tipoColumn" minWidth="0.0" prefWidth="173.0" text="Tipo" />
@@ -79,3 +82,4 @@
         </VBox>
     </top>
 </BorderPane>
+</Scene>

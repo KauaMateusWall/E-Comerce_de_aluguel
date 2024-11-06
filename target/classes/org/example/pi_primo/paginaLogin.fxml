@@ -9,28 +9,31 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.Scene?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.pi_primo.service.TelaLogin">
-    <children>
-        <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="276.0" prefWidth="640.0" VBox.vgrow="ALWAYS">
-            <children>
-                <Button fx:id="BotaoEntrar" layoutX="296.0" layoutY="247.0" mnemonicParsing="false" onAction="#onEntrarClicked" style="-fx-background-color: #0000FF;" text="Entrar" textAlignment="CENTER" />
-                <Button fx:id="BotaoCadastrar" layoutX="287.0" layoutY="279.0" mnemonicParsing="false" onAction="#omCadastroClicked" style="-fx-background-color: #0000FF;" text="Cadastrar" textAlignment="CENTER" />
-                <TextField fx:id="UsuarioTXT" layoutX="219.0" layoutY="134.0" prefHeight="25.0" prefWidth="202.0" />
-                <CheckBox layoutX="219.0" layoutY="209.0" mnemonicParsing="false">
-                    <graphic>
-                        <Hyperlink fx:id="HiperLinkTelaLogin" focusTraversable="false" text="Esqueceu a senha?" onAction="#RecuperarSenha"/>
-                    </graphic>
-                </CheckBox>
-                <Label layoutX="171.0" layoutY="138.0" text="Usuário:" />
-                <Label layoutX="179.0" layoutY="179.0" text="Senha:" />
-                <Label layoutX="213.0" layoutY="40.0" prefHeight="56.0" prefWidth="215.0" text="Alugues VK" textOverrun="CLIP" AnchorPane.bottomAnchor="304.0" AnchorPane.leftAnchor="213.0" AnchorPane.rightAnchor="212.0" AnchorPane.topAnchor="40.0">
-                    <font>
-                        <Font name="System Bold Italic" size="38.0" />
-                    </font>
-                </Label>
-                <PasswordField fx:id="SenhaTXT" layoutX="220.0" layoutY="175.0" prefHeight="25.0" prefWidth="202.0" />
-            </children>
-        </AnchorPane>
-    </children>
-</VBox>
+<Scene xmlns="http://javafx.com/javafx/1" fx:id="mainScene" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.pi_primo.service.TelaLogin" >
+    <VBox prefHeight="400.0" prefWidth="640.0" >
+        <children>
+            <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="276.0" prefWidth="640.0" VBox.vgrow="ALWAYS">
+                <children>
+                    <Button fx:id="BotaoEntrar" layoutX="296.0" layoutY="247.0" mnemonicParsing="false" onAction="#onEntrarClicked" style="-fx-background-color: #0000FF;" text="Entrar" textAlignment="CENTER" />
+                    <Button fx:id="BotaoCadastrar" layoutX="287.0" layoutY="279.0" mnemonicParsing="false" onAction="#omCadastroClicked" style="-fx-background-color: #0000FF;" text="Cadastrar" textAlignment="CENTER" />
+                    <TextField fx:id="UsuarioTXT" layoutX="219.0" layoutY="134.0" prefHeight="25.0" prefWidth="202.0" />
+                    <CheckBox layoutX="219.0" layoutY="209.0" mnemonicParsing="false">
+                        <graphic>
+                            <Hyperlink fx:id="HiperLinkTelaLogin" focusTraversable="false" text="Esqueceu a senha?" onAction="#RecuperarSenha"/>
+                        </graphic>
+                    </CheckBox>
+                    <Label layoutX="171.0" layoutY="138.0" text="Usuário:" />
+                    <Label layoutX="179.0" layoutY="179.0" text="Senha:" />
+                    <Label layoutX="213.0" layoutY="40.0" prefHeight="56.0" prefWidth="215.0" text="Alugues VK" textOverrun="CLIP" AnchorPane.bottomAnchor="304.0" AnchorPane.leftAnchor="213.0" AnchorPane.rightAnchor="212.0" AnchorPane.topAnchor="40.0">
+                        <font>
+                            <Font name="System Bold Italic" size="38.0" />
+                        </font>
+                    </Label>
+                    <PasswordField fx:id="SenhaTXT" layoutX="220.0" layoutY="175.0" prefHeight="25.0" prefWidth="202.0" />
+                </children>
+            </AnchorPane>
+        </children>
+    </VBox>
+</Scene>
