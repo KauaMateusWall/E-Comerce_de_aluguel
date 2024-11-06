@@ -164,4 +164,8 @@ public class TelaMenu {
     public void CadastrarProduto(ActionEvent event) {
         helloApplication.loadScreen("paginaCadastroProduto.fxml","VK",mainScene);
     }
+
+    public void pesquisarClicked(ActionEvent actionEvent) {
+        helloApplication.loadScreen("paginaPesquisa.fxml", "VK - Pesquisa", mainScene);
+    }
 }
