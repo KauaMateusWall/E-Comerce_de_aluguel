@@ -12,7 +12,7 @@
 
 <?import javafx.scene.Scene?>
 
-<Scene fx:id="mainScene" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.pi_primo.service.TelaPesquisa">
+<Scene fx:id="mainScene" xmlns="http://javafx.com/javafx/1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.pi_primo.service.TelaPesquisa">
    <BorderPane prefHeight="471.0" prefWidth="735.0">
       <top>
          <VBox BorderPane.alignment="CENTER">
