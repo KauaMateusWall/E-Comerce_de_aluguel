@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 import org.example.pi_primo.HelloApplication;
 import org.example.pi_primo.config.ConexaoDB;
 import org.example.pi_primo.model.Produto;
@@ -23,6 +24,7 @@ import java.util.Optional;
 public class TelaMenu {
 
     public Scene mainScene;
+    public TextField pesquisarText;
     ConexaoDB conexaoDB = new ConexaoDB();
     private final HelloApplication helloApplication = new HelloApplication();
     private final ObservableList<Produto> produtos = FXCollections.observableArrayList();
@@ -166,6 +168,8 @@ public class TelaMenu {
     }
 
     public void pesquisarClicked(ActionEvent actionEvent) {
+        Stage stage = (Stage) mainScene.getWindow();
+        stage.setUserData(pesquisarText.getText());
         helloApplication.loadScreen("paginaPesquisa.fxml", "VK - Pesquisa", mainScene);
     }
 }

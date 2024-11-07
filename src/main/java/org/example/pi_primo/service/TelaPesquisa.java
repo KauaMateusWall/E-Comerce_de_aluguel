@@ -7,6 +7,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.stage.Stage;
 import org.example.pi_primo.HelloApplication;
 import org.example.pi_primo.config.ConexaoDB;
 import org.example.pi_primo.model.Produto;
@@ -21,6 +22,12 @@ public class TelaPesquisa {
     public TextField pesquisaText;
     public TableView produtosTableView;
     public Pagination pagination;
+
+    public void initialize(){
+        Stage stage =(Stage) mainScene.getWindow();
+        pesquisaText.setText((String) stage.getUserData());
+        pesquisarClicked();
+    }
 
     public void voltarClicked(ActionEvent actionEvent) {
         helloApplication.loadScreen("paginaMenu.fxml","VK", mainScene);
