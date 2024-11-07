@@ -43,11 +43,11 @@
                     <Label text="Preço:" GridPane.rowIndex="1" />
                     <Label text="Tipo:" GridPane.rowIndex="2" />
                     <Label text="Descrição" GridPane.rowIndex="3" />
+
+
                     <TextField fx:id="nomeText" prefHeight="25.0" prefWidth="310.0" GridPane.columnIndex="1" />
                     <TextField fx:id="precoText" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                    <TextArea fx:id="descricaoText" prefHeight="200.0" prefWidth="310.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                    <Button fx:id="voltarButton" mnemonicParsing="false" onAction="#voltarClicked" prefHeight="25.0" prefWidth="130.0" text="Voltar" GridPane.rowIndex="4" />
-                    <Button fx:id="cadastrarButton" mnemonicParsing="false" onAction="#cadastrarClicked" prefHeight="25.0" prefWidth="95.0" text="Cadastrar" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
+
                     <ChoiceBox fx:id="tipoChoiceBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                         <items>
                             <FXCollections fx:factory="observableArrayList">
@@ -58,6 +58,11 @@
                             </FXCollections>
                         </items>
                     </ChoiceBox>
+
+                    <TextArea fx:id="descricaoText" prefHeight="200.0" prefWidth="310.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                    <Button fx:id="voltarButton" mnemonicParsing="false" onAction="#voltarClicked" prefHeight="25.0" prefWidth="130.0" text="Voltar" GridPane.rowIndex="4" />
+                    <Button fx:id="cadastrarButton" mnemonicParsing="false" onAction="#cadastrarClicked" prefHeight="25.0" prefWidth="95.0" text="Cadastrar" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
+
                 </GridPane>
             </center>
             <top>

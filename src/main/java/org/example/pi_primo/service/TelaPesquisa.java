@@ -45,11 +45,11 @@ public class TelaPesquisa {
                 String nome=rs.getString("nome");
                 String tipo= rs.getString("tipo");
                 double preco=rs.getDouble("preco");
-                int qtn_emprestimos= rs.getInt("quantidadeDeEmprestimos");
-                String situ=rs.getString("situação");
-                String desc=rs.getString("descricao");
+                int quantidadeDeEmprestimos = rs.getInt("quantidadeDeEmprestimos");
+                String situcao =rs.getString("situação");
+                String descricao =rs.getString("descricao");
 
-                Produto produto= new Produto(nome,tipo,desc,qtn_emprestimos,preco, situ,id);
+                Produto produto= new Produto(nome,tipo, descricao, quantidadeDeEmprestimos,preco,id, situcao);
 
                 produtosTableView.getItems().add(produto);
             }
