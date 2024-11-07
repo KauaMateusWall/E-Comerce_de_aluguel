@@ -52,7 +52,7 @@ public class TelaCadastroProduto {
                     return;
                 }
 
-                Produto produto= new Produto(nome,tipo,descricao,0,precoValue,0,"DISPONIVEL");
+                Produto produto= new Produto(nome,tipo,descricao,0,precoValue,0,"Disponível");
 
                 InsertSMT.setString(1, nome);
                 InsertSMT.setString(2, descricao);

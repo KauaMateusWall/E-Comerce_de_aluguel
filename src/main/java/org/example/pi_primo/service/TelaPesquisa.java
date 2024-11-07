@@ -41,7 +41,7 @@ public class TelaPesquisa {
     public void pesquisarClicked() {
         produtosTableView.getItems().clear();
 
-        String SELECT="SELECT * FROM produtos WHERE nome LIKE %?% and situação=\"Disponível\";";
+        String SELECT="SELECT * FROM produtos WHERE nome LIKE %?% and situação=\"DISPONÍVEL\";";
         try(PreparedStatement stmt=ConexaoDB.conn.prepareStatement(SELECT)){
 
             stmt.setString(1,pesquisaText.getText());
@@ -53,10 +53,10 @@ public class TelaPesquisa {
                 String tipo= rs.getString("tipo");
                 double preco=rs.getDouble("preco");
                 int quantidadeDeEmprestimos = rs.getInt("quantidadeDeEmprestimos");
-                String situação =rs.getString("situação");
+                String situcao =rs.getString("situação");
                 String descricao =rs.getString("descricao");
 
-                Produto produto= new Produto(nome,tipo, descricao, quantidadeDeEmprestimos,preco, id, situação);
+                Produto produto= new Produto(nome,tipo, descricao, quantidadeDeEmprestimos,preco,id, situcao);
 
                 produtosTableView.getItems().add(produto);
             }

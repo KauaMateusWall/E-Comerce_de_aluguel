@@ -24,6 +24,7 @@ public class HelloApplication extends Application {
         Scene scene = fxmlLoader.load();
         stage.setTitle("Empréstimo VK - Login");
         stage.setScene(scene);
+        stage.setMaximized(false);
         stage.show();
     }
 
