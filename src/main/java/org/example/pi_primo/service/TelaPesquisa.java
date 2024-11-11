@@ -1,35 +1,36 @@
 package org.example.pi_primo.service;
 
-import javafx.event.ActionEvent;
 import javafx.scene.Scene;
-import javafx.scene.control.Pagination;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.stage.Stage;
 import org.example.pi_primo.HelloApplication;
-import org.example.pi_primo.config.ConexaoDB;
+import static org.example.pi_primo.config.ConexaoDB.showAlert;
+import static org.example.pi_primo.config.ConexaoDB.conn;
 import org.example.pi_primo.model.Produto;
+import org.example.pi_primo.model.Session;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+
 public class TelaPesquisa {
     HelloApplication helloApplication=new HelloApplication();
     public Scene mainScene;
     public TextField pesquisaText;
-    public TableView produtosTableView;
-    public Pagination pagination;
+    public TableView<Produto> produtosTableView;
 
     public void initialize(){
-        Stage stage =(Stage) mainScene.getWindow();
-        pesquisaText.setText((String) stage.getUserData());
-        pesquisarClicked();
+        if(Session.pesquisa.length()>=3) {
+            pesquisaText.setText(Session.pesquisa);
+            pesquisarClicked();
+        }
     }
 
-    public void voltarClicked(ActionEvent actionEvent) {
+    public void voltarClicked() {
         helloApplication.loadScreen("paginaMenu.fxml","VK", mainScene);
     }
 
@@ -40,11 +41,20 @@ public class TelaPesquisa {
 
     public void pesquisarClicked() {
         produtosTableView.getItems().clear();
+        Session.pesquisa= pesquisaText.getText();
+        if(Session.pesquisa.length()<3){
+            showAlert("Pesquisa inválida","Pelo menos 3 caracteres na pesquisa são necessários",
+                    Alert.AlertType.WARNING);
+            return;
+        }
 
-        String SELECT="SELECT * FROM produtos WHERE nome LIKE %?% and situação=\"DISPONÍVEL\";";
-        try(PreparedStatement stmt=ConexaoDB.conn.prepareStatement(SELECT)){
+        String SELECT="SELECT * FROM produtos WHERE nome LIKE ? or tipo LIKE ? and situação=\"Disponível\";";
+        try(PreparedStatement stmt=conn.prepareStatement(SELECT)) {
 
-            stmt.setString(1,pesquisaText.getText());
+            String pesquisaTexto = "%"+Session.pesquisa+"%";
+
+            stmt.setString(1,pesquisaTexto);
+            stmt.setString(2,pesquisaTexto);
 
             ResultSet rs=stmt.executeQuery();
             while(rs.next()){
@@ -57,11 +67,10 @@ public class TelaPesquisa {
                 String descricao =rs.getString("descricao");
 
                 Produto produto= new Produto(nome,tipo, descricao, quantidadeDeEmprestimos,preco,id, situcao);
-
                 produtosTableView.getItems().add(produto);
             }
         } catch (SQLException e){
-
+            e.printStackTrace();
         }
     }
 }

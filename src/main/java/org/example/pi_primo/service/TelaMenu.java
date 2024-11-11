@@ -163,13 +163,12 @@ public class TelaMenu {
         helloApplication.loadScreen("paginaProduto.fxml", "VK",mainScene);
     }
 
-    public void CadastrarProduto(ActionEvent event) {
+    public void CadastrarProduto() {
         helloApplication.loadScreen("paginaCadastroProduto.fxml","VK",mainScene);
     }
 
-    public void pesquisarClicked(ActionEvent actionEvent) {
-        Stage stage = (Stage) mainScene.getWindow();
-        stage.setUserData(pesquisarText.getText());
+    public void pesquisarClicked() {
+        Session.pesquisa=pesquisarText.getText();
         helloApplication.loadScreen("paginaPesquisa.fxml", "VK - Pesquisa", mainScene);
     }
 }
