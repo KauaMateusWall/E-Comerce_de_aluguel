@@ -21,11 +21,11 @@ public class TelaCadastroProduto {
     public TextArea descricaoText;
     public ChoiceBox<String> tipoChoiceBox;
 
-    public void voltarClicked(ActionEvent event) {
+    public void voltarClicked() {
         helloAplication.loadScreen("paginaLogin.fxml","VK",mainScene);
     }
 
-    public void cadastrarClicked(ActionEvent actionEvent) throws SQLException {
+    public void cadastrarClicked() throws SQLException {
         ConexaoDB helloController = new ConexaoDB();
         try {
             helloController.conection();
@@ -34,7 +34,7 @@ public class TelaCadastroProduto {
                 String nome = nomeText.getText();
                 String preco = precoText.getText();
                 String descricao = descricaoText.getText();
-                String tipo = (String) tipoChoiceBox.getValue();
+                String tipo = tipoChoiceBox.getValue();
 
 
                 if (nome.isEmpty() || preco.isEmpty() || descricao.isEmpty() || tipo == null) {
