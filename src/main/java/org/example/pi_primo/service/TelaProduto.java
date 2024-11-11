@@ -2,19 +2,13 @@ package org.example.pi_primo.service;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import javafx.stage.Stage;
 import org.example.pi_primo.HelloApplication;
 import org.example.pi_primo.config.ConexaoDB;
 import org.example.pi_primo.model.Session;
-
-import java.io.IOException;
 
 public class TelaProduto {
     public Scene mainScene;
@@ -41,13 +35,13 @@ public class TelaProduto {
     }
 
     @FXML
-    public void alugarClicked(ActionEvent actionEvent) {
+    public void alugarClicked() {
 
 
     }
 
     @FXML
-    public void voltarClicked(ActionEvent actionEvent) {
+    public void voltarClicked() {
         helloApplication.loadScreen("paginaMenu.fxml","Empréstimo VK - Menu", mainScene);
     }
 }

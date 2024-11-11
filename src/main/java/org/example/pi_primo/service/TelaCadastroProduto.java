@@ -16,8 +16,6 @@ public class TelaCadastroProduto {
     public Scene mainScene;
     HelloApplication helloAplication = new HelloApplication();
 
-    public Button cadastrarButton;
-    public Button voltarButton;
     public TextField precoText;
     public TextField nomeText;
     public TextArea descricaoText;
