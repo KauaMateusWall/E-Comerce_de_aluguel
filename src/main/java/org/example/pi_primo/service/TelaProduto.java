@@ -16,7 +16,6 @@ public class TelaProduto {
     ConexaoDB helloController = new ConexaoDB();
 
     @FXML public Button alugarButton;
-    @FXML public Button voltarButton;
 
     @FXML public Label precoText;
     @FXML public Label nomeProdutoText;
