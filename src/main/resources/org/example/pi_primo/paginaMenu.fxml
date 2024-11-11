@@ -46,7 +46,7 @@
                                 <Insets right="20.0" />
                             </HBox.margin>
                         </MenuButton>
-                        <TextField prefHeight="25.0" prefWidth="272.0" promptText="Digite um produto aqui..." />
+                        <TextField prefHeight="25.0" prefWidth="272.0" fx:id="pesquisarText" promptText="Digite um produto aqui..." />
                         <Button mnemonicParsing="false" text="Pesquisar" onAction="#pesquisarClicked">
                             <HBox.margin>
                                 <Insets left="5.0" />
