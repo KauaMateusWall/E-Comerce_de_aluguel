@@ -1,67 +1,36 @@
 package org.example.pi_primo.service;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableArray;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.scene.Scene;
-import javafx.scene.control.Pagination;
-import javafx.scene.control.TableColumn;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.stage.Stage;
 import org.example.pi_primo.HelloApplication;
-import org.example.pi_primo.config.ConexaoDB;
+import static org.example.pi_primo.config.ConexaoDB.showAlert;
+import static org.example.pi_primo.config.ConexaoDB.conn;
 import org.example.pi_primo.model.Produto;
+import org.example.pi_primo.model.Session;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+
 public class TelaPesquisa {
-
-    private final ObservableList<Produto> produtos = FXCollections.observableArrayList();
-
     HelloApplication helloApplication=new HelloApplication();
     public Scene mainScene;
     public TextField pesquisaText;
-    public TableView produtosTableView;
-    public Pagination pagination;
+    public TableView<Produto> produtosTableView;
 
     public void initialize(){
-        setupTableColumns();
+        if(Session.pesquisa.length()>=3) {
+            pesquisaText.setText(Session.pesquisa);
+            pesquisarClicked();
+        }
     }
 
-    private void setupTableColumns() {
-        TableColumn<Produto, String> nomeColuna = new TableColumn<>("Nome");
-        nomeColuna.setCellValueFactory(new PropertyValueFactory<>("nome"));
-
-        TableColumn<Produto, String> tipoColuna = new TableColumn<>("Tipo");
-        tipoColuna.setCellValueFactory(new PropertyValueFactory<>("tipo"));
-
-        TableColumn<Produto, String> descricaoColuna = new TableColumn<>("Descrição");
-        descricaoColuna.setCellValueFactory(new PropertyValueFactory<>("descricao"));
-
-        TableColumn<Produto, Integer> quantidadeColuna = new TableColumn<>("Quantidade de Empréstimos");
-        quantidadeColuna.setCellValueFactory(new PropertyValueFactory<>("quantidadeDeEmprestimos"));
-
-        TableColumn<Produto, Integer> situacaoColuna = new TableColumn<>("Situação");
-        situacaoColuna.setCellValueFactory(new PropertyValueFactory<>("situacao"));
-
-        TableColumn<Produto, Double> precoColuna = new TableColumn<>("Preço");
-        precoColuna.setCellValueFactory(new PropertyValueFactory<>("preco"));
-
-        TableColumn<Produto, Integer> idColuna = new TableColumn<>("ID");
-        idColuna.setCellValueFactory(new PropertyValueFactory<>("id"));
-
-        produtosTableView.getColumns().clear();
-        produtosTableView.getColumns().addAll(nomeColuna, tipoColuna, descricaoColuna, quantidadeColuna, situacaoColuna, precoColuna, idColuna);
-    }
-
-    public void voltarClicked(ActionEvent actionEvent) {
+    public void voltarClicked() {
         helloApplication.loadScreen("paginaMenu.fxml","VK", mainScene);
     }
 
@@ -72,11 +41,20 @@ public class TelaPesquisa {
 
     public void pesquisarClicked() {
         produtosTableView.getItems().clear();
+        Session.pesquisa= pesquisaText.getText();
+        if(Session.pesquisa.length()<3){
+            showAlert("Pesquisa inválida","Pelo menos 3 caracteres na pesquisa são necessários",
+                    Alert.AlertType.WARNING);
+            return;
+        }
 
-        String SELECT="SELECT * FROM produtos WHERE situação= Disponível;";
-        try(PreparedStatement stmt=ConexaoDB.conn.prepareStatement(SELECT)){
+        String SELECT="SELECT * FROM produtos WHERE nome LIKE ? or tipo LIKE ? and situação=\"Disponível\";";
+        try(PreparedStatement stmt=conn.prepareStatement(SELECT)) {
 
-            stmt.setString(1,pesquisaText.getText());
+            String pesquisaTexto = "%"+Session.pesquisa+"%";
+
+            stmt.setString(1,pesquisaTexto);
+            stmt.setString(2,pesquisaTexto);
 
             ResultSet rs=stmt.executeQuery();
             while(rs.next()){
@@ -89,11 +67,10 @@ public class TelaPesquisa {
                 String descricao =rs.getString("descricao");
 
                 Produto produto= new Produto(nome,tipo, descricao, quantidadeDeEmprestimos,preco,id, situcao);
-
                 produtosTableView.getItems().add(produto);
             }
         } catch (SQLException e){
-
+            e.printStackTrace();
         }
     }
 }

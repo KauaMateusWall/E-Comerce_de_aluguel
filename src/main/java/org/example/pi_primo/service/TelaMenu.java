@@ -49,7 +49,6 @@ public class TelaMenu {
     @FXML
     public void initialize() throws SQLException {
         conexaoDB.conection();
-        setupTableColumns();
         try {
             listarProduto();
         } catch (SQLException e) {
@@ -117,32 +116,6 @@ public class TelaMenu {
         }
     }
 
-    private void setupTableColumns() {
-        TableColumn<Produto, String> nomeColuna = new TableColumn<>("Nome");
-        nomeColuna.setCellValueFactory(new PropertyValueFactory<>("nome"));
-
-        TableColumn<Produto, String> tipoColuna = new TableColumn<>("Tipo");
-        tipoColuna.setCellValueFactory(new PropertyValueFactory<>("tipo"));
-
-        TableColumn<Produto, String> descricaoColuna = new TableColumn<>("Descrição");
-        descricaoColuna.setCellValueFactory(new PropertyValueFactory<>("descricao"));
-
-        TableColumn<Produto, Integer> quantidadeColuna = new TableColumn<>("Quantidade de Empréstimos");
-        quantidadeColuna.setCellValueFactory(new PropertyValueFactory<>("quantidadeDeEmprestimos"));
-
-        TableColumn<Produto, Integer> situacaoColuna = new TableColumn<>("Situação");
-        situacaoColuna.setCellValueFactory(new PropertyValueFactory<>("situacao"));
-
-        TableColumn<Produto, Double> precoColuna = new TableColumn<>("Preço");
-        precoColuna.setCellValueFactory(new PropertyValueFactory<>("preco"));
-
-        TableColumn<Produto, Integer> idColuna = new TableColumn<>("ID");
-        idColuna.setCellValueFactory(new PropertyValueFactory<>("id"));
-
-        TabelaListaProduto.getColumns().clear();
-        TabelaListaProduto.getColumns().addAll(nomeColuna, tipoColuna, descricaoColuna, quantidadeColuna, situacaoColuna, precoColuna, idColuna);
-    }
-
     public void handleProductSelection(MouseEvent mouseEvent) throws Exception {
         Produto produto=TabelaListaProduto.getSelectionModel().getSelectedItem();
 
@@ -163,13 +136,12 @@ public class TelaMenu {
         helloApplication.loadScreen("paginaProduto.fxml", "VK",mainScene);
     }
 
-    public void CadastrarProduto(ActionEvent event) {
+    public void CadastrarProduto() {
         helloApplication.loadScreen("paginaCadastroProduto.fxml","VK",mainScene);
     }
 
-    public void pesquisarClicked(ActionEvent actionEvent) {
-        Stage stage = (Stage) mainScene.getWindow();
-        stage.setUserData(pesquisarText.getText());
+    public void pesquisarClicked() {
+        Session.pesquisa=pesquisarText.getText();
         helloApplication.loadScreen("paginaPesquisa.fxml", "VK - Pesquisa", mainScene);
     }
 }

@@ -2,15 +2,21 @@ package org.example.pi_primo.model;
 
 public class Produto {
 
+    private int id;
     private String nome;
     private String tipo;
     private String descricao;
     private int quantidadeDeEmprestimos;
     private double preco;
-    private int id;
     private String situacao;
 
-    public Produto(String nome, String tipo, String descricao, int quantidadeDeEmprestimos, double preco, int id, String situacao) {
+    public Produto(String nome,
+                   String tipo,
+                   String descricao,
+                   int quantidadeDeEmprestimos,
+                   double preco,
+                   int id,
+                   String situacao) {
         this.nome = nome;
         this.tipo = tipo;
         this.descricao = descricao;
