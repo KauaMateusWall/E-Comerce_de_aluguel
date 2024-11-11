@@ -6,9 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
 import org.example.pi_primo.HelloApplication;
 import org.example.pi_primo.config.ConexaoDB;
 import org.example.pi_primo.model.Produto;
@@ -31,18 +29,6 @@ public class TelaMenu {
 
     @FXML
     public TableView<Produto> TabelaListaProduto;
-    @FXML
-    public Button meusProdutosButton;
-    @FXML
-    public Button meusPedidosButton;
-    @FXML
-    public Button pesquisarProdutosButton;
-    @FXML
-    public Button meuUsuarioButton;
-    @FXML
-    public Button sairAplicacaoButton;
-    @FXML
-    public Button sairContaButton;
     @FXML
     public MenuItem menu;
 

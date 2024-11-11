@@ -48,7 +48,7 @@
          </VBox>
       </left>
       <top>
-         <Button fx:id="voltarButton" alignment="CENTER" mnemonicParsing="false" onAction="#voltarClicked" prefHeight="51.0" prefWidth="181.0" text="Voltar" textFill="#164a1d" BorderPane.alignment="TOP_RIGHT">
+         <Button alignment="CENTER" mnemonicParsing="false" onAction="#voltarClicked" prefHeight="51.0" prefWidth="181.0" text="Voltar" textFill="#164a1d" BorderPane.alignment="TOP_RIGHT">
             <font>
                <Font size="24.0" />
             </font>

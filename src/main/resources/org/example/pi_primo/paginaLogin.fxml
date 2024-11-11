@@ -14,14 +14,12 @@
 <Scene xmlns="http://javafx.com/javafx/1" fx:id="mainScene" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.pi_primo.service.TelaLogin">
     <VBox prefHeight="400.0" prefWidth="640.0" spacing="20" alignment="CENTER">
         <children>
-            <!-- Label de Título -->
             <Label text="Alugues VK" textOverrun="CLIP">
                 <font>
                     <Font name="System Bold Italic" size="38.0" />
                 </font>
             </Label>
 
-            <!-- Conteúdo Principal -->
             <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="200.0" prefWidth="640.0" VBox.vgrow="ALWAYS">
                 <children>
                     <VBox alignment="CENTER" spacing="15.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
@@ -37,12 +35,12 @@
                             </HBox>
 
                             <!-- Hyperlink e Botões -->
-                            <Hyperlink fx:id="HiperLinkTelaLogin" focusTraversable="false" text="Esqueceu a senha?" onAction="#RecuperarSenha" />
+                            <Hyperlink focusTraversable="false" text="Esqueceu a senha?" onAction="#RecuperarSenha" />
 
                             <!-- Botões -->
                             <HBox spacing="10.0" alignment="CENTER">
-                                <Button fx:id="BotaoEntrar" mnemonicParsing="false" onAction="#onEntrarClicked" style="-fx-background-color: #0000FF; -fx-text-fill: white; -fx-pref-width: 100;" text="Entrar" />
-                                <Button fx:id="BotaoCadastrar" mnemonicParsing="false" onAction="#omCadastroClicked" style="-fx-background-color: #0000FF; -fx-text-fill: white; -fx-pref-width: 100;" text="Cadastrar" />
+                                <Button mnemonicParsing="false" onAction="#onEntrarClicked" style="-fx-background-color: #0000FF; -fx-text-fill: white; -fx-pref-width: 100;" text="Entrar" />
+                                <Button mnemonicParsing="false" onAction="#omCadastroClicked" style="-fx-background-color: #0000FF; -fx-text-fill: white; -fx-pref-width: 100;" text="Cadastrar" />
                             </HBox>
                         </children>
                     </VBox>

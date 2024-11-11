@@ -1,13 +1,8 @@
 package org.example.pi_primo;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import org.example.pi_primo.config.ConexaoDB;
 
