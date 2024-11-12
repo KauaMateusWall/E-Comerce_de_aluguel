@@ -8,6 +8,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import org.example.pi_primo.HelloApplication;
 import org.example.pi_primo.config.ConexaoDB;
+import org.example.pi_primo.model.Cliente;
+import org.example.pi_primo.model.Session;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -28,7 +30,6 @@ public class TelaLogin {
     private PasswordField SenhaTXT;
 
 
-
     @FXML
     public void onEntrarClicked(ActionEvent event) throws SQLException {
         String usuario = UsuarioTXT.getText();
@@ -43,7 +44,28 @@ public class TelaLogin {
             stmt.setString(2, senha);
             ResultSet rs = stmt.executeQuery();
 
+
+
             if (rs.next()) {
+
+                Cliente cliente = new Cliente(
+                        rs.getInt("id"),
+                        rs.getString("nome"),
+                        rs.getString("senha"),
+                        rs.getString("cpf"),
+                        rs.getString("data_nascimento"),
+                        rs.getString("email"),
+                        rs.getString("telefone")
+                );
+
+                Session.usuario.setNome(cliente.getNome());
+                Session.usuario.setCPF(cliente.getCPF());
+                Session.usuario.setid(cliente.getid());
+                Session.usuario.setEmail(cliente.getEmail());
+                Session.usuario.setEndereco(cliente.getEndereco());
+                Session.usuario.setNascimento(cliente.getNascimento());
+                Session.usuario.setTelefone(cliente.getTelefone());
+
                 helloApplication.loadScreen("paginaMenu.fxml", "VK", mainScene);
 
                 showAlert("Login bem-sucedido", "Bem-vindo, " + usuario + "!", Alert.AlertType.ERROR);

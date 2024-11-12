@@ -65,8 +65,9 @@ public class TelaPesquisa {
                 int quantidadeDeEmprestimos = rs.getInt("quantidadeDeEmprestimos");
                 String situcao =rs.getString("situação");
                 String descricao =rs.getString("descricao");
+                int Proprietario = rs.getInt("Proprietario");
 
-                Produto produto= new Produto(nome,tipo, descricao, quantidadeDeEmprestimos,preco,id, situcao);
+                Produto produto= new Produto(id,nome, tipo, descricao ,quantidadeDeEmprestimos, preco, situcao, Proprietario);
                 produtosTableView.getItems().add(produto);
             }
         } catch (SQLException e){

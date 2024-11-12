@@ -101,17 +101,17 @@ public class TelaMenu {
 
             while (rs.next()) {
                 Produto produto = new Produto(
+                        rs.getInt("id"),
                         rs.getString("nome"),
                         rs.getString("categoria_Produto"),
                         rs.getString("descricao"),
                         rs.getInt("quantidadeDeEmprestimos"),
-                        rs.getDouble("preco"),
-                        rs.getInt("id"),
-                        rs.getString("situacao")
+                        rs.getInt("preco"),
+                        rs.getString("situacao"),
+                        rs.getInt("Proprietario")
                 );
                 produtos.add(produto);
             }
-
             TabelaListaProduto.setItems(produtos);
         }
     }
@@ -131,6 +131,7 @@ public class TelaMenu {
         Session.produto.setTipo(produto.getTipo());
         Session.produto.setQuantidadeDeEmprestimos(produto.getQuantidadeDeEmprestimos());
         Session.produto.setSituacao(produto.getSituacao());
+        Session.produto.setProprietario(produto.getProprietario());
 
 
         helloApplication.loadScreen("paginaProduto.fxml", "VK",mainScene);

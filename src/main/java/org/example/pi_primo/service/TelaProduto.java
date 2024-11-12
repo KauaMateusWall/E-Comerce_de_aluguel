@@ -38,7 +38,7 @@ public class TelaProduto {
     public void initialize() {
         PrecoTXT.setText(String.valueOf(Session.produto.getPreco()));
         NomeTXT.setText(Session.produto.getNome());
-        ProTXT.setText(Session.dono.getNome());
+        ProTXT.setText(Session.usuario.getNome());
         DescricaoTXT.setText(Session.produto.getDescricao());
         
     }

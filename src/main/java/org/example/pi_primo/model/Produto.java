@@ -9,21 +9,25 @@ public class Produto {
     private int quantidadeDeEmprestimos;
     private double preco;
     private String situacao;
+    private int Proprietario;
 
-    public Produto(String nome,
-                   String tipo,
-                   String descricao,
-                   int quantidadeDeEmprestimos,
-                   double preco,
-                   int id,
-                   String situacao) {
+    public Produto(int id, String nome, String tipo, String descricao, int quantidadeDeEmprestimos, double preco, String situacao, int proprietario) {
+        this.id = id;
         this.nome = nome;
         this.tipo = tipo;
         this.descricao = descricao;
         this.quantidadeDeEmprestimos = quantidadeDeEmprestimos;
         this.preco = preco;
-        this.id = id;
         this.situacao = situacao;
+        Proprietario = proprietario;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -66,14 +70,6 @@ public class Produto {
         this.preco = preco;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getSituacao() {
         return situacao;
     }
@@ -81,5 +77,12 @@ public class Produto {
     public void setSituacao(String situacao) {
         this.situacao = situacao;
     }
-}
 
+    public int getProprietario() {
+        return Proprietario;
+    }
+
+    public void setProprietario(int proprietario) {
+        Proprietario = proprietario;
+    }
+}
