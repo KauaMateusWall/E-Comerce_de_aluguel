@@ -14,6 +14,7 @@
 <?import javafx.scene.text.Font?>
 
 <?import javafx.scene.Scene?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 <Scene fx:id="mainScene" xmlns="http://javafx.com/javafx/1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.pi_primo.service.TelaMenu">
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="586.0" prefWidth="1034.0" >
     <top>
@@ -45,7 +46,7 @@
                                 <Insets right="20.0" />
                             </HBox.margin>
                         </MenuButton>
-                        <TextField prefHeight="25.0" prefWidth="272.0" promptText="Digite um produto aqui..." />
+                        <TextField prefHeight="25.0" prefWidth="272.0" fx:id="pesquisarText" promptText="Digite um produto aqui..." />
                         <Button mnemonicParsing="false" text="Pesquisar" onAction="#pesquisarClicked">
                             <HBox.margin>
                                 <Insets left="5.0" />
@@ -66,13 +67,35 @@
                 </Label>
                 <TableView fx:id="TabelaListaProduto" prefHeight="267.0" prefWidth="1014.0" onMouseClicked="#handleProductSelection">
                     <columns>
-                        <TableColumn fx:id="nomeColumn" prefWidth="390.0" text="Nome" />
-                        <TableColumn fx:id="situacaoColumn" prefWidth="390.0" text="Situação" />
-                        <TableColumn fx:id="idColumn" minWidth="0.0" prefWidth="0.0" text="ID" />
-                        <TableColumn fx:id="precoColumn" minWidth="0.0" prefWidth="0.0" text="Preço" />
-                        <TableColumn fx:id="tipoColumn" minWidth="0.0" prefWidth="173.0" text="Tipo" />
-                        <TableColumn fx:id="descricaoColumn" prefWidth="153.0" text="Descrição" />
-                        <TableColumn fx:id="quantidadeColumn" prefWidth="90.0" text="Quantidade de Empréstimos" />
+                        <TableColumn prefWidth="390.0" text="Nome">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="nome"/>
+                            </cellValueFactory>
+                        </TableColumn>
+
+                        <TableColumn prefWidth="390.0" text="Situação">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="situacao"/>
+                            </cellValueFactory>
+                        </TableColumn>
+
+                        <TableColumn prefWidth="390.0" text="Tipo">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="tipo"/>
+                            </cellValueFactory>
+                        </TableColumn>
+
+                        <TableColumn prefWidth="390.0" text="Preço">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="preco"/>
+                            </cellValueFactory>
+                        </TableColumn>
+
+                        <TableColumn prefWidth="390.0" text="Quantidade de empréstimos">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="quantidadeDeEmprestimos"/>
+                            </cellValueFactory>
+                        </TableColumn>
                     </columns>
                     <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

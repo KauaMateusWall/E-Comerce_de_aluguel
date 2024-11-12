@@ -2,13 +2,9 @@ package org.example.pi_primo.service;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
 import org.example.pi_primo.HelloApplication;
 import org.example.pi_primo.config.ConexaoDB;
 import org.example.pi_primo.model.Produto;
@@ -21,6 +17,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Optional;
 
+import static org.example.pi_primo.config.ConexaoDB.showAlert;
+
 public class TelaMenu {
 
     public Scene mainScene;
@@ -32,18 +30,6 @@ public class TelaMenu {
     @FXML
     public TableView<Produto> TabelaListaProduto;
     @FXML
-    public Button meusProdutosButton;
-    @FXML
-    public Button meusPedidosButton;
-    @FXML
-    public Button pesquisarProdutosButton;
-    @FXML
-    public Button meuUsuarioButton;
-    @FXML
-    public Button sairAplicacaoButton;
-    @FXML
-    public Button sairContaButton;
-    @FXML
     public MenuItem menu;
 
     @FXML
@@ -52,29 +38,29 @@ public class TelaMenu {
         try {
             listarProduto();
         } catch (SQLException e) {
-            ConexaoDB.showAlert("Erro", "Não foi possível listar os produtos: " + e.getMessage(), Alert.AlertType.ERROR);
+            showAlert("Erro", "Não foi possível listar os produtos: " + e.getMessage(), Alert.AlertType.ERROR);
         }
     }
 
     @FXML
-    public void meuUsuarioClicked(ActionEvent actionEvent) {
+    public void meuUsuarioClicked() {
     }
 
     @FXML
-    public void sairUsuarioClicked(ActionEvent event) throws IOException {
+    public void sairUsuarioClicked() throws IOException {
         helloApplication.loadScreen("paginaMeuUsuario.fxml", "Empréstimo VK",mainScene );
     }
 
     @FXML
-    public void meusPedidosClicked(ActionEvent actionEvent) {
+    public void meusPedidosClicked() {
     }
 
     @FXML
-    public void meusProdutosClicked(ActionEvent actionEvent) {
+    public void meusProdutosClicked() {
     }
 
     @FXML
-    public void sairAplicacaoClicked(ActionEvent actionEvent) {
+    public void sairAplicacaoClicked() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmação de Saída");
         alert.setHeaderText("Deseja realmente fechar o programa?");
@@ -87,7 +73,7 @@ public class TelaMenu {
     }
 
     @FXML
-    public void sairContaClicked(ActionEvent event) {
+    public void sairContaClicked() {
         helloApplication.loadScreen("paginaLogin.fxml", "Empréstimo VK", mainScene);
     }
 
@@ -116,11 +102,11 @@ public class TelaMenu {
         }
     }
 
-    public void handleProductSelection(MouseEvent mouseEvent) throws Exception {
+    public void handleProductSelection(){
         Produto produto=TabelaListaProduto.getSelectionModel().getSelectedItem();
 
         if(produto == null){
-            conexaoDB.showAlert("VK","O produto não existe!!", Alert.AlertType.ERROR);
+            showAlert("VK","O produto não existe!!", Alert.AlertType.ERROR);
             return;
         }
 

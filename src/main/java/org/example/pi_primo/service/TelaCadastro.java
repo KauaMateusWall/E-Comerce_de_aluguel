@@ -4,7 +4,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import org.example.pi_primo.HelloApplication;
 import org.example.pi_primo.config.ConexaoDB;
@@ -38,13 +37,11 @@ public class TelaCadastro {
     @FXML public TextField CEPText;
     @FXML public TextField bairroText;
     @FXML public TextField complementoText;
-    @FXML public Button cadastrarButton;
-    @FXML public Button voltarButton;
     @FXML public CheckBox CheckBoxcadastro;
     @FXML public Hyperlink termosHyperLink;
     @FXML public ChoiceBox<String> EstadoChoice;
 
-    public void cadastrarClicked(ActionEvent event) throws SQLException {
+    public void cadastrarClicked() throws SQLException {
         hc.conection();
         String InserSQL = "INSERT INTO Cliente (nome, senha, cpf, Data_Nascimento, endereco, email, telefone) VALUES (?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement InsertSMT = conn.prepareStatement(InserSQL)) {

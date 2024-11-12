@@ -7,8 +7,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import org.example.pi_primo.HelloApplication;
+
 import static org.example.pi_primo.config.ConexaoDB.showAlert;
 import static org.example.pi_primo.config.ConexaoDB.conn;
+
+import org.example.pi_primo.config.ConexaoDB;
 import org.example.pi_primo.model.Produto;
 import org.example.pi_primo.model.Session;
 
@@ -18,60 +21,83 @@ import java.sql.SQLException;
 
 
 public class TelaPesquisa {
-    HelloApplication helloApplication=new HelloApplication();
+
+    ConexaoDB conexaoDB=new ConexaoDB();
+    HelloApplication helloApplication = new HelloApplication();
     public Scene mainScene;
     public TextField pesquisaText;
     public TableView<Produto> produtosTableView;
 
-    public void initialize(){
-        if(Session.pesquisa.length()>=3) {
+    public void initialize() throws SQLException {
+        if (Session.pesquisa.length() >= 3) {
             pesquisaText.setText(Session.pesquisa);
             pesquisarClicked();
         }
     }
 
     public void voltarClicked() {
-        helloApplication.loadScreen("paginaMenu.fxml","VK", mainScene);
+        Session.pesquisa = "";
+        helloApplication.loadScreen("paginaMenu.fxml", "VK", mainScene);
     }
 
-    public void pesquisarKeyPressed(KeyEvent keyEvent) {
-        if(keyEvent.getCode()== KeyCode.ENTER)
+    public void pesquisarKeyPressed(KeyEvent keyEvent) throws SQLException {
+        if (keyEvent.getCode() == KeyCode.ENTER)
             pesquisarClicked();
     }
 
-    public void pesquisarClicked() {
+    public void pesquisarClicked() throws SQLException {
+
         produtosTableView.getItems().clear();
-        Session.pesquisa= pesquisaText.getText();
-        if(Session.pesquisa.length()<3){
-            showAlert("Pesquisa inválida","Pelo menos 3 caracteres na pesquisa são necessários",
+        Session.pesquisa = pesquisaText.getText();
+        if (Session.pesquisa.length() < 3) {
+            showAlert("Pesquisa inválida", "Pelo menos 3 caracteres na pesquisa são necessários",
                     Alert.AlertType.WARNING);
             return;
         }
 
-        String SELECT="SELECT * FROM produtos WHERE nome LIKE ? or tipo LIKE ? and situação=\"Disponível\";";
-        try(PreparedStatement stmt=conn.prepareStatement(SELECT)) {
+        String SELECT = "SELECT * FROM produtos WHERE nome LIKE ? or tipo LIKE ? and situação=\"Disponível\";";
+        try {
+            conexaoDB.conection() ;
+            PreparedStatement stmt = conn.prepareStatement(SELECT);
+            String pesquisaTexto = "%" + Session.pesquisa + "%";
 
-            String pesquisaTexto = "%"+Session.pesquisa+"%";
+            stmt.setString(1, pesquisaTexto);
+            stmt.setString(2, pesquisaTexto);
 
-            stmt.setString(1,pesquisaTexto);
-            stmt.setString(2,pesquisaTexto);
-
-            ResultSet rs=stmt.executeQuery();
-            while(rs.next()){
-                int id= rs.getInt("id");
-                String nome=rs.getString("nome");
-                String tipo= rs.getString("tipo");
-                double preco=rs.getDouble("preco");
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String nome = rs.getString("nome");
+                String tipo = rs.getString("tipo");
+                double preco = rs.getDouble("preco");
                 int quantidadeDeEmprestimos = rs.getInt("quantidadeDeEmprestimos");
-                String situcao =rs.getString("situação");
-                String descricao =rs.getString("descricao");
-                int Proprietario = rs.getInt("Proprietario");
+                String situcao = rs.getString("situação");
+                String descricao = rs.getString("descricao");
 
-                Produto produto= new Produto(id,nome, tipo, descricao ,quantidadeDeEmprestimos, preco, situcao, Proprietario);
+                Produto produto = new Produto(nome, tipo, descricao, quantidadeDeEmprestimos, preco, id, situcao);
                 produtosTableView.getItems().add(produto);
             }
-        } catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            conexaoDB.closeConection();
         }
+    }
+
+    public void handleProductSelection() {
+        Produto produto = produtosTableView.getSelectionModel().getSelectedItem();
+        if (produto == null) {
+            showAlert("VK", "O produto não existe!!", Alert.AlertType.ERROR);
+            return;
+        }
+        Session.produto.setId(produto.getId());
+        Session.produto.setNome(produto.getNome());
+        Session.produto.setDescricao(produto.getDescricao());
+        Session.produto.setPreco(produto.getPreco());
+        Session.produto.setTipo(produto.getTipo());
+        Session.produto.setQuantidadeDeEmprestimos(produto.getQuantidadeDeEmprestimos());
+        Session.produto.setSituacao(produto.getSituacao());
+
+        helloApplication.loadScreen("paginaProduto.fxml", "VK", mainScene);
     }
 }
