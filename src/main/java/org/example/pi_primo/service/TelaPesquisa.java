@@ -11,6 +11,7 @@ import org.example.pi_primo.HelloApplication;
 import static org.example.pi_primo.config.ConexaoDB.showAlert;
 import static org.example.pi_primo.config.ConexaoDB.conn;
 
+import org.example.pi_primo.config.ConexaoDB;
 import org.example.pi_primo.model.Produto;
 import org.example.pi_primo.model.Session;
 
@@ -20,12 +21,14 @@ import java.sql.SQLException;
 
 
 public class TelaPesquisa {
+
+    ConexaoDB conexaoDB=new ConexaoDB();
     HelloApplication helloApplication = new HelloApplication();
     public Scene mainScene;
     public TextField pesquisaText;
     public TableView<Produto> produtosTableView;
 
-    public void initialize() {
+    public void initialize() throws SQLException {
         if (Session.pesquisa.length() >= 3) {
             pesquisaText.setText(Session.pesquisa);
             pesquisarClicked();
@@ -37,12 +40,13 @@ public class TelaPesquisa {
         helloApplication.loadScreen("paginaMenu.fxml", "VK", mainScene);
     }
 
-    public void pesquisarKeyPressed(KeyEvent keyEvent) {
+    public void pesquisarKeyPressed(KeyEvent keyEvent) throws SQLException {
         if (keyEvent.getCode() == KeyCode.ENTER)
             pesquisarClicked();
     }
 
-    public void pesquisarClicked() {
+    public void pesquisarClicked() throws SQLException {
+
         produtosTableView.getItems().clear();
         Session.pesquisa = pesquisaText.getText();
         if (Session.pesquisa.length() < 3) {
@@ -52,8 +56,9 @@ public class TelaPesquisa {
         }
 
         String SELECT = "SELECT * FROM produtos WHERE nome LIKE ? or tipo LIKE ? and situação=\"Disponível\";";
-        try (PreparedStatement stmt = conn.prepareStatement(SELECT)) {
-
+        try {
+            conexaoDB.conection() ;
+            PreparedStatement stmt = conn.prepareStatement(SELECT);
             String pesquisaTexto = "%" + Session.pesquisa + "%";
 
             stmt.setString(1, pesquisaTexto);
@@ -74,6 +79,8 @@ public class TelaPesquisa {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            conexaoDB.closeConection();
         }
     }
 
