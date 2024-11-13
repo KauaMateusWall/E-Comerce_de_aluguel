@@ -15,57 +15,60 @@
 
 <?import javafx.scene.Scene?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
-<Scene fx:id="mainScene" xmlns="http://javafx.com/javafx/1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.pi_primo.service.TelaMenu">
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="586.0" prefWidth="1034.0" >
-    <top>
-        <VBox alignment="CENTER" prefHeight="528.0" prefWidth="1014.0" BorderPane.alignment="CENTER">
-            <BorderPane.margin>
-                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-            </BorderPane.margin>
-            <children>
+<Scene fx:id="mainScene" xmlns="http://javafx.com/javafx/1" xmlns:fx="http://javafx.com/fxml/1"
+       fx:controller="org.example.pi_primo.service.TelaMenu">
+    <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="586.0"
+                prefWidth="1034.0">
+        <top>
+            <VBox alignment="CENTER" prefHeight="528.0" prefWidth="1014.0" BorderPane.alignment="CENTER">
+                <BorderPane.margin>
+                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                </BorderPane.margin>
                 <Label alignment="CENTER" text="VK">
                     <font>
-                        <Font name="Century" size="70.0" />
+                        <Font name="Century" size="70.0"/>
                     </font>
                     <padding>
-                        <Insets top="50.0" />
+                        <Insets top="50.0"/>
                     </padding>
                 </Label>
                 <HBox alignment="CENTER">
-                    <children>
-                        <MenuButton mnemonicParsing="false" text="Menu">
-                            <items>
-                                <MenuItem mnemonicParsing="false" text="Meus pedidos" />
-                                <MenuItem mnemonicParsing="false" text="Meus Produtos" />
-                                <MenuItem mnemonicParsing="false" text="Cadastrar Produto" onAction="#CadastrarProduto"/>
-                                <MenuItem fx:id="menu" mnemonicParsing="false" text="Usuário" onAction="#sairUsuarioClicked" />
-                                <MenuItem mnemonicParsing="false" text="Sair da Conta" onAction="#sairContaClicked"/>
-                                <MenuItem mnemonicParsing="false" text="Sair da Aplicação" onAction="#sairAplicacaoClicked"/>
-                            </items>
-                            <HBox.margin>
-                                <Insets right="20.0" />
-                            </HBox.margin>
-                        </MenuButton>
-                        <TextField prefHeight="25.0" prefWidth="272.0" fx:id="pesquisarText" promptText="Digite um produto aqui..." />
-                        <Button mnemonicParsing="false" text="Pesquisar" onAction="#pesquisarClicked">
-                            <HBox.margin>
-                                <Insets left="5.0" />
-                            </HBox.margin>
-                        </Button>
-                    </children>
                     <padding>
-                        <Insets top="50.0" />
+                        <Insets top="50.0"/>
                     </padding>
+                    <MenuButton mnemonicParsing="false" text="Menu">
+                        <items>
+                            <MenuItem mnemonicParsing="false" text="Meus pedidos"/>
+                            <MenuItem mnemonicParsing="false" text="Meus Produtos"/>
+                            <MenuItem mnemonicParsing="false" text="Cadastrar Produto" onAction="#CadastrarProduto"/>
+                            <MenuItem fx:id="menu" mnemonicParsing="false" text="Usuário"
+                                      onAction="#sairUsuarioClicked"/>
+                            <MenuItem mnemonicParsing="false" text="Sair da Conta" onAction="#sairContaClicked"/>
+                            <MenuItem mnemonicParsing="false" text="Sair da Aplicação"
+                                      onAction="#sairAplicacaoClicked"/>
+                        </items>
+                        <HBox.margin>
+                            <Insets right="20.0"/>
+                        </HBox.margin>
+                    </MenuButton>
+                    <TextField prefHeight="25.0" prefWidth="272.0" fx:id="pesquisarText"
+                               promptText="Digite um produto aqui..."/>
+                    <Button mnemonicParsing="false" text="Pesquisar" onAction="#pesquisarClicked">
+                        <HBox.margin>
+                            <Insets left="5.0"/>
+                        </HBox.margin>
+                    </Button>
                 </HBox>
                 <Label text="Produtos mais usados/populares">
                     <font>
-                        <Font size="24.0" />
+                        <Font size="24.0"/>
                     </font>
                     <padding>
-                        <Insets top="50.0" />
+                        <Insets top="50.0"/>
                     </padding>
                 </Label>
-                <TableView fx:id="TabelaListaProduto" prefHeight="267.0" prefWidth="1014.0" onMouseClicked="#handleProductSelection">
+                <TableView fx:id="TabelaListaProduto" prefHeight="267.0" prefWidth="1014.0"
+                           onMouseClicked="#handleProductSelection">
                     <columns>
                         <TableColumn prefWidth="390.0" text="Nome">
                             <cellValueFactory>
@@ -96,13 +99,19 @@
                                 <PropertyValueFactory property="quantidadeDeEmprestimos"/>
                             </cellValueFactory>
                         </TableColumn>
+
+                        <TableColumn prefWidth="390.0" text="Proprietario">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="Proprietario"/>
+                            </cellValueFactory>
+                        </TableColumn>
+
                     </columns>
                     <columnResizePolicy>
-                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
                     </columnResizePolicy>
                 </TableView>
-            </children>
-        </VBox>
-    </top>
-</BorderPane>
+            </VBox>
+        </top>
+    </BorderPane>
 </Scene>

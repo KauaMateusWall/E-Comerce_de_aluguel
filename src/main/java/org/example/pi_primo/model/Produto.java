@@ -9,9 +9,9 @@ public class Produto {
     private int quantidadeDeEmprestimos;
     private double preco;
     private String situacao;
-    private int Proprietario;
+    private String Proprietario;
 
-    public Produto(int id, String nome, String tipo, String descricao, int quantidadeDeEmprestimos, double preco, String situacao, int proprietario) {
+    public Produto(int id, String nome, String tipo, String descricao, int quantidadeDeEmprestimos, double preco, String situacao, String proprietario) {
         this.id = id;
         this.nome = nome;
         this.tipo = tipo;
@@ -78,11 +78,11 @@ public class Produto {
         this.situacao = situacao;
     }
 
-    public int getProprietario() {
+    public String getProprietario() {
         return Proprietario;
     }
 
-    public void setProprietario(int proprietario) {
+    public void setProprietario(String proprietario) {
         Proprietario = proprietario;
     }
 }
