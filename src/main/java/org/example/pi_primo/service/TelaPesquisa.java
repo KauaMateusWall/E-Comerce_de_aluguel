@@ -18,6 +18,7 @@ import org.example.pi_primo.model.Session;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Objects;
 
 
 public class TelaPesquisa {
@@ -29,6 +30,11 @@ public class TelaPesquisa {
     public TableView<Produto> produtosTableView;
 
     public void initialize() throws SQLException {
+        if(Objects.equals(Session.pesquisa, "")){
+            pesquisarClicked();
+            return;
+        }
+
         if (Session.pesquisa.length() >= 3) {
             pesquisaText.setText(Session.pesquisa);
             pesquisarClicked();
@@ -49,13 +55,14 @@ public class TelaPesquisa {
 
         produtosTableView.getItems().clear();
         Session.pesquisa = pesquisaText.getText();
+
         if (Session.pesquisa.length() < 3) {
             showAlert("Pesquisa inválida", "Pelo menos 3 caracteres na pesquisa são necessários",
                     Alert.AlertType.WARNING);
             return;
         }
 
-        String SELECT = "SELECT * FROM produtos WHERE nome LIKE ? or tipo LIKE ? and situação=\"Disponível\";";
+        String SELECT = "SELECT * FROM Produto WHERE nome LIKE ? or categoria_Produto LIKE ? and situacao=\"Disponível\";";
         try {
             conexaoDB.conection() ;
             PreparedStatement stmt = conn.prepareStatement(SELECT);
@@ -68,13 +75,14 @@ public class TelaPesquisa {
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String nome = rs.getString("nome");
-                String tipo = rs.getString("tipo");
+                String tipo = rs.getString("categoria_Produto");
                 double preco = rs.getDouble("preco");
                 int quantidadeDeEmprestimos = rs.getInt("quantidadeDeEmprestimos");
-                String situcao = rs.getString("situação");
+                String situcao = rs.getString("situacao");
                 String descricao = rs.getString("descricao");
+                String Propretario = rs.getString("Proprietario");
 
-                Produto produto = new Produto(nome, tipo, descricao, quantidadeDeEmprestimos, preco, id, situcao);
+                Produto produto = new Produto( id, nome, tipo, descricao, quantidadeDeEmprestimos, preco, situcao, Propretario);
                 produtosTableView.getItems().add(produto);
             }
         } catch (SQLException e) {

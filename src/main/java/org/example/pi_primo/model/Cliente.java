@@ -1,5 +1,7 @@
 package org.example.pi_primo.model;
 
+import java.sql.Date;
+
 public class Cliente {
     private int id;
     private String nome;
@@ -18,6 +20,7 @@ public class Cliente {
         this.telefone = telefone;
         this.nascimento = nascimento;
     }
+
 
     public int getid() {
         return id;
