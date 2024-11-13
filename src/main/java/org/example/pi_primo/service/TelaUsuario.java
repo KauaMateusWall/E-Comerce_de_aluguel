@@ -32,4 +32,8 @@ public class TelaUsuario {
     public void VolatrClickd(ActionEvent event) {
         helloApplication.loadScreen("paginamenu.fxml","k",mainScene);
     }
+
+    public void MeusProdutosClickd(ActionEvent event) {
+        helloApplication.loadScreen("paginaMeusProdutos.fxml","k",mainScene);
+    }
 }
