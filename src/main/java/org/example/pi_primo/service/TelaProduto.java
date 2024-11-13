@@ -2,25 +2,24 @@ package org.example.pi_primo.service;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
-import javafx.stage.Stage;
 import org.example.pi_primo.HelloApplication;
 import org.example.pi_primo.config.ConexaoDB;
 import org.example.pi_primo.model.Session;
-import java.io.IOException;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import static org.example.pi_primo.config.ConexaoDB.conn;
 
 public class TelaProduto {
 
+    public Button alugarButton;
     HelloApplication helloApplication = new HelloApplication();
     ConexaoDB helloController = new ConexaoDB();
-
-
 
     @FXML
     public Scene mainScene;
@@ -35,16 +34,35 @@ public class TelaProduto {
 
 
     @FXML
-    public void initialize() {
+    public void initialize() throws SQLException {
         PrecoTXT.setText(String.valueOf(Session.produto.getPreco()));
         NomeTXT.setText(Session.produto.getNome());
         ProTXT.setText(Session.dono.getNome());
         DescricaoTXT.setText(Session.produto.getDescricao());
-        
+
+        String queryProduct = "SELECT situacao FROM produto p WHERE p.id=?;";
+        try{
+            helloController.conection();
+            PreparedStatement pstmt = conn.prepareStatement(queryProduct);
+
+            pstmt.setInt(1,Session.produto.getId());
+            ResultSet rs = pstmt.executeQuery();
+            rs.next();
+            if(rs.getString(1).equals("Indisponível")){
+                alugarButton.setDisable(true);
+                alugarButton.setText("Indisponível");
+            }
+            helloController.closeConection();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            helloController.closeConection();
+        }
     }
 
     @FXML
-    public void alugarClicked(ActionEvent actionEvent) {
+    public void alugarClicked() {
+
     }
 
     @FXML

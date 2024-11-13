@@ -74,8 +74,8 @@
                 </graphic>
             </CheckBox>
 
-            <Button fx:id="cadastrarButton" layoutX="580.0" layoutY="234.0" mnemonicParsing="false" onAction="#cadastrarClicked" prefHeight="25.0" prefWidth="79.0" text="Cadastrar" />
-            <Button fx:id="voltarButton" layoutX="346.0" layoutY="270.0" mnemonicParsing="false" onAction="#voltarClicked" prefHeight="25.0" prefWidth="315.0" text="Voltar" />
+            <Button layoutX="580.0" layoutY="234.0" mnemonicParsing="false" onAction="#cadastrarClicked" prefHeight="25.0" prefWidth="79.0" text="Cadastrar" />
+            <Button layoutX="346.0" layoutY="270.0" mnemonicParsing="false" onAction="#voltarClicked" prefHeight="25.0" prefWidth="315.0" text="Voltar" />
 
             <Label layoutX="367.0" layoutY="238.0" text="Estado:" />
             <Separator layoutX="246.0" layoutY="76.0" prefWidth="200.0" />
