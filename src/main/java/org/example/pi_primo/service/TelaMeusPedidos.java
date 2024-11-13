@@ -28,31 +28,12 @@ public class TelaMeusPedidos {
 
     public void pedidoTabelaClicked() {
         String query =
-                "SELECT ped.data as data, ped.situacao as situacao" +
-                        "p.nome as nome, p.preco as preco, "
-
-                "INNER JOIN cliente prop ON prop.id=p.Proprietario ORDER BY p.quantidadeDeEmprestimos ASC;";
-        try (Connection conn = ConexaoDB.conn;
-             PreparedStatement smt = conn.prepareStatement(query);
-             ResultSet rs = smt.executeQuery()) {
-
-            while (rs.next()) {
-                Pedido pedido = new Pedido(
-                        rs.getInt("id"),
-                        rs.getString("nome"),
-                        rs.getString("categoria_Produto"),
-                        rs.getString("descricao"),
-                        rs.getInt("quantidadeDeEmprestimos"),
-                        rs.getInt("preco"),
-                        rs.getString("situacao"),
-                        rs.getString("Proprietario")
-                );
-                pedidoTable.getItems().add(pedido);
-            }
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+                "SELECT ped.id AS id, ped.data AS data, ped.situacao AS situacao, " +
+                        "p.nome AS nome, p.preco AS preco, " +
+                        "prop.nome AS proprietario FROM pedido " +
+                        "INNER JOIN cliente c ON c.id=ped.cliente_id " +
+                        "INNER JOIN cliente prop ON prop.id=ped.proprietario_id " +
+                        "INNER JOIN produto p ON p.id=ped.produto_id ORDER BY data ASC;";
 
     }
 }
