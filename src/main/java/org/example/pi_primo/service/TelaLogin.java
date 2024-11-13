@@ -51,11 +51,11 @@ public class TelaLogin {
                 Cliente cliente = new Cliente(
                         rs.getInt("id"),
                         rs.getString("nome"),
-                        rs.getString("senha"),
-                        rs.getString("cpf"),
-                        rs.getString("data_nascimento"),
+                        rs.getString("CPF"),
                         rs.getString("email"),
-                        rs.getString("telefone")
+                        rs.getString("endereco"),
+                        rs.getString("telefone"),
+                        rs.getString("data_nascimento")
                 );
 
                 Session.usuario.setNome(cliente.getNome());

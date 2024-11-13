@@ -24,7 +24,7 @@ public class TelaCadastroProduto {
     public ChoiceBox<String> tipoChoiceBox;
 
     public void voltarClicked(ActionEvent event) {
-        helloAplication.loadScreen("paginaLogin.fxml","VK",mainScene);
+        helloAplication.loadScreen("paginamenu.fxml","VK",mainScene);
     }
 
     public void cadastrarClicked(ActionEvent actionEvent) throws SQLException {
