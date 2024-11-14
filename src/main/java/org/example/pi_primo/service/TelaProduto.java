@@ -40,7 +40,8 @@ public class TelaProduto {
         ProTXT.setText(Session.usuario.getNome());
         DescricaoTXT.setText(Session.produto.getDescricao());
 
-        String queryProduct = "SELECT situacao FROM produto p WHERE p.id=?;";
+
+        String queryProduct = "SELECT situacao, Proprietario from produto where id=?;";
         try{
             helloController.conection();
             PreparedStatement pstmt = conn.prepareStatement(queryProduct);
@@ -51,6 +52,10 @@ public class TelaProduto {
             if(rs.getString(1).equals("Indisponível")){
                 alugarButton.setDisable(true);
                 alugarButton.setText("Indisponível");
+            }
+            if(rs.getInt(2)==Session.usuario.getid()){
+                alugarButton.setDisable(true);
+                alugarButton.setText("Dono");
             }
             helloController.closeConection();
 
