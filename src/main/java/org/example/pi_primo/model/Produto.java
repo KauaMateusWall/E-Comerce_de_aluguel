@@ -10,9 +10,8 @@ public class Produto {
     private double preco;
     private String situacao;
     private String Proprietario;
-    private int idProprietario;
 
-    public Produto(int id, String nome, String tipo, String descricao, int quantidadeDeEmprestimos, double preco, String situacao, String proprietario, int idProprietario) {
+    public Produto(int id, String nome, String tipo, String descricao, int quantidadeDeEmprestimos, double preco, String situacao, String proprietario) {
         this.id = id;
         this.nome = nome;
         this.tipo = tipo;
@@ -20,8 +19,7 @@ public class Produto {
         this.quantidadeDeEmprestimos = quantidadeDeEmprestimos;
         this.preco = preco;
         this.situacao = situacao;
-        this.Proprietario = proprietario;
-        this.idProprietario=idProprietario;
+        Proprietario = proprietario;
     }
 
     public int getId() {
@@ -87,13 +85,4 @@ public class Produto {
     public void setProprietario(String proprietario) {
         Proprietario = proprietario;
     }
-
-    public void setIdProprietario(int idProprietario) {
-        this.idProprietario = idProprietario;
-    }
-
-    public int getidProprietario(){
-        return this.idProprietario;
-    }
-
 }

@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import org.example.pi_primo.HelloApplication;
 import org.example.pi_primo.config.ConexaoDB;
 
@@ -175,5 +176,21 @@ public class TelaCadastro {
             Desktop.getDesktop().browse(new URI("https://docs.google.com/document/d/1r3z3w2721rs7Jqg07W7eNpVwm8qyVrQ9KSICxcLpeag/edit?usp=sharing"));
         } catch (Exception e){
         }
+    }
+
+    public void cpfMask(KeyEvent keyEvent) {
+        TextFieldFormatter tff = new TextFieldFormatter();
+        tff.setMask("###.###.###-##");
+        tff.setCaracteresValidos("0123456789");
+        tff.setTf(CPFText);
+        tff.formatter();
+    }
+
+    public void telefoneMask(KeyEvent keyEvent) {
+        TextFieldFormatter tff = new TextFieldFormatter();
+        tff.setMask("(##) ####-####");
+        tff.setCaracteresValidos("0123456789");
+        tff.setTf(telefoneText);
+        tff.formatter();
     }
 }

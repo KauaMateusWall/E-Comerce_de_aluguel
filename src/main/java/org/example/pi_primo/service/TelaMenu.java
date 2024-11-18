@@ -44,20 +44,12 @@ public class TelaMenu {
     }
 
     @FXML
-    public void meuUsuarioClicked() {
-    }
-
-    @FXML
     public void sairUsuarioClicked() throws IOException {
         helloApplication.loadScreen("paginaMeuUsuario.fxml", "Empréstimo VK",mainScene );
     }
 
     @FXML
     public void meusPedidosClicked() {
-    }
-
-    @FXML
-    public void meusProdutosClicked() {
     }
 
     @FXML
@@ -131,6 +123,11 @@ public class TelaMenu {
 
     public void pesquisarClicked() {
         Session.pesquisa=pesquisarText.getText();
+        if (Session.pesquisa.length() < 3) {
+            showAlert("Pesquisa inválida", "Pelo menos 3 caracteres na pesquisa são necessários",
+                    Alert.AlertType.WARNING);
+            return;
+        }
         helloApplication.loadScreen("paginaPesquisa.fxml", "VK - Pesquisa", mainScene);
     }
 }

@@ -39,7 +39,6 @@
                     <MenuButton mnemonicParsing="false" text="Menu">
                         <items>
                             <MenuItem mnemonicParsing="false" text="Meus pedidos"/>
-                            <MenuItem mnemonicParsing="false" text="Meus Produtos"/>
                             <MenuItem mnemonicParsing="false" text="Cadastrar Produto" onAction="#CadastrarProduto"/>
                             <MenuItem fx:id="menu" mnemonicParsing="false" text="Usuário"
                                       onAction="#sairUsuarioClicked"/>
@@ -82,7 +81,7 @@
                             </cellValueFactory>
                         </TableColumn>
 
-                        <TableColumn prefWidth="390.0" text="Tipo">
+                        <TableColumn prefWidth="390.0" text="tipo">
                             <cellValueFactory>
                                 <PropertyValueFactory property="tipo"/>
                             </cellValueFactory>

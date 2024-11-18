@@ -31,16 +31,20 @@ public class TelaPesquisa {
     public TableView<Produto> produtosTableView;
 
     public void initialize() throws SQLException {
-        if(Objects.equals(Session.pesquisa, "")){
+        if (Session.pesquisa == null || Session.pesquisa.isEmpty()) {
             pesquisarClicked();
             return;
         }
 
-        if (Session.pesquisa.length() >= 3) {
-            pesquisaText.setText(Session.pesquisa);
-            pesquisarClicked();
+        if (Session.pesquisa.length() < 3) {
+            showAlert("Pesquisa inválida", "Insira pelo menos 3 caracteres para realizar a pesquisa.", Alert.AlertType.INFORMATION);
+            return;
         }
+
+        pesquisaText.setText(Session.pesquisa);
+        pesquisarClicked();
     }
+
 
     public void voltarClicked() {
         Session.pesquisa = "";
