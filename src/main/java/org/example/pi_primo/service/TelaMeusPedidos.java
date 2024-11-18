@@ -21,7 +21,7 @@ public class TelaMeusPedidos {
     }
 
     public void pedidoTabelaClicked() {
-        String query = "SELECT ";
+        String query = "SELECT  FROM emprestimo e INNER JOIN ";
 
     }
 }
