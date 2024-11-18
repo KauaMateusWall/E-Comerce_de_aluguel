@@ -12,6 +12,12 @@ import java.util.Objects;
 public class HelloApplication extends Application {
 
     ConexaoDB conexaoDB = new ConexaoDB();
+    public static final String produtoQuery =
+            "SELECT p.id AS id, p.nome AS nome, p.categoria_Produto AS 'categoria_Produto', p.descricao AS descricao " +
+            ", p.quantidadeDeEmprestimos AS quantidadeDeEmprestimos, p.preco AS preco, p.situacao AS situacao" +
+            ", prop.nome AS Proprietario, prop.id as idProprietario FROM produto p " +
+            "INNER JOIN cliente prop ON prop.id=p.Proprietario ORDER BY p.quantidadeDeEmprestimos ASC;";
+
 
     @Override
     public void start(Stage stage) throws IOException {

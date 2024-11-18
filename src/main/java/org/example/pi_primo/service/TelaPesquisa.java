@@ -8,6 +8,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import org.example.pi_primo.HelloApplication;
 
+import static org.example.pi_primo.HelloApplication.produtoQuery;
 import static org.example.pi_primo.config.ConexaoDB.showAlert;
 import static org.example.pi_primo.config.ConexaoDB.conn;
 
@@ -52,20 +53,16 @@ public class TelaPesquisa {
     }
 
     public void pesquisarClicked() throws SQLException {
-
         produtosTableView.getItems().clear();
         Session.pesquisa = pesquisaText.getText();
-
         if (Session.pesquisa.length() < 3) {
             showAlert("Pesquisa inválida", "Pelo menos 3 caracteres na pesquisa são necessários",
                     Alert.AlertType.WARNING);
             return;
         }
-
-        String SELECT = "SELECT * FROM Produto WHERE nome LIKE ? or categoria_Produto LIKE ? and situacao=\"Disponível\";";
         try {
             conexaoDB.conection() ;
-            PreparedStatement stmt = conn.prepareStatement(SELECT);
+            PreparedStatement stmt = conn.prepareStatement(produtoQuery);
             String pesquisaTexto = "%" + Session.pesquisa + "%";
 
             stmt.setString(1, pesquisaTexto);
@@ -73,16 +70,17 @@ public class TelaPesquisa {
 
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt("id");
-                String nome = rs.getString("nome");
-                String tipo = rs.getString("categoria_Produto");
-                double preco = rs.getDouble("preco");
-                int quantidadeDeEmprestimos = rs.getInt("quantidadeDeEmprestimos");
-                String situcao = rs.getString("situacao");
-                String descricao = rs.getString("descricao");
-                String Propretario = rs.getString("Proprietario");
-
-                Produto produto = new Produto( id, nome, tipo, descricao, quantidadeDeEmprestimos, preco, situcao, Propretario);
+                Produto produto = new Produto(
+                        rs.getInt("id"),
+                        rs.getString("nome"),
+                        rs.getString("categoria_Produto"),
+                        rs.getString("descricao"),
+                        rs.getInt("quantidadeDeEmprestimos"),
+                        rs.getInt("preco"),
+                        rs.getString("situacao"),
+                        rs.getString("Proprietario"),
+                        rs.getInt("idProprietario")
+                );
                 produtosTableView.getItems().add(produto);
             }
         } catch (SQLException e) {

@@ -57,7 +57,8 @@ public class TelaMeusProdutos {
                         rs.getInt("quantidadeDeEmprestimos"),
                         rs.getInt("preco"),
                         rs.getString("situacao"),
-                        rs.getString("Proprietario")
+                        rs.getString("Proprietario"),
+                        Session.usuario.getid()
                 );
                 produtos.add(produto);
             }

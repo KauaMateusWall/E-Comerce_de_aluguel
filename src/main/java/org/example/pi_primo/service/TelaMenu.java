@@ -17,6 +17,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Optional;
 
+import static org.example.pi_primo.HelloApplication.produtoQuery;
 import static org.example.pi_primo.config.ConexaoDB.showAlert;
 
 public class TelaMenu {
@@ -78,12 +79,8 @@ public class TelaMenu {
     }
 
     public void listarProduto() throws SQLException {
-        String query = "SELECT p.id AS id, p.nome AS nome, p.categoria_Produto AS 'categoria_Produto', p.descricao AS descricao " +
-                ", p.quantidadeDeEmprestimos AS quantidadeDeEmprestimos, p.preco AS preco, p.situacao AS situacao" +
-                ", prop.nome AS Proprietario FROM produto p " +
-                "INNER JOIN cliente prop ON prop.id=p.Proprietario ORDER BY p.quantidadeDeEmprestimos ASC;";
         try (Connection conn = ConexaoDB.conn;
-             PreparedStatement smt = conn.prepareStatement(query);
+             PreparedStatement smt = conn.prepareStatement(produtoQuery);
              ResultSet rs = smt.executeQuery()) {
 
             produtos.clear();
@@ -97,7 +94,8 @@ public class TelaMenu {
                         rs.getInt("quantidadeDeEmprestimos"),
                         rs.getInt("preco"),
                         rs.getString("situacao"),
-                        rs.getString("Proprietario")
+                        rs.getString("Proprietario"),
+                        rs.getInt("idProprietario")
                 );
                 produtos.add(produto);
             }
@@ -121,6 +119,7 @@ public class TelaMenu {
         Session.produto.setQuantidadeDeEmprestimos(produto.getQuantidadeDeEmprestimos());
         Session.produto.setSituacao(produto.getSituacao());
         Session.produto.setProprietario(produto.getProprietario());
+        Session.produto.setIdProprietario(produto.getidProprietario());
 
 
         helloApplication.loadScreen("paginaProduto.fxml", "VK",mainScene);
