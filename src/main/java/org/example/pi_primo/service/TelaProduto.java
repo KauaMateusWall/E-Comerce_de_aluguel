@@ -3,6 +3,7 @@ package org.example.pi_primo.service;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -16,6 +17,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 
 import static org.example.pi_primo.config.ConexaoDB.conn;
+import static org.example.pi_primo.config.ConexaoDB.showAlert;
 
 public class TelaProduto {
 
@@ -82,21 +84,26 @@ public class TelaProduto {
 
     @FXML
     public void alugarClicked() {
-        String INSERTPedido="INSERT INTO emprestimo (id_cliente_fornecedor, id_cliente_receptor, id_produto, data_emprestimo, data_devolucao) " +
-                "VALUES (?, ?, ?, NOW(), ?);";
+
         String testPedido="SELECT * FROM emprestimo WHERE id_cliente_fornecedor=?;";
 
         try(PreparedStatement pstmt = conn.prepareStatement(testPedido)){
             pstmt.setInt(1,Session.produto.getidProprietario());
             ResultSet rs = pstmt.executeQuery();
             if(rs.next()){
-
+                initialize();
+                showAlert("VK","O produto já foi alugado, desculpe!", Alert.AlertType.ERROR);
+                return;
             }
         }catch (SQLException e){
             e.printStackTrace();
         }
 
-
+        String INSERTPedido="INSERT INTO emprestimo (id_cliente_fornecedor," +
+                " id_cliente_receptor," +
+                " id_produto, data_emprestimo," +
+                " data_devolucao) " +
+                "VALUES (?, ?, ?, NOW(), ?);";
         try(PreparedStatement pstmt = conn.prepareStatement(INSERTPedido)){
             long meses=Long.parseLong(tempoText.getText());
             pstmt.setInt(1,Session.produto.getidProprietario());
@@ -108,7 +115,6 @@ public class TelaProduto {
         } catch (SQLException | NumberFormatException e){
             e.printStackTrace();
         }
-
     }
 
     @FXML
