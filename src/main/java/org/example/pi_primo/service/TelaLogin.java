@@ -3,9 +3,8 @@ package org.example.pi_primo.service;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import org.example.pi_primo.HelloApplication;
 import org.example.pi_primo.config.ConexaoDB;
 import org.example.pi_primo.model.Cliente;
@@ -26,14 +25,39 @@ public class TelaLogin {
 
     @FXML
     private TextField UsuarioTXT;
+
     @FXML
     private PasswordField SenhaTXT;
 
+    @FXML
+    private TextField SenhaVisivelTXT;
+
+    @FXML
+    private CheckBox CheckBox;
+
+    @FXML
+    public void initialize() {
+        SenhaVisivelTXT.setVisible(false);
+        SenhaVisivelTXT.managedProperty().bind(SenhaVisivelTXT.visibleProperty());
+    }
+
+    @FXML
+    public void mostrarSenha(MouseEvent mouseEvent) {
+        if (CheckBox.isSelected()) {
+            SenhaVisivelTXT.setText(SenhaTXT.getText());
+            SenhaVisivelTXT.setVisible(true);
+            SenhaTXT.setVisible(false);
+        } else {
+            SenhaTXT.setText(SenhaVisivelTXT.getText());
+            SenhaTXT.setVisible(true);
+            SenhaVisivelTXT.setVisible(false);
+        }
+    }
 
     @FXML
     public void onEntrarClicked(ActionEvent event) throws SQLException {
         String usuario = UsuarioTXT.getText();
-        String senha = SenhaTXT.getText();
+        String senha = SenhaTXT.isVisible() ? SenhaTXT.getText() : SenhaVisivelTXT.getText();
 
         try {
             helloController.conection();
@@ -44,10 +68,7 @@ public class TelaLogin {
             stmt.setString(2, senha);
             ResultSet rs = stmt.executeQuery();
 
-
-
             if (rs.next()) {
-
                 Cliente cliente = new Cliente(
                         rs.getInt("id"),
                         rs.getString("nome"),
@@ -68,7 +89,7 @@ public class TelaLogin {
 
                 helloApplication.loadScreen("paginaMenu.fxml", "VK", mainScene);
 
-                showAlert("Login bem-sucedido", "Bem-vindo, " + usuario + "!", Alert.AlertType.ERROR);
+                showAlert("Login bem-sucedido", "Bem-vindo, " + usuario + "!", Alert.AlertType.INFORMATION);
 
             } else {
                 showAlert("Falha no login", "Nome de usuário ou senha incorretos.", Alert.AlertType.ERROR);
@@ -81,7 +102,6 @@ public class TelaLogin {
         }
     }
 
-
     @FXML
     public void omCadastroClicked(ActionEvent event) {
         helloApplication.loadScreen("paginaCadastro.fxml", "VK", mainScene);
@@ -89,7 +109,6 @@ public class TelaLogin {
 
     @FXML
     public void RecuperarSenha(ActionEvent event) {
-        helloApplication.loadScreen("paginaRecuperarSenha.fxml", "Vk", mainScene);
+        helloApplication.loadScreen("paginaRecuperarSenha.fxml", "VK", mainScene);
     }
-
 }

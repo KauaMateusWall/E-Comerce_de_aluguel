@@ -17,12 +17,14 @@ import static org.example.pi_primo.config.ConexaoDB.conn;
 
 public class TelaProduto {
 
-    public Button alugarButton;
+    public Scene mainScene;
     HelloApplication helloApplication = new HelloApplication();
     ConexaoDB helloController = new ConexaoDB();
 
     @FXML
-    public Scene mainScene;
+    public Button alugarButton;
+
+
     @FXML
     public Label NomeTXT;
     @FXML

@@ -3,6 +3,7 @@ package org.example.pi_primo.service;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyEvent;
 import org.example.pi_primo.HelloApplication;
 import org.example.pi_primo.config.ConexaoDB;
 import org.example.pi_primo.model.Session;
@@ -70,5 +71,13 @@ public class TelaCadastroProduto {
         } finally {
             helloController.closeConection();
         }
+    }
+
+    public void precoMask(KeyEvent keyEvent) {
+        TextFieldFormatter tff = new TextFieldFormatter();
+        tff.setMask("###");
+        tff.setCaracteresValidos("0123456789");
+        tff.setTf(precoText);
+        tff.formatter();
     }
 }
