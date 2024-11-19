@@ -46,16 +46,16 @@ public class TelaProduto {
         DescricaoTXT.setText(Session.produto.getDescricao());
 
 
-        String queryProduct = "SELECT p.situacao, p.Proprietario, e.id_cliente_receptor from produto p INNER JOIN " +
-                "emprestimo e ON e.id_produto=? WHERE p.id=?;";
+        String queryProduct = "SELECT p.situacao, p.Proprietario, e.id_cliente_receptor FROM produto p LEFT JOIN emprestimo e ON e.id_produto = p.id WHERE p.id = ? ;";
         try{
             helloController.conection();
             PreparedStatement pstmt = conn.prepareStatement(queryProduct);
 
             pstmt.setInt(1,Session.produto.getId());
-            pstmt.setInt(2,Session.produto.getId());
             ResultSet rs = pstmt.executeQuery();
-            rs.next();
+            if(!rs.next()){
+                return;
+            }
             if(rs.getString(1).equals("Indisponível")){
                 tempoText.setDisable(true);
                 tempoText.setText("Já alugado!");
