@@ -10,14 +10,12 @@ import org.example.pi_primo.config.ConexaoDB;
 import org.example.pi_primo.model.Produto;
 import org.example.pi_primo.model.Session;
 
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Optional;
 
-import static org.example.pi_primo.HelloApplication.produtoQuery;
 import static org.example.pi_primo.config.ConexaoDB.showAlert;
 
 public class TelaMenu {
@@ -35,6 +33,7 @@ public class TelaMenu {
 
     @FXML
     public void initialize() throws SQLException {
+        pesquisarText.setText(Session.pesquisa);
         conexaoDB.conection();
         try {
             listarProduto();
@@ -44,7 +43,7 @@ public class TelaMenu {
     }
 
     @FXML
-    public void sairUsuarioClicked() throws IOException {
+    public void sairUsuarioClicked() {
         helloApplication.loadScreen("paginaMeuUsuario.fxml", "Empréstimo VK",mainScene );
     }
 
@@ -71,6 +70,11 @@ public class TelaMenu {
     }
 
     public void listarProduto() throws SQLException {
+        String produtoQuery =
+                "SELECT p.id AS id, p.nome AS nome, p.categoria_Produto AS 'categoria_Produto', p.descricao AS descricao " +
+                        ", p.quantidadeDeEmprestimos AS quantidadeDeEmprestimos, p.preco AS preco, p.situacao AS situacao" +
+                        ", prop.nome AS Proprietario, prop.id as idProprietario FROM produto p " +
+                        "INNER JOIN cliente prop ON prop.id=p.Proprietario ORDER BY p.quantidadeDeEmprestimos ASC LIMIT 10;";
         try (Connection conn = ConexaoDB.conn;
              PreparedStatement smt = conn.prepareStatement(produtoQuery);
              ResultSet rs = smt.executeQuery()) {
@@ -123,11 +127,7 @@ public class TelaMenu {
 
     public void pesquisarClicked() {
         Session.pesquisa=pesquisarText.getText();
-        if (Session.pesquisa.length() < 3) {
-            showAlert("Pesquisa inválida", "Pelo menos 3 caracteres na pesquisa são necessários",
-                    Alert.AlertType.WARNING);
-            return;
-        }
+        Session.pesquisando=true;
         helloApplication.loadScreen("paginaPesquisa.fxml", "VK - Pesquisa", mainScene);
     }
 }

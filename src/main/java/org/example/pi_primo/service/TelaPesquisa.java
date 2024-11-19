@@ -8,7 +8,6 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import org.example.pi_primo.HelloApplication;
 
-import static org.example.pi_primo.HelloApplication.produtoQuery;
 import static org.example.pi_primo.config.ConexaoDB.showAlert;
 import static org.example.pi_primo.config.ConexaoDB.conn;
 
@@ -19,7 +18,6 @@ import org.example.pi_primo.model.Session;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Objects;
 
 
 public class TelaPesquisa {
@@ -47,7 +45,7 @@ public class TelaPesquisa {
 
 
     public void voltarClicked() {
-        Session.pesquisa = "";
+        Session.pesquisando=false;
         helloApplication.loadScreen("paginaMenu.fxml", "VK", mainScene);
     }
 
@@ -57,16 +55,21 @@ public class TelaPesquisa {
     }
 
     public void pesquisarClicked() throws SQLException {
+
+        String pesquisaProduto=
+                "SELECT p.id AS id, p.nome AS nome, p.categoria_Produto AS 'categoria_Produto', p.descricao AS descricao " +
+                        ", p.quantidadeDeEmprestimos AS quantidadeDeEmprestimos, p.preco AS preco, p.situacao AS situacao" +
+                        ", prop.nome AS Proprietario, prop.id as idProprietario FROM produto p " +
+                        "INNER JOIN cliente prop ON prop.id=p.Proprietario " +
+                        "WHERE p.nome LIKE ? or p.categoria_produto LIKE ? and p.situacao= \"Disponível\" " +
+                        "ORDER BY p.quantidadeDeEmprestimos ASC;";
+
         produtosTableView.getItems().clear();
         Session.pesquisa = pesquisaText.getText();
-        if (Session.pesquisa.length() < 3) {
-            showAlert("Pesquisa inválida", "Pelo menos 3 caracteres na pesquisa são necessários",
-                    Alert.AlertType.WARNING);
-            return;
-        }
+
         try {
             conexaoDB.conection() ;
-            PreparedStatement stmt = conn.prepareStatement(produtoQuery);
+            PreparedStatement stmt = conn.prepareStatement(pesquisaProduto);
             String pesquisaTexto = "%" + Session.pesquisa + "%";
 
             stmt.setString(1, pesquisaTexto);

@@ -6,4 +6,5 @@ public class Session {
     public static Produto produto= new Produto(0,"NULL","NULL","NULL",0,0,"NULL","NULL",0);
 
     public static String pesquisa="";
+    public static boolean pesquisando=false;
 }
