@@ -62,13 +62,13 @@ public class TelaProduto {
                 alugarButton.setDisable(true);
                 alugarButton.setText("Indisponível");
             }
-            if(rs.getInt(2)==Session.usuario.getid()){
+            if(rs.getInt(2)!=0 && rs.getInt(2)==Session.usuario.getid()){
                 tempoText.setDisable(true);
                 tempoText.setText("Você é o dono!");
                 alugarButton.setDisable(true);
                 alugarButton.setText("Dono");
             }
-            if(rs.getInt(3)==Session.usuario.getid()){
+            if(rs.getInt(3)!=0 && rs.getInt(3)==Session.usuario.getid()){
                 tempoText.setDisable(true);
                 tempoText.setText("Em seus pedidos!");
                 alugarButton.setDisable(true);

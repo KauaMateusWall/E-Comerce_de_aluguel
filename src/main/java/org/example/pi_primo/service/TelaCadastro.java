@@ -52,7 +52,6 @@ public class TelaCadastro {
             String senha = senhaText.getText();
             String email = emailText.getText();
 
-            String ddd = dddText.getText();
             String numeroTelefone = telefoneText.getText();
 
             String CEP = CEPText.getText();
@@ -68,7 +67,6 @@ public class TelaCadastro {
                     cpf.isEmpty() ||
                     senha.isEmpty() ||
                     email.isEmpty() ||
-                    ddd.isEmpty() ||
                     numeroTelefone.isEmpty() ||
                     CEP.isEmpty() ||
                     rua.isEmpty() ||
@@ -95,10 +93,6 @@ public class TelaCadastro {
                 hc.showAlert("Senha inválida", "A senha deve conter pelo menos uma letra maiúscula, uma letra minúscula e um caractere especial.", Alert.AlertType.ERROR);
                 return;
             }
-            if (!cpf.matches("[0-9]{11}")) {
-                hc.showAlert("CPF inválido", "O CPF deve conter exatamente 11 números.", Alert.AlertType.ERROR);
-                return;
-            }
 
 
             StringBuilder stringBuilder =new StringBuilder();
@@ -116,10 +110,6 @@ public class TelaCadastro {
 
             String endereco= stringBuilder.toString();
 
-            stringBuilder.setLength(0);
-            stringBuilder.append('(').append(ddd).append(')').append(numeroTelefone);
-
-            String telefone=stringBuilder.toString();
 
             if(Pattern.matches("[a-z][A-Z]",cpf)){
                 showAlert("Somente números","Coloque somente números no número de CPF.", Alert.AlertType.ERROR);
@@ -131,7 +121,7 @@ public class TelaCadastro {
                 return;
             }
 
-            if(Pattern.matches("[a-z][A-Z]",telefone)){
+            if(Pattern.matches("[a-z][A-Z]",telefoneText.getText())){
                 showAlert("Somente números","Coloque somente números no número de telefone", Alert.AlertType.ERROR);
                 return;
             }
@@ -156,7 +146,7 @@ public class TelaCadastro {
             InsertSMT.setDate(4, Date.valueOf(nascimento));
             InsertSMT.setString(5, endereco);
             InsertSMT.setString(6, email);
-            InsertSMT.setString(7, telefone);
+            InsertSMT.setString(7, telefoneText.getText());
 
             InsertSMT.execute();
             showAlert("Cadastro bem-sucedido", "Cadastro de " + nome + " foi um sucesso!!!", Alert.AlertType.ERROR);
