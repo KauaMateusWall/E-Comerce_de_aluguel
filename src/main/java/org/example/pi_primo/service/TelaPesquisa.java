@@ -33,12 +33,6 @@ public class TelaPesquisa {
             pesquisarClicked();
             return;
         }
-
-        if (Session.pesquisa.length() < 3) {
-            showAlert("Pesquisa inválida", "Insira pelo menos 3 caracteres para realizar a pesquisa.", Alert.AlertType.INFORMATION);
-            return;
-        }
-
         pesquisaText.setText(Session.pesquisa);
         pesquisarClicked();
     }

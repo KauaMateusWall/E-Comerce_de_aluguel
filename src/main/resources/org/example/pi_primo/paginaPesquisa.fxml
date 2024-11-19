@@ -9,10 +9,9 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-
 <?import javafx.scene.Scene?>
-
 <?import javafx.scene.control.cell.PropertyValueFactory?>
+
 <Scene fx:id="mainScene" xmlns="http://javafx.com/javafx/1" xmlns:fx="http://javafx.com/fxml/1"
        fx:controller="org.example.pi_primo.service.TelaPesquisa">
     <BorderPane prefHeight="471.0" prefWidth="735.0">
