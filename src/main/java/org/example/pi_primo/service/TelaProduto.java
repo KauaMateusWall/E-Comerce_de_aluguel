@@ -1,12 +1,12 @@
 package org.example.pi_primo.service;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import org.example.pi_primo.HelloApplication;
 import org.example.pi_primo.config.ConexaoDB;
 import org.example.pi_primo.model.Session;
@@ -36,7 +36,6 @@ public class TelaProduto {
     public Label ProTXT;
     @FXML
     public Label DescricaoTXT;
-
 
     @FXML
     public void initialize() throws SQLException {
@@ -74,8 +73,6 @@ public class TelaProduto {
                 alugarButton.setDisable(true);
                 alugarButton.setText("Usando...");
             }
-            helloController.closeConection();
-
         } catch (SQLException e) {
             e.printStackTrace();
             helloController.closeConection();
@@ -127,5 +124,13 @@ public class TelaProduto {
 
     private void atualizarPagina(){
         helloApplication.loadScreen("paginaProduto.fxml", "VK", mainScene);
+    }
+
+    public void mesesmask(KeyEvent mouseEvent) {
+        TextFieldFormatter tff = new TextFieldFormatter();
+        tff.setMask("##");
+        tff.setCaracteresValidos("0123456789");
+        tff.setTf(tempoText);
+        tff.formatter();
     }
 }

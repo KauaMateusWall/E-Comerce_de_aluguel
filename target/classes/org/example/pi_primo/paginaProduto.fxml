@@ -22,7 +22,7 @@
             <Label fx:id="PrecoTXT" layoutX="202.0" layoutY="219.0" text="Label" />
             <Label fx:id="ProTXT" layoutX="230.0" layoutY="251.0" text="Label" />
             <Label fx:id="DescricaoTXT" layoutX="216.0" layoutY="284.0" text="Label" />
-         <TextField fx:id="tempoText" layoutX="137.0" layoutY="333.0" prefHeight="25.0" prefWidth="98.0" promptText="Quantos meses" />
+         <TextField fx:id="tempoText" layoutX="137.0" layoutY="333.0" prefHeight="25.0" prefWidth="98.0" promptText="Quantos meses" onKeyReleased="#mesesmask" />
         </AnchorPane>
     </VBox>
 </Scene>

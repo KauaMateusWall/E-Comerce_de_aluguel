@@ -193,4 +193,12 @@ public class TelaCadastro {
         tff.setTf(telefoneText);
         tff.formatter();
     }
+
+    public void cepMask(KeyEvent keyEvent) {
+        TextFieldFormatter tff = new TextFieldFormatter();
+        tff.setMask("#####-###");
+        tff.setCaracteresValidos("0123456789");
+        tff.setTf(CEPText);
+        tff.formatter();
+    }
 }
