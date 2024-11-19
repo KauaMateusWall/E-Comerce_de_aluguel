@@ -52,7 +52,7 @@
 
             <TextField fx:id="ruaNumeroText" layoutX="602.0" layoutY="103.0" prefHeight="25.0" prefWidth="60.0" promptText="Número" />
             <Label layoutX="367.0" layoutY="141.0" text="CEP:" />
-            <TextField fx:id="CEPText" layoutX="418.0" layoutY="137.0" prefHeight="25.0" prefWidth="244.0" promptText="Somente números. Ex: 9924314" />
+            <TextField fx:id="CEPText" layoutX="418.0" layoutY="137.0" prefHeight="25.0" prefWidth="244.0" promptText="Somente números. Ex: 9924314" onKeyReleased="#cepMask" />
 
             <Label layoutX="362.0" layoutY="174.0" text="Bairro:" />
             <TextField fx:id="bairroText" layoutX="418.0" layoutY="170.0" prefHeight="25.0" prefWidth="244.0" promptText="Ex: Bairro Residencial Mugget" />
