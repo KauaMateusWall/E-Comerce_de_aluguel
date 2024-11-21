@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 import org.example.pi_primo.HelloApplication;
 import org.example.pi_primo.config.ConexaoDB;
 import org.example.pi_primo.model.Cliente;
@@ -87,6 +88,9 @@ public class TelaLogin {
                 Session.usuario.setNascimento(cliente.getNascimento());
                 Session.usuario.setTelefone(cliente.getTelefone());
 
+                Stage currentStage = (Stage) mainScene.getWindow();
+                currentStage.close();
+
                 helloApplication.loadScreen("paginaMenu.fxml", "VK", mainScene);
 
                 showAlert("Login bem-sucedido", "Bem-vindo, " + usuario + "!", Alert.AlertType.INFORMATION);
@@ -105,10 +109,5 @@ public class TelaLogin {
     @FXML
     public void omCadastroClicked(ActionEvent event) {
         helloApplication.loadScreen("paginaCadastro.fxml", "VK", mainScene);
-    }
-
-    @FXML
-    public void RecuperarSenha(ActionEvent event) {
-        helloApplication.loadScreen("paginaRecuperarSenha.fxml", "VK", mainScene);
     }
 }

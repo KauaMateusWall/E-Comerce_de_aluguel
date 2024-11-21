@@ -119,7 +119,7 @@ public class TelaProduto {
         if(Session.pesquisa.length()>=3){
             helloApplication.loadScreen("paginaPesquisa.fxml","VK - Pesquisa", mainScene);
         }
-        helloApplication.loadScreen("paginaMenu.fxml","Empréstimo VK - Menu", mainScene);
+        helloApplication.loadScreen("paginaMeusPedidos.fxml","Empréstimo VK - Menu", mainScene);
     }
 
     private void atualizarPagina(){

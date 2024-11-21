@@ -25,7 +25,7 @@ public class HelloApplication extends Application {
     public void loadScreen(String fxmlFile, String title, Scene sceneOriginal) {
         try {
             Scene sceneNova = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlFile)));
-            Stage stage = (Stage) sceneOriginal.getWindow();
+            Stage stage = new Stage();
             stage.setScene(sceneNova);
             stage.setTitle(title);
             stage.show();
@@ -33,6 +33,8 @@ public class HelloApplication extends Application {
             e.printStackTrace();
         }
     }
+
+
 
 
     public static void main(String[] args) {
