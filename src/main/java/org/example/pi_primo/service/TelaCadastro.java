@@ -157,10 +157,6 @@ public class TelaCadastro {
 
     }
 
-    public void voltarClicked(ActionEvent event) {
-        ha.loadScreen("paginaLogin.fxml", "VK", mainScene);
-    }
-
     public void termosClicked(ActionEvent actionEvent) {
         try {
             Desktop.getDesktop().browse(new URI("https://docs.google.com/document/d/1r3z3w2721rs7Jqg07W7eNpVwm8qyVrQ9KSICxcLpeag/edit?usp=sharing"));

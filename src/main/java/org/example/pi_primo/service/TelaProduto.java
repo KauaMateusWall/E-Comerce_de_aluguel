@@ -114,14 +114,6 @@ public class TelaProduto {
         }
     }
 
-    @FXML
-    public void voltarClicked() {
-        if(Session.pesquisa.length()>=3){
-            helloApplication.loadScreen("paginaPesquisa.fxml","VK - Pesquisa", mainScene);
-        }
-        helloApplication.loadScreen("paginaMeusPedidos.fxml","Empréstimo VK - Menu", mainScene);
-    }
-
     private void atualizarPagina(){
         helloApplication.loadScreen("paginaProduto.fxml", "VK", mainScene);
     }

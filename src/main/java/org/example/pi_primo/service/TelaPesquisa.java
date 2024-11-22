@@ -37,12 +37,6 @@ public class TelaPesquisa {
         pesquisarClicked();
     }
 
-
-    public void voltarClicked() {
-        Session.pesquisando=false;
-        helloApplication.loadScreen("paginaMenu.fxml", "VK", mainScene);
-    }
-
     public void pesquisarKeyPressed(KeyEvent keyEvent) throws SQLException {
         if (keyEvent.getCode() == KeyCode.ENTER)
             pesquisarClicked();

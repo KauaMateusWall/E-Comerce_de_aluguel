@@ -24,10 +24,6 @@ public class TelaCadastroProduto {
     public TextArea descricaoText;
     public ChoiceBox<String> tipoChoiceBox;
 
-    public void voltarClicked(ActionEvent event) {
-        helloAplication.loadScreen("paginamenu.fxml","VK",mainScene);
-    }
-
     public void cadastrarClicked(ActionEvent actionEvent) throws SQLException {
         ConexaoDB helloController = new ConexaoDB();
         try {

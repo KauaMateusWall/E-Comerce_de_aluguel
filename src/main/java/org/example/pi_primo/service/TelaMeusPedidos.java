@@ -16,10 +16,6 @@ public class TelaMeusPedidos {
 
     }
 
-    public void voltarClicked() {
-        helloApplication.loadScreen("paginaMeuUsuario.fxml","VK",mainScene);
-    }
-
     public void pedidoTabelaClicked() {
         String query = "SELECT  FROM emprestimo e INNER JOIN ";
 

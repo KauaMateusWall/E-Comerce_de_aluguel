@@ -98,8 +98,4 @@ public class ServicoEmail {
         }
     }
 
-    @FXML
-    public void voltarClicked(ActionEvent event) {
-        helloApplication.loadScreen("paginaLogin.fxml", "Vk", mainScene);
-    }
 }

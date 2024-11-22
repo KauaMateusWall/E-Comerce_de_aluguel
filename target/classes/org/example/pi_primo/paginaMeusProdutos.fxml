@@ -29,7 +29,6 @@
                             <Font size="43.0" />
                         </font>
                     </Label>
-                    <Button layoutX="245.0" layoutY="391.0" mnemonicParsing="false" text="Voltar" onAction="#voltarTelaAnterior" />
                 </children>
             </AnchorPane>
         </children>

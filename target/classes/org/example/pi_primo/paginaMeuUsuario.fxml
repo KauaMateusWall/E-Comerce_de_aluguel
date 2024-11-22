@@ -28,7 +28,6 @@
 
             <Button layoutX="122.0" layoutY="325.0" mnemonicParsing="false" text="Meus Produtos" onAction="#MeusProdutosClickd"/>
             <Button layoutX="238.0" layoutY="325.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" text="Meus Pedidos" />
-            <Button layoutX="353.0" layoutY="325.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" text="voltar" onAction="#VolatrClickd"/>
 
          </children>
       </AnchorPane>
