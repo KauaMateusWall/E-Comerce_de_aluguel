@@ -21,7 +21,6 @@ import static org.example.pi_primo.config.ConexaoDB.showAlert;
 
 public class TelaProduto {
 
-    public Button alugarButton;
     public TextField tempoText;
     HelloApplication helloApplication = new HelloApplication();
     ConexaoDB helloController = new ConexaoDB();
@@ -36,6 +35,8 @@ public class TelaProduto {
     public Label ProTXT;
     @FXML
     public Label DescricaoTXT;
+    @FXML
+    public Button alugarButton;
 
     @FXML
     public void initialize() throws SQLException {
@@ -44,6 +45,11 @@ public class TelaProduto {
         ProTXT.setText(Session.produto.getProprietario());
         DescricaoTXT.setText(Session.produto.getDescricao());
 
+        if(Session.usuario.getid() == Session.produto.getidProprietario()){
+            alugarButton.setText("Você é o dono!!");
+            alugarButton.setDisable(true);
+            tempoText.setDisable(true);
+        }
 
         String queryProduct = "SELECT p.situacao, p.Proprietario, e.id_cliente_receptor FROM produto p LEFT JOIN emprestimo e ON e.id_produto = p.id WHERE p.id = ? ;";
         try{

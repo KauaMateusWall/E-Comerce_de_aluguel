@@ -60,6 +60,10 @@ public class TelaCadastroProduto {
 
                 InsertSMT.execute();
                 showAlert("Cadastro bem-sucedido", "Cadastro de " + nome + " foi um sucesso!!!", Alert.AlertType.ERROR);
+
+                nomeText.clear();
+                precoText.clear();
+                descricaoText.clear();
             }
 
         } catch (SQLException e) {

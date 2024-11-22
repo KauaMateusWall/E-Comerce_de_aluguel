@@ -108,6 +108,10 @@ public class TelaLogin {
 
     @FXML
     public void omCadastroClicked(ActionEvent event) {
+
+        Stage currentStage = (Stage) mainScene.getWindow();
+        currentStage.close();
+
         helloApplication.loadScreen("paginaCadastro.fxml", "VK", mainScene);
     }
 }
