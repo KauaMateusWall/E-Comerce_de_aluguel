@@ -122,10 +122,6 @@ public class TelaProduto {
         helloApplication.loadScreen("paginaMeusPedidos.fxml","Empréstimo VK - Menu", mainScene);
     }
 
-    private void atualizarPagina(){
-        helloApplication.loadScreen("paginaProduto.fxml", "VK", mainScene);
-    }
-
     public void mesesmask(KeyEvent mouseEvent) {
         TextFieldFormatter tff = new TextFieldFormatter();
         tff.setMask("##");
