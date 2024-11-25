@@ -14,7 +14,7 @@ public class HelloApplication extends Application {
     ConexaoDB conexaoDB = new ConexaoDB();
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("paginalogin.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("paginaLogin.fxml"));
         Scene scene = fxmlLoader.load();
         stage.setTitle("Empréstimo VK - Login");
         stage.setScene(scene);

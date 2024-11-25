@@ -104,6 +104,7 @@ public class TelaMeusProdutos {
         Session.produto.setQuantidadeDeEmprestimos(produto.getQuantidadeDeEmprestimos());
         Session.produto.setSituacao(produto.getSituacao());
         Session.produto.setProprietario(produto.getProprietario());
+        Session.produto.setIdProprietario(produto.getidProprietario());
 
         helloApplication.loadScreen("paginaProduto.fxml", "VK", mainScene);
     }

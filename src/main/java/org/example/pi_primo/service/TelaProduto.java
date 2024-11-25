@@ -22,7 +22,6 @@ import static org.example.pi_primo.config.ConexaoDB.showAlert;
 public class TelaProduto {
 
     public TextField tempoText;
-    HelloApplication helloApplication = new HelloApplication();
     ConexaoDB helloController = new ConexaoDB();
 
     @FXML
@@ -51,29 +50,25 @@ public class TelaProduto {
             tempoText.setDisable(true);
         }
 
-        String queryProduct = "SELECT p.situacao, p.Proprietario, e.id_cliente_receptor FROM produto p LEFT JOIN emprestimo e ON e.id_produto = p.id WHERE p.id = ? ;";
-        try{
-            helloController.conection();
-            PreparedStatement pstmt = conn.prepareStatement(queryProduct);
+        if(Session.produto.getSituacao().equals("Indisponível")){
+            tempoText.setDisable(true);
+            tempoText.setText("Já alugado!");
+            alugarButton.setDisable(true);
+            alugarButton.setText("Indisponível");
+        }
+        if(Session.produto.getidProprietario()!=0 && Session.produto.getidProprietario()==Session.usuario.getid()){
+            tempoText.setDisable(true);
+            tempoText.setText("Você é o dono!");
+            alugarButton.setDisable(true);
+            alugarButton.setText("Dono");
+        }
 
-            pstmt.setInt(1,Session.produto.getId());
-            ResultSet rs = pstmt.executeQuery();
-            if(!rs.next()){
-                return;
-            }
-            if(rs.getString(1).equals("Indisponível")){
-                tempoText.setDisable(true);
-                tempoText.setText("Já alugado!");
-                alugarButton.setDisable(true);
-                alugarButton.setText("Indisponível");
-            }
-            if(rs.getInt(2)!=0 && rs.getInt(2)==Session.usuario.getid()){
-                tempoText.setDisable(true);
-                tempoText.setText("Você é o dono!");
-                alugarButton.setDisable(true);
-                alugarButton.setText("Dono");
-            }
-            if(rs.getInt(3)!=0 && rs.getInt(3)==Session.usuario.getid()){
+        String testAlugado="SELECT * FROM emprestimo e WHERE e.id_cliente_receptor=? AND e.data_devolucao>NOW();";
+        try(PreparedStatement pstmt= conn.prepareStatement(testAlugado)) {
+            pstmt.setInt(1,Session.usuario.getid());
+            ResultSet rs=pstmt.executeQuery();
+
+            if (rs.next()) {
                 tempoText.setDisable(true);
                 tempoText.setText("Em seus pedidos!");
                 alugarButton.setDisable(true);
@@ -118,10 +113,6 @@ public class TelaProduto {
         } catch (SQLException | NumberFormatException e){
             e.printStackTrace();
         }
-    }
-
-    private void atualizarPagina(){
-        helloApplication.loadScreen("paginaProduto.fxml", "VK", mainScene);
     }
 
     public void mesesmask(KeyEvent mouseEvent) {

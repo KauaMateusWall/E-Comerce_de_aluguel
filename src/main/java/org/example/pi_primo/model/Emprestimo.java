@@ -9,36 +9,27 @@ public class Emprestimo {
 
     private int id;
     private int id_cliente_fornecedor;
-    private int id_cliente_receptor;
     private int id_produto;
 
-    private String nomeCliente;
     private String nomeFornecedor;
     private String nomeProduto;
-    private double preco;
     private String situacao;
 
     public Emprestimo(Date data_emprestimo,
                       Date data_devolucao,
                       int id,
                       int id_cliente_fornecedor,
-                      int id_cliente_receptor,
                       int id_produto,
-                      String nomeCliente,
                       String nomeFornecedor,
                       String nomeProduto,
-                      double preco,
                       String situacao) {
         this.data_emprestimo = data_emprestimo;
         this.data_devolucao = data_devolucao;
         this.id = id;
         this.id_cliente_fornecedor = id_cliente_fornecedor;
-        this.id_cliente_receptor = id_cliente_receptor;
         this.id_produto = id_produto;
-        this.nomeCliente = nomeCliente;
         this.nomeFornecedor = nomeFornecedor;
         this.nomeProduto = nomeProduto;
-        this.preco = preco;
         this.situacao = situacao;
     }
 
@@ -74,14 +65,6 @@ public class Emprestimo {
         this.id_cliente_fornecedor = id_cliente_fornecedor;
     }
 
-    public int getId_cliente_receptor() {
-        return id_cliente_receptor;
-    }
-
-    public void setId_cliente_receptor(int id_cliente_receptor) {
-        this.id_cliente_receptor = id_cliente_receptor;
-    }
-
     public int getId_produto() {
         return id_produto;
     }
@@ -90,13 +73,6 @@ public class Emprestimo {
         this.id_produto = id_produto;
     }
 
-    public String getNomeCliente() {
-        return nomeCliente;
-    }
-
-    public void setNomeCliente(String nomeCliente) {
-        this.nomeCliente = nomeCliente;
-    }
 
     public String getNomeFornecedor() {
         return nomeFornecedor;
@@ -112,14 +88,6 @@ public class Emprestimo {
 
     public void setNomeProduto(String nomeProduto) {
         this.nomeProduto = nomeProduto;
-    }
-
-    public double getPreco() {
-        return preco;
-    }
-
-    public void setPreco(double preco) {
-        this.preco = preco;
     }
 
     public String getSituacao() {

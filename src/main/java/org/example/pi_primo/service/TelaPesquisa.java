@@ -98,6 +98,8 @@ public class TelaPesquisa {
         Session.produto.setTipo(produto.getTipo());
         Session.produto.setQuantidadeDeEmprestimos(produto.getQuantidadeDeEmprestimos());
         Session.produto.setSituacao(produto.getSituacao());
+        Session.produto.setIdProprietario(produto.getidProprietario());
+        Session.produto.setProprietario(produto.getProprietario());
 
         helloApplication.loadScreen("paginaProduto.fxml", "VK", mainScene);
     }
