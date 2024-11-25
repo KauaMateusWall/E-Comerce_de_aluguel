@@ -89,13 +89,7 @@ public class ServicoEmail {
         } catch (SQLException e) {
             showAlert("Erro", "Erro ao acessar o banco de dados: " + e.getMessage(), Alert.AlertType.ERROR);
             e.printStackTrace();
-        } finally {
-            try {
-                helloController.closeConection();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+        }
         }
     }
-
-}
+    

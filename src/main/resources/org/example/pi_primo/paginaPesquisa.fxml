@@ -21,15 +21,6 @@
                     <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
                 </BorderPane.margin>
                 <HBox alignment="CENTER_LEFT" prefHeight="34.0" prefWidth="496.0">
-                    <Button mnemonicParsing="false" onAction="#voltarClicked" prefHeight="57.0" prefWidth="126.0"
-                            text="Voltar">
-                        <padding>
-                            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-                        </padding>
-                        <HBox.margin>
-                            <Insets right="30.0"/>
-                        </HBox.margin>
-                    </Button>
                     <Label text="Pesquisa:">
                         <HBox.margin>
                             <Insets right="10.0"/>

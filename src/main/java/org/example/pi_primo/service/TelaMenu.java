@@ -1,11 +1,14 @@
 package org.example.pi_primo.service;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import org.example.pi_primo.HelloApplication;
 import org.example.pi_primo.config.ConexaoDB;
 import org.example.pi_primo.model.Produto;
@@ -23,33 +26,54 @@ public class TelaMenu {
 
     public Scene mainScene;
     public TextField pesquisarText;
-    ConexaoDB conexaoDB = new ConexaoDB();
     private final HelloApplication helloApplication = new HelloApplication();
+    ConexaoDB conexaoDB = new ConexaoDB();
     private final ObservableList<Produto> produtos = FXCollections.observableArrayList();
 
     @FXML
     public TableView<Produto> TabelaListaProduto;
+
     @FXML
     public MenuItem menu;
 
     @FXML
-    public void initialize() throws SQLException {
-        pesquisarText.setText(Session.pesquisa);
-        conexaoDB.conection();
+    public void initialize() {
         try {
-            listarProduto();
+            pesquisarText.setText(Session.pesquisa);
+            conexaoDB.conection();
+
+            iniciarAtualizacaoPeriodica();
         } catch (SQLException e) {
-            showAlert("Erro", "Não foi possível listar os produtos: " + e.getMessage(), Alert.AlertType.ERROR);
+            showAlert("Erro", "Não foi possível inicializar a tela: " + e.getMessage(), Alert.AlertType.ERROR);
         }
+    }
+
+    public void iniciarAtualizacaoPeriodica() throws SQLException {
+        listarProduto();
+
+        Timeline timeline = new Timeline(
+                new KeyFrame(
+                        Duration.seconds(5),
+                        event -> {
+                            try {
+                                listarProduto();
+                            } catch (SQLException e) {
+                            }
+                        }
+                )
+        );
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
     }
 
     @FXML
     public void sairUsuarioClicked() {
-        helloApplication.loadScreen("paginaMeuUsuario.fxml", "Empréstimo VK",mainScene );
+        helloApplication.loadScreen("paginaMeuUsuario.fxml", "Empréstimo VK", mainScene);
     }
 
     @FXML
     public void meusPedidosClicked() {
+        showAlert("Informação", "Funcionalidade em desenvolvimento!", Alert.AlertType.INFORMATION);
     }
 
     @FXML
@@ -67,19 +91,18 @@ public class TelaMenu {
 
     @FXML
     public void sairContaClicked() {
-
         Stage telaAtual = (Stage) mainScene.getWindow();
         telaAtual.close();
-
         helloApplication.loadScreen("paginaLogin.fxml", "Empréstimo VK", mainScene);
     }
 
     public void listarProduto() throws SQLException {
         String produtoQuery =
-                "SELECT p.id AS id, p.nome AS nome, p.categoria_Produto AS 'categoria_Produto', p.descricao AS descricao " +
-                        ", p.quantidadeDeEmprestimos AS quantidadeDeEmprestimos, p.preco AS preco, p.situacao AS situacao" +
-                        ", prop.nome AS Proprietario, prop.id as idProprietario FROM produto p " +
-                        "INNER JOIN cliente prop ON prop.id=p.Proprietario ORDER BY p.quantidadeDeEmprestimos ASC LIMIT 10;";
+                "SELECT p.id AS id, p.nome AS nome, p.categoria_Produto AS 'categoria_Produto', p.descricao AS descricao, " +
+                        "p.quantidadeDeEmprestimos AS quantidadeDeEmprestimos, p.preco AS preco, p.situacao AS situacao, " +
+                        "prop.nome AS Proprietario, prop.id AS idProprietario FROM produto p " +
+                        "INNER JOIN cliente prop ON prop.id = p.Proprietario " +
+                        "ORDER BY p.quantidadeDeEmprestimos ASC LIMIT 10;";
         try (Connection conn = ConexaoDB.conn;
              PreparedStatement smt = conn.prepareStatement(produtoQuery);
              ResultSet rs = smt.executeQuery()) {
@@ -100,17 +123,15 @@ public class TelaMenu {
                 );
                 produtos.add(produto);
             }
+
             TabelaListaProduto.setItems(produtos);
+        } catch (SQLException e) {
+            throw new SQLException("Erro ao listar produtos: " + e.getMessage(), e);
         }
     }
 
-    public void handleProductSelection(){
-        Produto produto=TabelaListaProduto.getSelectionModel().getSelectedItem();
-
-        if(produto == null){
-            showAlert("VK","O produto não existe!!", Alert.AlertType.ERROR);
-            return;
-        }
+    public void handleProductSelection() {
+        Produto produto = TabelaListaProduto.getSelectionModel().getSelectedItem();
 
         Session.produto.setId(produto.getId());
         Session.produto.setNome(produto.getNome());
@@ -122,17 +143,20 @@ public class TelaMenu {
         Session.produto.setProprietario(produto.getProprietario());
         Session.produto.setIdProprietario(produto.getidProprietario());
 
-
-        helloApplication.loadScreen("paginaProduto.fxml", "VK",mainScene);
+        if(Session.usuario.getid() == Session.produto.getidProprietario()){
+            helloApplication.loadScreen("paginaProdutoDono.fxml","k",mainScene);
+        }else {
+            helloApplication.loadScreen("paginaProduto.fxml", "VK - Produto", mainScene);
+        }
     }
 
     public void CadastrarProduto() {
-        helloApplication.loadScreen("paginaCadastroProduto.fxml","VK",mainScene);
+        helloApplication.loadScreen("paginaCadastroProduto.fxml", "VK - Cadastro de Produto", mainScene);
     }
 
     public void pesquisarClicked() {
-        Session.pesquisa=pesquisarText.getText();
-        Session.pesquisando=true;
+        Session.pesquisa = pesquisarText.getText();
+        Session.pesquisando = true;
         helloApplication.loadScreen("paginaPesquisa.fxml", "VK - Pesquisa", mainScene);
     }
 }
