@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 import org.example.pi_primo.HelloApplication;
 import org.example.pi_primo.config.ConexaoDB;
 import org.example.pi_primo.model.Produto;
@@ -66,6 +67,10 @@ public class TelaMenu {
 
     @FXML
     public void sairContaClicked() {
+
+        Stage telaAtual = (Stage) mainScene.getWindow();
+        telaAtual.close();
+
         helloApplication.loadScreen("paginaLogin.fxml", "Empréstimo VK", mainScene);
     }
 

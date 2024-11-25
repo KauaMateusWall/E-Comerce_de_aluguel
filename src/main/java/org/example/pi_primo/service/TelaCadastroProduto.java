@@ -24,10 +24,6 @@ public class TelaCadastroProduto {
     public TextArea descricaoText;
     public ChoiceBox<String> tipoChoiceBox;
 
-    public void voltarClicked(ActionEvent event) {
-        helloAplication.loadScreen("paginamenu.fxml","VK",mainScene);
-    }
-
     public void cadastrarClicked(ActionEvent actionEvent) throws SQLException {
         ConexaoDB helloController = new ConexaoDB();
         try {
@@ -64,6 +60,10 @@ public class TelaCadastroProduto {
 
                 InsertSMT.execute();
                 showAlert("Cadastro bem-sucedido", "Cadastro de " + nome + " foi um sucesso!!!", Alert.AlertType.ERROR);
+
+                nomeText.clear();
+                precoText.clear();
+                descricaoText.clear();
             }
 
         } catch (SQLException e) {

@@ -108,9 +108,4 @@ public class TelaMeusProdutos {
         helloApplication.loadScreen("paginaProduto.fxml", "VK", mainScene);
     }
 
-    @FXML
-    public void voltarTelaAnterior() {
-        helloApplication.loadScreen("paginaMeuUsuario.fxml", "Tela Anterior", mainScene);
-    }
-
 }

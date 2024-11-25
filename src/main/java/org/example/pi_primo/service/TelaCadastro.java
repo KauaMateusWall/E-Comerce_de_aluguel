@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
+import javafx.stage.Stage;
 import org.example.pi_primo.HelloApplication;
 import org.example.pi_primo.config.ConexaoDB;
 
@@ -150,6 +151,11 @@ public class TelaCadastro {
 
             InsertSMT.execute();
             showAlert("Cadastro bem-sucedido", "Cadastro de " + nome + " foi um sucesso!!!", Alert.AlertType.ERROR);
+
+
+            Stage currentStage = (Stage) mainScene.getWindow();
+            currentStage.close();
+
             ha.loadScreen("paginalogin.fxml", "VK", mainScene);
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -157,8 +163,12 @@ public class TelaCadastro {
 
     }
 
-    public void voltarClicked(ActionEvent event) {
-        ha.loadScreen("paginaLogin.fxml", "VK", mainScene);
+    public void voltarClicked(){
+        Stage currentStage = (Stage) mainScene.getWindow();
+        currentStage.close();
+
+
+        ha.loadScreen("paginalogin.fxml","k",mainScene);
     }
 
     public void termosClicked(ActionEvent actionEvent) {
