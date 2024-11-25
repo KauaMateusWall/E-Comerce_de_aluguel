@@ -107,11 +107,6 @@ public class TelaMenu {
     public void handleProductSelection(){
         Produto produto=TabelaListaProduto.getSelectionModel().getSelectedItem();
 
-        if(produto == null){
-            showAlert("VK","O produto não existe!!", Alert.AlertType.ERROR);
-            return;
-        }
-
         Session.produto.setId(produto.getId());
         Session.produto.setNome(produto.getNome());
         Session.produto.setDescricao(produto.getDescricao());
@@ -121,7 +116,6 @@ public class TelaMenu {
         Session.produto.setSituacao(produto.getSituacao());
         Session.produto.setProprietario(produto.getProprietario());
         Session.produto.setIdProprietario(produto.getidProprietario());
-
 
         helloApplication.loadScreen("paginaProduto.fxml", "VK",mainScene);
     }
