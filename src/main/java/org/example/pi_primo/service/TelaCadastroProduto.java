@@ -68,8 +68,6 @@ public class TelaCadastroProduto {
 
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            helloController.closeConection();
         }
     }
 

@@ -33,7 +33,5 @@ public class TelaUsuario {
         helloApplication.loadScreen("paginaMeusProdutos.fxml","k",mainScene);
     }
 
-    public void MeusPedidosClicked(ActionEvent actionEvent) {
-        helloApplication.loadScreen("paginaMeusPedidos.fxml","k",mainScene);
-    }
+
 }

@@ -101,8 +101,6 @@ public class TelaLogin {
 
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            helloController.closeConection();
         }
     }
 

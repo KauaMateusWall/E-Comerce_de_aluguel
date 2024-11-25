@@ -80,8 +80,6 @@ public class TelaPesquisa {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            conexaoDB.closeConection();
         }
     }
 

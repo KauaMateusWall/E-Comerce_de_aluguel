@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Scene?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<Scene fx:id="mainScene" xmlns="http://javafx.com/javafx/1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.pi_primo.service.TelaEditarProduto">
+    <AnchorPane prefHeight="377.0" prefWidth="512.0">
+        <children>
+            <Label layoutX="141.0" layoutY="93.0" text="Nome:" />
+            <Label layoutX="141.0" layoutY="132.0" text="Preço:" />
+            <Label layoutX="120.0" layoutY="172.0" text="Categoria:" />
+            <Label layoutX="108.0" layoutY="214.0" text="Proprietário:" />
+            <Label layoutX="120.0" layoutY="255.0" text="Descrição:" />
+            <TextField fx:id="NomeTXT" text="nome" layoutX="185.0" layoutY="89.0" />
+            <TextField fx:id="PrecoTXT" text="preço" layoutX="185.0" layoutY="128.0" />
+            <TextField fx:id="CategoriaTXT" text="categoria" layoutX="185.0" layoutY="168.0" />
+            <TextField fx:id="ProprietarioTXT" text="proprietario" layoutX="185.0" layoutY="210.0" />
+            <TextField fx:id="DescricaoTXT" text="descriçao" layoutX="185.0" layoutY="251.0" />
+            <Button layoutX="226.0" onAction="#editar" layoutY="303.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="77.0" text="Editar" />
+        </children></AnchorPane>
+</Scene>

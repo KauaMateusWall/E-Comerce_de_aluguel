@@ -64,7 +64,7 @@ public class Produto {
         this.quantidadeDeEmprestimos = quantidadeDeEmprestimos;
     }
 
-    public double getPreco() {
+    public Double getPreco() {
         return preco;
     }
 
