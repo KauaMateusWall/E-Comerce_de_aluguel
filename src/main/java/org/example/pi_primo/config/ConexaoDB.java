@@ -15,9 +15,6 @@ public class ConexaoDB {
         conn = DriverManager.getConnection(URL, USER, PASSWORD);
     }
 
-    public void closeConection() throws SQLException {
-        conn.close();
-    }
 
     public static void showAlert(String titulo, String mensagem, Alert.AlertType error) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);

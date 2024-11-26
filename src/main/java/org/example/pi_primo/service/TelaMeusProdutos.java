@@ -63,7 +63,7 @@ public class TelaMeusProdutos {
     public void listarProduto() throws SQLException {
         String query = "select * from produto p where Proprietario = ?";
         try (Connection conn = ConexaoDB.conn;
-             PreparedStatement smt = conn.prepareStatement(query);)
+             PreparedStatement smt = conn.prepareStatement(query))
               {
                   smt.setInt(1,Session.usuario.getid());
                   ResultSet rs = smt.executeQuery();
