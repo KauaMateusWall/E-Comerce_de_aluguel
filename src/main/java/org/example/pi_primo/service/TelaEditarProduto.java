@@ -12,6 +12,8 @@ import org.example.pi_primo.model.Session;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import static org.example.pi_primo.config.ConexaoDB.conn;
+
 public class TelaEditarProduto {
     public Scene mainScene;
     HelloApplication helloApplication = new HelloApplication();
@@ -30,24 +32,26 @@ public class TelaEditarProduto {
 
     @FXML
     public void initialize() {
-        NomeTXT.setText(Session.produto.getNome());
-        PrecoTXT.setText(String.valueOf(Session.produto.getPreco()));
-        CategoriaTXT.setText(Session.produto.getTipo());
-        ProprietarioTXT.setText(Session.produto.getProprietario());
-        DescricaoTXT.setText(Session.produto.getDescricao());
+        if (Session.produto != null) {
+            NomeTXT.setText(Session.produto.getNome());
+            PrecoTXT.setText(String.valueOf(Session.produto.getPreco()));
+            CategoriaTXT.setText(Session.produto.getTipo());
+            ProprietarioTXT.setText(Session.produto.getProprietario());
+            DescricaoTXT.setText(Session.produto.getDescricao());
 
-        CategoriaTXT.setDisable(true);
-        ProprietarioTXT.setDisable(true);
+            CategoriaTXT.setDisable(true);
+            ProprietarioTXT.setDisable(true);
+        } else {
+            conexaoDB.showAlert("Erro", "Produto não carregado corretamente!", Alert.AlertType.ERROR);
+        }
     }
 
-    public void editar(ActionEvent event) {
-        String query = "UPDATE Produto " +
-                "SET nome = ?, " +
-                "descricao = ?, " +
-                "preco = ? " +
-                "WHERE id = ?";
 
-        try (PreparedStatement stmt = conexaoDB.conn.prepareStatement(query)) {
+    public void editar(ActionEvent event) {
+        String query = "update produto set nome = ?, preco = ?, descricao = ? where id = ?";
+
+
+        try (PreparedStatement stmt = conn.prepareStatement(query)) {
             if (!validarCampos()) return;
 
             stmt.setString(1, NomeTXT.getText());
