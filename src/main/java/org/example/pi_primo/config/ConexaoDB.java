@@ -11,10 +11,21 @@ public class ConexaoDB {
     private static final String PASSWORD = "0000";
     public static Connection conn;
 
-    public void conection() throws SQLException {
-        conn = DriverManager.getConnection(URL, USER, PASSWORD);
+    public void conection(){
+        try {
+            conn = DriverManager.getConnection(URL, USER, PASSWORD);
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
     }
 
+    public void close_connection(){
+        try {
+            conn.close();
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
 
     public static void showAlert(String titulo, String mensagem, Alert.AlertType error) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
