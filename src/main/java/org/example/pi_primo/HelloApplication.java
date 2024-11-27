@@ -38,7 +38,7 @@ public class HelloApplication extends Application {
     public void loadScreen(String fxmlFile, String title, Scene sceneOriginal) {
         try {
             Scene sceneNova = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlFile)));
-            Stage stage = new Stage();
+            Stage stage = (Stage) sceneOriginal.getWindow();
             stage.setScene(sceneNova);
             stage.setTitle(title);
             stage.show();
