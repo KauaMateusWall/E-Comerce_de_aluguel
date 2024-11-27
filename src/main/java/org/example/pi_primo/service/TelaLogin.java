@@ -16,13 +16,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import static org.example.pi_primo.config.ConexaoDB.conn;
-import static org.example.pi_primo.config.ConexaoDB.showAlert;
 
 public class TelaLogin {
 
     public Scene mainScene;
     HelloApplication helloApplication = new HelloApplication();
-    ConexaoDB helloController = new ConexaoDB();
+    ConexaoDB conexaoDB = new ConexaoDB();
 
     @FXML
     private TextField UsuarioTXT;
@@ -61,7 +60,7 @@ public class TelaLogin {
         String senha = SenhaTXT.isVisible() ? SenhaTXT.getText() : SenhaVisivelTXT.getText();
 
         try {
-            helloController.conection();
+            conexaoDB.conection();
 
             String query = "SELECT * FROM Cliente WHERE nome = ? AND senha = ?";
             PreparedStatement stmt = conn.prepareStatement(query);
@@ -93,10 +92,10 @@ public class TelaLogin {
 
                 helloApplication.openScreen("paginaMenu.fxml", "VK", mainScene);
 
-                showAlert("Login bem-sucedido", "Bem-vindo, " + usuario + "!", Alert.AlertType.INFORMATION);
+                conexaoDB.showAlert("Login bem-sucedido", "Bem-vindo, " + usuario + "!", Alert.AlertType.INFORMATION);
 
             } else {
-                showAlert("Falha no login", "Nome de usuário ou senha incorretos.", Alert.AlertType.ERROR);
+                conexaoDB.showAlert("Falha no login", "Nome de usuário ou senha incorretos.", Alert.AlertType.ERROR);
             }
 
         } catch (SQLException e) {

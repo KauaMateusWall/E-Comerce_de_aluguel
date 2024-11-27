@@ -92,12 +92,12 @@ public class TelaCadastro {
                     bairro.isEmpty() ||
                     Estado.isEmpty() ||
                     nascimento == null) {
-                showAlert("Campos vazios", "Por favor, preencha todos os campos.", Alert.AlertType.ERROR);
+                hc.showAlert("Campos vazios", "Por favor, preencha todos os campos.", Alert.AlertType.ERROR);
                 return;
             }
 
             if (!CheckBoxcadastro.isSelected()) {
-                showAlert("Aceite os termos!","Clique em cima de termos, leia, e aceite, clicando na caixinha ao lado de \"Termos\" em azul.", Alert.AlertType.ERROR);
+                hc.showAlert("Aceite os termos!","Clique em cima de termos, leia, e aceite, clicando na caixinha ao lado de \"Termos\" em azul.", Alert.AlertType.ERROR);
                 return;
             }
 
@@ -113,17 +113,17 @@ public class TelaCadastro {
             }
 
             if(Pattern.matches("[a-z][A-Z]",cpf)){
-                showAlert("Somente números","Coloque somente números no número de CPF.", Alert.AlertType.ERROR);
+                hc.showAlert("Somente números","Coloque somente números no número de CPF.", Alert.AlertType.ERROR);
                 return;
             }
 
             if (cpf.matches("[0-9]")){
-                showAlert("Somente números","Coloque somente números no número de CPF.", Alert.AlertType.ERROR);
+                hc.showAlert("Somente números","Coloque somente números no número de CPF.", Alert.AlertType.ERROR);
                 return;
             }
 
             if(Pattern.matches("[a-z][A-Z]",telefoneText.getText())){
-                showAlert("Somente números","Coloque somente números no número de telefone", Alert.AlertType.ERROR);
+                hc.showAlert("Somente números","Coloque somente números no número de telefone", Alert.AlertType.ERROR);
                 return;
             }
 
@@ -137,17 +137,17 @@ public class TelaCadastro {
             }
 
             if(Pattern.matches("[a-z][A-Z]",CEP)){
-                showAlert("Somente números","Coloque somente números no número de telefone", Alert.AlertType.ERROR);
+                hc.showAlert("Somente números","Coloque somente números no número de telefone", Alert.AlertType.ERROR);
                 return;
             }
 
             if(senha.length()<12 || senha.length()>32){
-                showAlert("Sua senha não é válida","Temanho mínimo:12; Máximo: 32", Alert.AlertType.ERROR);
+                hc.showAlert("Sua senha não é válida","Temanho mínimo:12; Máximo: 32", Alert.AlertType.ERROR);
                 return;
             }
 
             if(!Pattern.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",email)){
-                showAlert("Email inválido","Digite corretamente seu email: nome@vk.com; nome123@gmail.com; etc...", Alert.AlertType.ERROR);
+                hc.showAlert("Email inválido","Digite corretamente seu email: nome@vk.com; nome123@gmail.com; etc...", Alert.AlertType.ERROR);
                 return;
             }
 
@@ -178,7 +178,7 @@ public class TelaCadastro {
             InsertSMT.setString(7, telefoneText.getText());
 
             InsertSMT.execute();
-            showAlert("Cadastro bem-sucedido", "Cadastro de " + nome + " foi um sucesso!!!", Alert.AlertType.ERROR);
+            hc.showAlert("Cadastro bem-sucedido", "Cadastro de " + nome + " foi um sucesso!!!", Alert.AlertType.ERROR);
 
 
             Stage currentStage = (Stage) mainScene.getWindow();

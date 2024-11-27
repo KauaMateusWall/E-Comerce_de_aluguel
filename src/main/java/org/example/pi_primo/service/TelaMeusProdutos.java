@@ -93,7 +93,7 @@ public class TelaMeusProdutos {
         TabelaListaProduto.getSelectionModel().clearSelection();
 
         if (produto == null) {
-            ConexaoDB.showAlert("VK", "Nenhum produto selecionado!", Alert.AlertType.ERROR);
+            conexaoDB.showAlert("VK", "Nenhum produto selecionado!", Alert.AlertType.ERROR);
             return;
         }
 

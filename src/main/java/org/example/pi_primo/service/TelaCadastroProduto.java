@@ -16,6 +16,7 @@ public class TelaCadastroProduto {
 
     public Scene mainScene;
     HelloApplication helloAplication = new HelloApplication();
+    ConexaoDB conexaoDB = new ConexaoDB();
 
     public Button cadastrarButton;
     public Button voltarButton;
@@ -37,7 +38,7 @@ public class TelaCadastroProduto {
 
 
                 if (nome.isEmpty() || preco.isEmpty() || descricao.isEmpty() || categoria == null) {
-                    showAlert("Campos vazios", "Por favor, preencha todos os campos.", Alert.AlertType.ERROR);
+                    conexaoDB.showAlert("Campos vazios", "Por favor, preencha todos os campos.", Alert.AlertType.ERROR);
                     return;
                 }
 
@@ -45,7 +46,7 @@ public class TelaCadastroProduto {
                 try {
                     precoValue = Double.parseDouble(preco);
                 } catch (NumberFormatException e) {
-                    showAlert("Erro no Preço", "Por favor, insira um valor numérico válido para o preço.", Alert.AlertType.ERROR);
+                    conexaoDB.showAlert("Erro no Preço", "Por favor, insira um valor numérico válido para o preço.", Alert.AlertType.ERROR);
                     return;
                 }
 
@@ -59,7 +60,7 @@ public class TelaCadastroProduto {
 
 
                 InsertSMT.execute();
-                showAlert("Cadastro bem-sucedido", "Cadastro de " + nome + " foi um sucesso!!!", Alert.AlertType.ERROR);
+                conexaoDB.showAlert("Cadastro bem-sucedido", "Cadastro de " + nome + " foi um sucesso!!!", Alert.AlertType.ERROR);
 
                 nomeText.clear();
                 precoText.clear();
