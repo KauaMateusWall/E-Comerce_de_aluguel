@@ -1,7 +1,6 @@
 package org.example.pi_primo.service;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
+
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -9,7 +8,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
-import javafx.util.Duration;
 import org.example.pi_primo.config.ConexaoDB;
 import org.example.pi_primo.model.Session;
 

@@ -47,7 +47,7 @@ public class TelaMeusProdutos {
         try {
             listarProduto();
         } catch (SQLException e) {
-            ConexaoDB.showAlert("Erro", "Não foi possível listar os produtos: " + e.getMessage(), Alert.AlertType.ERROR);
+            conexaoDB.showAlert("Erro", "Não foi possível listar os produtos: " + e.getMessage(), Alert.AlertType.ERROR);
         }
     }
 
