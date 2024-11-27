@@ -132,6 +132,8 @@ public class TelaMenu {
 
     public void handleProductSelection() {
         Produto produto = TabelaListaProduto.getSelectionModel().getSelectedItem();
+        if(produto==null)
+            return;
 
         Session.produto.setId(produto.getId());
         Session.produto.setNome(produto.getNome());

@@ -131,8 +131,8 @@ public class TelaCadastro {
                 return;
             }
 
-            if(senha.length()<6 || senha.length()>12){
-                showAlert("Sua senha não é válida","Temanho mínomo:12; Máximo: 32", Alert.AlertType.ERROR);
+            if(senha.length()<12 || senha.length()>32){
+                showAlert("Sua senha não é válida","Temanho mínimo:12; Máximo: 32", Alert.AlertType.ERROR);
                 return;
             }
 
@@ -188,7 +188,7 @@ public class TelaCadastro {
 
     public void telefoneMask(KeyEvent keyEvent) {
         TextFieldFormatter tff = new TextFieldFormatter();
-        tff.setMask("(##)####-####");
+        tff.setMask("(##)####-#####");
         tff.setCaracteresValidos("0123456789");
         tff.setTf(telefoneText);
         tff.formatter();
