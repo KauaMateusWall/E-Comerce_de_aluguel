@@ -14,6 +14,7 @@ import java.awt.*;
 import java.net.URI;
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.regex.Pattern;
@@ -43,8 +44,26 @@ public class TelaCadastro {
     @FXML public Hyperlink termosHyperLink;
     @FXML public ChoiceBox<String> EstadoChoice;
 
-    public void cadastrarClicked() throws SQLException {
+    public void cadastrarClicked() {
         hc.conection();
+
+        String testUsuario="SELECT nome FROM cliente WHERE nome LIKE ? OR cpf LIKE ?;";
+        try(PreparedStatement pstmt = conn.prepareStatement(testUsuario)){
+           String cpf='%'+CPFText.getText()+'%';
+           String nome='%'+usuarioText.getText()+'%';
+           pstmt.setString(1,nome);
+           pstmt.setString(2,cpf);
+
+           ResultSet rs=pstmt.executeQuery();
+
+           if(rs.next()){
+               hc.showAlert("Usuario já existe","O nome de usuário ja existe, ou o cpf já esta sendo usado", Alert.AlertType.ERROR);
+               return;
+           }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+
         String InserSQL = "INSERT INTO Cliente (nome, senha, cpf, Data_Nascimento, endereco, email, telefone) VALUES (?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement InsertSMT = conn.prepareStatement(InserSQL)) {
 
