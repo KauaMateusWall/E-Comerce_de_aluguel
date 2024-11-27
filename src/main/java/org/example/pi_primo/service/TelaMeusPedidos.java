@@ -22,7 +22,7 @@ public class TelaMeusPedidos {
     public void initialize() throws SQLException {
         conexaoDB.conection();
         String query =
-        "SELECT e.id AS id, e.data_emprestimo AS data, e.data_devolucao AS devolucao, f.nome AS fornecedor, f.id AS id_fornecedor, p.id as id_produto FROM emprestimo e INNER JOIN cliente u ON u.id=? AND u.id=e.id_cliente_receptor INNER JOIN cliente f INNER JOIN produto p";
+        "SELECT e.id AS id, e.data_emprestimo AS data, e.data_devolucao AS devolucao, f.nome AS fornecedor, f.id AS id_fornecedor, p.id AS id_produto, p.nome AS produto FROM emprestimo e INNER JOIN cliente u ON u.id=e.id_cliente_receptor INNER JOIN cliente f ON e.id_cliente_fornecedor=f.id INNER JOIN produto p ON p.id=e.id_produto WHERE id_cliente_receptor=?";
 
         try(PreparedStatement pstmt = conn.prepareStatement(query)){
             pstmt.setInt(1, Session.usuario.getid());

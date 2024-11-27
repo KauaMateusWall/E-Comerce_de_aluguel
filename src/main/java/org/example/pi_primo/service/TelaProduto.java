@@ -39,6 +39,7 @@ public class TelaProduto {
 
     @FXML
     public void initialize() throws SQLException {
+        helloController.conection();
         PrecoTXT.setText(String.valueOf(Session.produto.getPreco()));
         NomeTXT.setText(Session.produto.getNome());
         ProTXT.setText(Session.produto.getProprietario());
@@ -63,7 +64,7 @@ public class TelaProduto {
             alugarButton.setText("Dono");
         }
 
-        String testAlugado="SELECT * FROM emprestimo e WHERE e.id_cliente_receptor=? AND e.data_devolucao>NOW();";
+        String testAlugado="SELECT * FROM emprestimo WHERE id_cliente_receptor=? AND data_devolucao>NOW();";
         try(PreparedStatement pstmt= conn.prepareStatement(testAlugado)) {
             pstmt.setInt(1,Session.usuario.getid());
             ResultSet rs=pstmt.executeQuery();
@@ -81,7 +82,7 @@ public class TelaProduto {
 
     @FXML
     public void alugarClicked() {
-
+        helloController.conection();
         String testPedido="SELECT * FROM emprestimo WHERE id_cliente_fornecedor=?;";
 
         try(PreparedStatement pstmt = conn.prepareStatement(testPedido)){
@@ -102,6 +103,10 @@ public class TelaProduto {
                 " data_devolucao) " +
                 "VALUES (?, ?, ?, NOW(), ?);";
         try(PreparedStatement pstmt = conn.prepareStatement(INSERTPedido)){
+            if(tempoText.getText().isEmpty()){
+                showAlert("Necessário a quantidade","Coloque a quantidade de meses que se deseja alugar no campo acima do botão \"Alugar\"!", Alert.AlertType.WARNING);
+                return;
+            }
             long meses=Long.parseLong(tempoText.getText());
             pstmt.setInt(1,Session.produto.getidProprietario());
             pstmt.setInt(2,Session.usuario.getid());
