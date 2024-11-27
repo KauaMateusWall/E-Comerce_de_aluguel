@@ -40,7 +40,7 @@ public class TelaMeusPedidos {
                 if(devolucao.toLocalDate().isAfter(LocalDate.now())){
                     situacao="utilizando";
                 } else {
-                    situacao="devolvido";
+                    situacao="completo";
                 }
 
                 Emprestimo emprestimo=new Emprestimo(data, devolucao, id, id_fornecedor,id_produto, fornecedor, produto,situacao);
