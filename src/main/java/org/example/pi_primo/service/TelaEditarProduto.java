@@ -48,16 +48,23 @@ public class TelaEditarProduto {
 
 
     public void editar(ActionEvent event) {
-        String query = "update produto set nome = ?, preco = ?, descricao = ? where id = ?";
+
+        String nome = NomeTXT.getText();
+        String preco = PrecoTXT.getText();
+        String descricao = DescricaoTXT.getText();
+        String id = String.valueOf(Session.produto.getId());
 
 
+        String query = "UPDATE produto\n" +
+                "SET nome = ?, preco = ?, descricao = ?\n" +
+                "WHERE id = 3;";
         try (PreparedStatement stmt = conn.prepareStatement(query)) {
             if (!validarCampos()) return;
 
-            stmt.setString(1, NomeTXT.getText());
-            stmt.setString(2, DescricaoTXT.getText());
-            stmt.setDouble(3, Double.parseDouble(PrecoTXT.getText()));
-            stmt.setInt(4, Session.produto.getId());
+            stmt.setString(1, nome);
+            stmt.setString(2,preco);
+            stmt.setString(3, descricao);
+            stmt.setString(4, id);
 
             int rowsAffected = stmt.executeUpdate();
 
