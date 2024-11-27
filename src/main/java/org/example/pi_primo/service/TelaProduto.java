@@ -1,5 +1,7 @@
 package org.example.pi_primo.service;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -7,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
+import javafx.util.Duration;
 import org.example.pi_primo.config.ConexaoDB;
 import org.example.pi_primo.model.Session;
 
@@ -36,28 +39,14 @@ public class TelaProduto {
     @FXML
     public Button alugarButton;
 
-    @FXML
-    public void initialize() {
-        helloController.conection();
-        PrecoTXT.setText(String.valueOf(Session.produto.getPreco()));
-        NomeTXT.setText(Session.produto.getNome());
-        ProTXT.setText(Session.produto.getProprietario());
-        DescricaoTXT.setText(Session.produto.getDescricao());
-
-        if(Session.produto.getidProprietario()!=0 && Session.produto.getidProprietario()==Session.usuario.getid()){
-            tempoText.setDisable(true);
-            tempoText.setText("Você é o dono!");
-            alugarButton.setDisable(true);
-            alugarButton.setText("Dono");
-        }
-
+    public boolean atualizarSituacao(){
         String testAlugado="SELECT * FROM emprestimo WHERE id_produto=? AND data_devolucao>NOW();";
         try(PreparedStatement pstmt= conn.prepareStatement(testAlugado)) {
             pstmt.setInt(1,Session.produto.getId());
             ResultSet rs=pstmt.executeQuery();
 
             if(!rs.next()){
-                return;
+                return true;
             }
             int id_cliente_receptor=rs.getInt("id_cliente_receptor");
             if(id_cliente_receptor==Session.usuario.getid()) {
@@ -71,9 +60,28 @@ public class TelaProduto {
                 alugarButton.setDisable(true);
                 alugarButton.setText(Session.produto.getSituacao());
             }
+            return false;
         } catch (SQLException e) {
             e.printStackTrace();
+            return true;
         }
+    }
+
+    @FXML
+    public void initialize() throws SQLException {
+        helloController.conection();
+        PrecoTXT.setText(String.valueOf(Session.produto.getPreco()));
+        NomeTXT.setText(Session.produto.getNome());
+        ProTXT.setText(Session.produto.getProprietario());
+        DescricaoTXT.setText(Session.produto.getDescricao());
+
+        if(Session.produto.getidProprietario()!=0 && Session.produto.getidProprietario()==Session.usuario.getid()){
+            tempoText.setDisable(true);
+            tempoText.setText("Você é o dono!");
+            alugarButton.setDisable(true);
+            alugarButton.setText("Dono");
+        }
+        atualizarSituacao();
     }
 
     @FXML
@@ -84,18 +92,9 @@ public class TelaProduto {
         }
 
         helloController.conection();
-        String testPedido="SELECT * FROM emprestimo WHERE id_cliente_fornecedor=?;";
-
-        try(PreparedStatement pstmt = conn.prepareStatement(testPedido)){
-            pstmt.setInt(1,Session.produto.getidProprietario());
-            ResultSet rs = pstmt.executeQuery();
-            if(rs.next()){
-                initialize();
-                showAlert("VK","O produto já foi alugado, desculpe!", Alert.AlertType.ERROR);
-                return;
-            }
-        }catch (SQLException e){
-            e.printStackTrace();
+        if(atualizarSituacao()){
+            showAlert("Já foi alugado!","O produto já foi alugado por outra pessoa", Alert.AlertType.WARNING);
+            return;
         }
 
         String INSERTPedido="INSERT INTO emprestimo (id_cliente_fornecedor," +
@@ -116,9 +115,10 @@ public class TelaProduto {
             e.printStackTrace();
         }
 
-        String UPDATEProduto="UPDATE produto SET situacao=\"Indisponível\" WHERE id=?;";
+        String UPDATEProduto="UPDATE produto SET situacao=\"Indisponível\" quantidadeDeEmprestimos=? WHERE id=?;";
         try(PreparedStatement pstmt= conn.prepareStatement(UPDATEProduto)){
             pstmt.setInt(1,Session.produto.getId());
+            pstmt.setInt(1,Session.produto.getQuantidadeDeEmprestimos()+1);
             pstmt.executeUpdate();
         }catch (SQLException e){
             e.printStackTrace();

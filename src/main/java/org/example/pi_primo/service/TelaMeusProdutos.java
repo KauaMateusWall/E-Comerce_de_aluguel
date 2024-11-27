@@ -90,6 +90,7 @@ public class TelaMeusProdutos {
     @FXML
     public void handleProductSelection() {
         Produto produto = TabelaListaProduto.getSelectionModel().getSelectedItem();
+        TabelaListaProduto.getSelectionModel().clearSelection();
 
         if (produto == null) {
             ConexaoDB.showAlert("VK", "Nenhum produto selecionado!", Alert.AlertType.ERROR);
@@ -108,5 +109,6 @@ public class TelaMeusProdutos {
 
         helloApplication.loadScreen("paginaProduto.fxml", "VK", mainScene);
     }
+
 
 }

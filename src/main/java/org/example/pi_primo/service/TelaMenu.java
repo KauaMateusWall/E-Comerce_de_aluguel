@@ -145,6 +145,8 @@ public class TelaMenu {
         Session.produto.setProprietario(produto.getProprietario());
         Session.produto.setIdProprietario(produto.getidProprietario());
 
+
+        TabelaListaProduto.getSelectionModel().clearSelection();
         if(Session.usuario.getid() == Session.produto.getidProprietario()){
             helloApplication.loadScreen("paginaProdutoDono.fxml","k",mainScene);
         }else {
