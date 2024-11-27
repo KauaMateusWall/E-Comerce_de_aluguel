@@ -7,7 +7,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
-import org.example.pi_primo.HelloApplication;
 import org.example.pi_primo.config.ConexaoDB;
 import org.example.pi_primo.model.Session;
 
@@ -38,25 +37,13 @@ public class TelaProduto {
     public Button alugarButton;
 
     @FXML
-    public void initialize() throws SQLException {
+    public void initialize() {
         helloController.conection();
         PrecoTXT.setText(String.valueOf(Session.produto.getPreco()));
         NomeTXT.setText(Session.produto.getNome());
         ProTXT.setText(Session.produto.getProprietario());
         DescricaoTXT.setText(Session.produto.getDescricao());
 
-        if(Session.usuario.getid() == Session.produto.getidProprietario()){
-            alugarButton.setText("Você é o dono!!");
-            alugarButton.setDisable(true);
-            tempoText.setDisable(true);
-        }
-
-        if(Session.produto.getSituacao().equals("Indisponível")){
-            tempoText.setDisable(true);
-            tempoText.setText("Já alugado!");
-            alugarButton.setDisable(true);
-            alugarButton.setText("Indisponível");
-        }
         if(Session.produto.getidProprietario()!=0 && Session.produto.getidProprietario()==Session.usuario.getid()){
             tempoText.setDisable(true);
             tempoText.setText("Você é o dono!");
@@ -64,16 +51,25 @@ public class TelaProduto {
             alugarButton.setText("Dono");
         }
 
-        String testAlugado="SELECT * FROM emprestimo WHERE id_cliente_receptor=? AND data_devolucao>NOW();";
+        String testAlugado="SELECT * FROM emprestimo WHERE id_produto=? AND data_devolucao>NOW();";
         try(PreparedStatement pstmt= conn.prepareStatement(testAlugado)) {
-            pstmt.setInt(1,Session.usuario.getid());
+            pstmt.setInt(1,Session.produto.getId());
             ResultSet rs=pstmt.executeQuery();
 
-            if (rs.next()) {
+            if(!rs.next()){
+                return;
+            }
+            int id_cliente_receptor=rs.getInt("id_cliente_receptor");
+            if(id_cliente_receptor==Session.usuario.getid()) {
                 tempoText.setDisable(true);
                 tempoText.setText("Em seus pedidos!");
                 alugarButton.setDisable(true);
                 alugarButton.setText("Usando...");
+            } else{
+                tempoText.setDisable(true);
+                tempoText.setText("Já alugado!");
+                alugarButton.setDisable(true);
+                alugarButton.setText(Session.produto.getSituacao());
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -81,7 +77,12 @@ public class TelaProduto {
     }
 
     @FXML
-    public void alugarClicked() {
+    public void alugarClicked() throws SQLException {
+        if(tempoText.getText().isEmpty()){
+            showAlert("Necessário a quantidade","Coloque a quantidade de meses que se deseja alugar no campo acima do botão \"Alugar\"!", Alert.AlertType.WARNING);
+            return;
+        }
+
         helloController.conection();
         String testPedido="SELECT * FROM emprestimo WHERE id_cliente_fornecedor=?;";
 
@@ -103,10 +104,7 @@ public class TelaProduto {
                 " data_devolucao) " +
                 "VALUES (?, ?, ?, NOW(), ?);";
         try(PreparedStatement pstmt = conn.prepareStatement(INSERTPedido)){
-            if(tempoText.getText().isEmpty()){
-                showAlert("Necessário a quantidade","Coloque a quantidade de meses que se deseja alugar no campo acima do botão \"Alugar\"!", Alert.AlertType.WARNING);
-                return;
-            }
+
             long meses=Long.parseLong(tempoText.getText());
             pstmt.setInt(1,Session.produto.getidProprietario());
             pstmt.setInt(2,Session.usuario.getid());
@@ -117,6 +115,15 @@ public class TelaProduto {
         } catch (SQLException | NumberFormatException e){
             e.printStackTrace();
         }
+
+        String UPDATEProduto="UPDATE produto SET situacao=\"Indisponível\" WHERE id=?;";
+        try(PreparedStatement pstmt= conn.prepareStatement(UPDATEProduto)){
+            pstmt.setInt(1,Session.produto.getId());
+            pstmt.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        initialize();
     }
 
     public void mesesmask(KeyEvent mouseEvent) {
