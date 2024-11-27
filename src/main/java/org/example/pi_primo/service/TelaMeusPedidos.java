@@ -52,7 +52,5 @@ public class TelaMeusPedidos {
     }
 
     public void pedidoTabelaClicked() {
-
-
     }
 }

@@ -91,7 +91,7 @@ public class TelaLogin {
                 Stage currentStage = (Stage) mainScene.getWindow();
                 currentStage.close();
 
-                helloApplication.loadScreen("paginaMenu.fxml", "VK", mainScene);
+                helloApplication.openScreen("paginaMenu.fxml", "VK", mainScene);
 
                 showAlert("Login bem-sucedido", "Bem-vindo, " + usuario + "!", Alert.AlertType.INFORMATION);
 
@@ -106,10 +106,6 @@ public class TelaLogin {
 
     @FXML
     public void omCadastroClicked(ActionEvent event) {
-
-        Stage currentStage = (Stage) mainScene.getWindow();
-        currentStage.close();
-
         helloApplication.loadScreen("paginaCadastro.fxml", "VK", mainScene);
     }
 }

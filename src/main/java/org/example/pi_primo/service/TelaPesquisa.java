@@ -89,6 +89,8 @@ public class TelaPesquisa {
             showAlert("VK", "O produto não existe!!", Alert.AlertType.ERROR);
             return;
         }
+        produtosTableView.getSelectionModel().clearSelection();
+
         Session.produto.setId(produto.getId());
         Session.produto.setNome(produto.getNome());
         Session.produto.setDescricao(produto.getDescricao());
@@ -99,6 +101,6 @@ public class TelaPesquisa {
         Session.produto.setIdProprietario(produto.getidProprietario());
         Session.produto.setProprietario(produto.getProprietario());
 
-        helloApplication.loadScreen("paginaProduto.fxml", "VK", mainScene);
+        helloApplication.openScreen("paginaProduto.fxml", "VK", mainScene);
     }
 }

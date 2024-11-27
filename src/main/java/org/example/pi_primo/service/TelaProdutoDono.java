@@ -50,7 +50,7 @@ public class TelaProdutoDono {
 
 
     public void paginaEditar(ActionEvent event) {
-        helloApplication.loadScreen("paginaEditarProduto.fxml","k",mainScene);
+        helloApplication.openScreen("paginaEditarProduto.fxml","k",mainScene);
     }
 
     public void deletar(ActionEvent event) throws SQLException {

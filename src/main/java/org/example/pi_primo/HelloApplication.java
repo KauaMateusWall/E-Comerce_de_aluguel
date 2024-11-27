@@ -22,11 +22,12 @@ public class HelloApplication extends Application {
         stage.show();
     }
 
-    public void loadScreen(String fxmlFile, String title, Scene sceneOriginal) {
+    public void openScreen(String fxmlFile, String title, Scene sceneOriginal) {
         try {
             Scene sceneNova = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlFile)));
             Stage stage = new Stage();
             stage.setScene(sceneNova);
+            stage.initOwner(sceneOriginal.getWindow());
             stage.setTitle(title);
             stage.show();
         } catch (Exception e) {
@@ -34,8 +35,17 @@ public class HelloApplication extends Application {
         }
     }
 
-
-
+    public void loadScreen(String fxmlFile, String title, Scene sceneOriginal) {
+        try {
+            Scene sceneNova = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlFile)));
+            Stage stage = (Stage) sceneOriginal.getWindow();
+            stage.setScene(sceneNova);
+            stage.setTitle(title);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     public static void main(String[] args) {
         launch();

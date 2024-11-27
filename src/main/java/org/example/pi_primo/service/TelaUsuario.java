@@ -29,11 +29,11 @@ public class TelaUsuario {
     }
 
     public void MeusProdutosClickd(ActionEvent event) {
-        helloApplication.loadScreen("paginaMeusProdutos.fxml","k",mainScene);
+        helloApplication.openScreen("paginaMeusProdutos.fxml","k",mainScene);
     }
 
 
     public void meusPedidosClicked(ActionEvent actionEvent) {
-        helloApplication.loadScreen("paginaMeusPedidos.fxml","k",mainScene);
+        helloApplication.openScreen("paginaMeusPedidos.fxml","k",mainScene);
     }
 }
