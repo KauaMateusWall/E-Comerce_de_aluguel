@@ -156,7 +156,7 @@ public class TelaCadastro {
             Stage currentStage = (Stage) mainScene.getWindow();
             currentStage.close();
 
-            ha.loadScreen("paginalogin.fxml", "VK", mainScene);
+            ha.openScreen("paginalogin.fxml", "VK", mainScene);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -164,10 +164,6 @@ public class TelaCadastro {
     }
 
     public void voltarClicked(){
-        Stage currentStage = (Stage) mainScene.getWindow();
-        currentStage.close();
-
-
         ha.loadScreen("paginalogin.fxml","k",mainScene);
     }
 

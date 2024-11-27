@@ -68,7 +68,7 @@ public class TelaMenu {
 
     @FXML
     public void sairUsuarioClicked() {
-        helloApplication.loadScreen("paginaMeuUsuario.fxml", "Empréstimo VK", mainScene);
+        helloApplication.openScreen("paginaMeuUsuario.fxml", "Empréstimo VK", mainScene);
     }
 
     @FXML
@@ -93,7 +93,7 @@ public class TelaMenu {
     public void sairContaClicked() {
         Stage telaAtual = (Stage) mainScene.getWindow();
         telaAtual.close();
-        helloApplication.loadScreen("paginaLogin.fxml", "Empréstimo VK", mainScene);
+        helloApplication.openScreen("paginaLogin.fxml", "Empréstimo VK", mainScene);
     }
 
     public void listarProduto() throws SQLException {
@@ -148,19 +148,19 @@ public class TelaMenu {
 
         TabelaListaProduto.getSelectionModel().clearSelection();
         if(Session.usuario.getid() == Session.produto.getidProprietario()){
-            helloApplication.loadScreen("paginaProdutoDono.fxml","k",mainScene);
+            helloApplication.openScreen("paginaProdutoDono.fxml","k",mainScene);
         }else {
-            helloApplication.loadScreen("paginaProduto.fxml", "VK - Produto", mainScene);
+            helloApplication.openScreen("paginaProduto.fxml", "VK - Produto", mainScene);
         }
     }
 
     public void CadastrarProduto() {
-        helloApplication.loadScreen("paginaCadastroProduto.fxml", "VK - Cadastro de Produto", mainScene);
+        helloApplication.openScreen("paginaCadastroProduto.fxml", "VK - Cadastro de Produto", mainScene);
     }
 
     public void pesquisarClicked() {
         Session.pesquisa = pesquisarText.getText();
         Session.pesquisando = true;
-        helloApplication.loadScreen("paginaPesquisa.fxml", "VK - Pesquisa", mainScene);
+        helloApplication.openScreen("paginaPesquisa.fxml", "VK - Pesquisa", mainScene);
     }
 }

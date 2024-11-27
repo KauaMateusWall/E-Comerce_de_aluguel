@@ -22,6 +22,19 @@ public class HelloApplication extends Application {
         stage.show();
     }
 
+    public void openScreen(String fxmlFile, String title, Scene sceneOriginal) {
+        try {
+            Scene sceneNova = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlFile)));
+            Stage stage = new Stage();
+            stage.setScene(sceneNova);
+            stage.initOwner(sceneOriginal.getWindow());
+            stage.setTitle(title);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public void loadScreen(String fxmlFile, String title, Scene sceneOriginal) {
         try {
             Scene sceneNova = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlFile)));
@@ -33,9 +46,6 @@ public class HelloApplication extends Application {
             e.printStackTrace();
         }
     }
-
-
-
 
     public static void main(String[] args) {
         launch();
