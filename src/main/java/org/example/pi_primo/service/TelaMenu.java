@@ -20,7 +20,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Optional;
 
-import static org.example.pi_primo.config.ConexaoDB.showAlert;
 
 public class TelaMenu {
 
@@ -44,7 +43,7 @@ public class TelaMenu {
 
             iniciarAtualizacaoPeriodica();
         } catch (SQLException e) {
-            showAlert("Erro", "Não foi possível inicializar a tela: " + e.getMessage(), Alert.AlertType.ERROR);
+            conexaoDB.showAlert("Erro", "Não foi possível inicializar a tela: " + e.getMessage(), Alert.AlertType.ERROR);
         }
     }
 
@@ -73,7 +72,7 @@ public class TelaMenu {
 
     @FXML
     public void meusPedidosClicked() {
-        showAlert("Informação", "Funcionalidade em desenvolvimento!", Alert.AlertType.INFORMATION);
+        conexaoDB.showAlert("Informação", "Funcionalidade em desenvolvimento!", Alert.AlertType.INFORMATION);
     }
 
     @FXML

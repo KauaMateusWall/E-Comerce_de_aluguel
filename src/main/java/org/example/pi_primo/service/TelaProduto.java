@@ -19,12 +19,11 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 
 import static org.example.pi_primo.config.ConexaoDB.conn;
-import static org.example.pi_primo.config.ConexaoDB.showAlert;
 
 public class TelaProduto {
 
     public TextField tempoText;
-    ConexaoDB helloController = new ConexaoDB();
+    ConexaoDB conexaoDB = new ConexaoDB();
 
     @FXML
     public Scene mainScene;
@@ -69,7 +68,7 @@ public class TelaProduto {
 
     @FXML
     public void initialize() throws SQLException {
-        helloController.conection();
+        conexaoDB.conection();
         PrecoTXT.setText(String.valueOf(Session.produto.getPreco()));
         NomeTXT.setText(Session.produto.getNome());
         ProTXT.setText(Session.produto.getProprietario());
@@ -87,13 +86,13 @@ public class TelaProduto {
     @FXML
     public void alugarClicked() throws SQLException {
         if(tempoText.getText().isEmpty()){
-            showAlert("Necessário a quantidade","Coloque a quantidade de meses que se deseja alugar no campo acima do botão \"Alugar\"!", Alert.AlertType.WARNING);
+            conexaoDB.showAlert("Necessário a quantidade","Coloque a quantidade de meses que se deseja alugar no campo acima do botão \"Alugar\"!", Alert.AlertType.WARNING);
             return;
         }
 
-        helloController.conection();
+        conexaoDB.conection();
         if(atualizarSituacao()){
-            showAlert("Já foi alugado!","O produto já foi alugado por outra pessoa", Alert.AlertType.WARNING);
+            conexaoDB.showAlert("Já foi alugado!","O produto já foi alugado por outra pessoa", Alert.AlertType.WARNING);
             return;
         }
 

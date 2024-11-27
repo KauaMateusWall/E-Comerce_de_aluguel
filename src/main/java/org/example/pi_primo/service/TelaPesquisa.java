@@ -8,7 +8,6 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import org.example.pi_primo.HelloApplication;
 
-import static org.example.pi_primo.config.ConexaoDB.showAlert;
 import static org.example.pi_primo.config.ConexaoDB.conn;
 
 import org.example.pi_primo.config.ConexaoDB;
@@ -86,7 +85,7 @@ public class TelaPesquisa {
     public void handleProductSelection() {
         Produto produto = produtosTableView.getSelectionModel().getSelectedItem();
         if (produto == null) {
-            showAlert("VK", "O produto não existe!!", Alert.AlertType.ERROR);
+            conexaoDB.showAlert("VK", "O produto não existe!!", Alert.AlertType.ERROR);
             return;
         }
         produtosTableView.getSelectionModel().clearSelection();
