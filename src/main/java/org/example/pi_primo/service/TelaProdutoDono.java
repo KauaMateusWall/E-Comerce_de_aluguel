@@ -5,11 +5,15 @@ import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 import org.example.pi_primo.HelloApplication;
 import org.example.pi_primo.config.ConexaoDB;
 import org.example.pi_primo.model.Session;
 
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
+
+import static org.example.pi_primo.config.ConexaoDB.conn;
 
 public class TelaProdutoDono {
 
@@ -47,5 +51,19 @@ public class TelaProdutoDono {
 
     public void paginaEditar(ActionEvent event) {
         helloApplication.loadScreen("paginaEditarProduto.fxml","k",mainScene);
+    }
+
+    public void deletar(ActionEvent event) throws SQLException {
+        conexaoDB.conection();
+        String id = String.valueOf(Session.produto.getId());
+
+        String query = "delete from produto where id = ?";
+        PreparedStatement smt = conn.prepareStatement(query);
+
+        smt.setString(1, id);
+        smt.execute();
+
+        Stage currentStage = (Stage) mainScene.getWindow();
+        currentStage.close();
     }
 }

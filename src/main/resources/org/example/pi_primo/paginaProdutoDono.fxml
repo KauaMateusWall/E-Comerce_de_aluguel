@@ -22,6 +22,6 @@
             <Label fx:id="CategoriaTXT" layoutX="209.0" layoutY="245.0" text="Label" />
             <Label fx:id="PrecoTXT" layoutX="191.0" layoutY="219.0" text="Label" />
             <Label fx:id="nomeTXT" layoutX="191.0" layoutY="192.0" text="Label" />
-            <Button layoutX="374.0" layoutY="346.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" text="Deletar" />
+            <Button layoutX="374.0" onAction="#deletar" layoutY="346.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" text="Deletar" />
         </children></AnchorPane>
 </Scene>

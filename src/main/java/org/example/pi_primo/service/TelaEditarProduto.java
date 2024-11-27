@@ -54,19 +54,18 @@ public class TelaEditarProduto {
         String descricao = DescricaoTXT.getText();
         String id = String.valueOf(Session.produto.getId());
 
-
         String query = "UPDATE produto\n" +
                 "SET nome = ?, preco = ?, descricao = ?\n" +
-                "WHERE id = 3;";
+                "WHERE id = ?;";
         try (PreparedStatement stmt = conn.prepareStatement(query)) {
-            if (!validarCampos()) return;
+
 
             stmt.setString(1, nome);
             stmt.setString(2,preco);
             stmt.setString(3, descricao);
             stmt.setString(4, id);
 
-            int rowsAffected = stmt.executeUpdate();
+        int rowsAffected = stmt.executeUpdate();
 
             if (rowsAffected > 0) {
                 conexaoDB.showAlert("Editado", "Produto editado com sucesso!", Alert.AlertType.INFORMATION);
