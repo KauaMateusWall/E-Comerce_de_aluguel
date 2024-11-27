@@ -188,7 +188,7 @@ public class TelaCadastro {
 
     public void telefoneMask(KeyEvent keyEvent) {
         TextFieldFormatter tff = new TextFieldFormatter();
-        tff.setMask("(##) ####-####");
+        tff.setMask("(##)####-####");
         tff.setCaracteresValidos("0123456789");
         tff.setTf(telefoneText);
         tff.formatter();
