@@ -71,9 +71,7 @@ public class TelaCadastro {
             String cpf = CPFText.getText();
             String senha = senhaText.getText();
             String email = emailText.getText();
-
             String numeroTelefone = telefoneText.getText();
-
             String CEP = CEPText.getText();
             String rua = ruaText.getText();
             String numero = ruaNumeroText.getText();
@@ -114,6 +112,45 @@ public class TelaCadastro {
                 return;
             }
 
+            if(Pattern.matches("[a-z][A-Z]",cpf)){
+                showAlert("Somente números","Coloque somente números no número de CPF.", Alert.AlertType.ERROR);
+                return;
+            }
+
+            if (cpf.matches("[0-9]")){
+                showAlert("Somente números","Coloque somente números no número de CPF.", Alert.AlertType.ERROR);
+                return;
+            }
+
+            if(Pattern.matches("[a-z][A-Z]",telefoneText.getText())){
+                showAlert("Somente números","Coloque somente números no número de telefone", Alert.AlertType.ERROR);
+                return;
+            }
+
+            if (numero.matches("[A-Za-zÀ-ÿ\\s]+")) {
+                hc.showAlert("numero inválido", "O campo 'numero' deve conter apenas numeros.", Alert.AlertType.ERROR);
+                return;
+            }
+
+            if (numero.length()==11){
+                hc.showAlert("numero inválido", "O campo 'numero' deve conter 11 numeros.", Alert.AlertType.ERROR);
+            }
+
+            if(Pattern.matches("[a-z][A-Z]",CEP)){
+                showAlert("Somente números","Coloque somente números no número de telefone", Alert.AlertType.ERROR);
+                return;
+            }
+
+            if(senha.length()<12 || senha.length()>32){
+                showAlert("Sua senha não é válida","Temanho mínimo:12; Máximo: 32", Alert.AlertType.ERROR);
+                return;
+            }
+
+            if(!Pattern.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",email)){
+                showAlert("Email inválido","Digite corretamente seu email: nome@vk.com; nome123@gmail.com; etc...", Alert.AlertType.ERROR);
+                return;
+            }
+
 
             StringBuilder stringBuilder =new StringBuilder();
 
@@ -131,34 +168,6 @@ public class TelaCadastro {
             String endereco= stringBuilder.toString();
 
 
-            if(Pattern.matches("[a-z][A-Z]",cpf)){
-                showAlert("Somente números","Coloque somente números no número de CPF.", Alert.AlertType.ERROR);
-                return;
-            }
-
-            if (cpf.matches("[0-9]")){
-                showAlert("Somente números","Coloque somente números no número de CPF.", Alert.AlertType.ERROR);
-                return;
-            }
-
-            if(Pattern.matches("[a-z][A-Z]",telefoneText.getText())){
-                showAlert("Somente números","Coloque somente números no número de telefone", Alert.AlertType.ERROR);
-                return;
-            }
-            if(Pattern.matches("[a-z][A-Z]",CEP)){
-                showAlert("Somente números","Coloque somente números no número de telefone", Alert.AlertType.ERROR);
-                return;
-            }
-
-            if(senha.length()<12 || senha.length()>32){
-                showAlert("Sua senha não é válida","Temanho mínimo:12; Máximo: 32", Alert.AlertType.ERROR);
-                return;
-            }
-
-            if(!Pattern.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",email)){
-                showAlert("Email inválido","Digite corretamente seu email: nome@vk.com; nome123@gmail.com; etc...", Alert.AlertType.ERROR);
-                return;
-            }
 
             InsertSMT.setString(1, nome);
             InsertSMT.setString(2, senha);

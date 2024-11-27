@@ -107,8 +107,11 @@ public class TelaMeusProdutos {
         Session.produto.setProprietario(produto.getProprietario());
         Session.produto.setIdProprietario(produto.getidProprietario());
 
-        helloApplication.openScreen("paginaProduto.fxml", "VK", mainScene);
-    }
+        if(Session.usuario.getid() == Session.produto.getidProprietario()){
+            helloApplication.openScreen("paginaProdutoDono.fxml","k",mainScene);
+        }else {
+            helloApplication.openScreen("paginaProduto.fxml", "VK - Produto", mainScene);
+        }    }
 
 
 }

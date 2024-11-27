@@ -27,7 +27,7 @@ public class ConexaoDB {
         }
     }
 
-    public static void showAlert(String titulo, String mensagem, Alert.AlertType error) {
+    public void showAlert(String titulo, String mensagem, Alert.AlertType error) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(titulo);
         alert.setHeaderText(null);

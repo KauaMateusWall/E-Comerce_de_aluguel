@@ -101,6 +101,9 @@ public class TelaPesquisa {
         Session.produto.setIdProprietario(produto.getidProprietario());
         Session.produto.setProprietario(produto.getProprietario());
 
-        helloApplication.openScreen("paginaProduto.fxml", "VK", mainScene);
-    }
+        if(Session.usuario.getid() == Session.produto.getidProprietario()){
+            helloApplication.openScreen("paginaProdutoDono.fxml","k",mainScene);
+        }else {
+            helloApplication.openScreen("paginaProduto.fxml", "VK - Produto", mainScene);
+        }    }
 }
