@@ -4,7 +4,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableView;
 import org.example.pi_primo.config.ConexaoDB;
 import org.example.pi_primo.model.Emprestimo;
-import org.example.pi_primo.model.Session;
+import org.example.pi_primo.config.Session;
 
 import java.sql.Date;
 import java.sql.PreparedStatement;

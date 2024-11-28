@@ -9,7 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import org.example.pi_primo.config.ConexaoDB;
-import org.example.pi_primo.model.Session;
+import org.example.pi_primo.config.Session;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

@@ -12,7 +12,7 @@ import javafx.util.Duration;
 import org.example.pi_primo.HelloApplication;
 import org.example.pi_primo.config.ConexaoDB;
 import org.example.pi_primo.model.Produto;
-import org.example.pi_primo.model.Session;
+import org.example.pi_primo.config.Session;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

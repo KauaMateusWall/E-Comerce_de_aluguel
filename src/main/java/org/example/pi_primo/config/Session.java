@@ -1,4 +1,7 @@
-package org.example.pi_primo.model;
+package org.example.pi_primo.config;
+
+import org.example.pi_primo.model.Cliente;
+import org.example.pi_primo.model.Produto;
 
 public class Session {
     public static Cliente usuario= new Cliente(0,"NULL","NULL","NULL","NULL","NULL","NULL");

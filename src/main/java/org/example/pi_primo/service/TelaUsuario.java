@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import org.example.pi_primo.HelloApplication;
-import org.example.pi_primo.model.Session;
+import org.example.pi_primo.config.Session;
 
 public class TelaUsuario {
     HelloApplication helloApplication = new HelloApplication();
