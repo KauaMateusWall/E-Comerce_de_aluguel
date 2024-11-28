@@ -3,6 +3,7 @@ package org.example.pi_primo.service;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
@@ -54,6 +55,12 @@ public class TelaProdutoDono {
     }
 
     public void deletar(ActionEvent event) throws SQLException {
+
+        if(Session.produto.getSituacao().equals("Indisponível")){
+            conexaoDB.showAlert("Produto já emprestado","O produto está emprestado!", Alert.AlertType.ERROR);
+            return;
+        }
+
         conexaoDB.conection();
         String id = String.valueOf(Session.produto.getId());
 

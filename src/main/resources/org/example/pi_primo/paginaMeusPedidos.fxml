@@ -20,7 +20,14 @@
                    </cellValueFactory>
                 </TableColumn>
 
+
                 <TableColumn prefWidth="75.0" text="Data">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="data_devolucao"/>
+                    </cellValueFactory>
+                </TableColumn>
+
+                <TableColumn prefWidth="75.0" text="Devolução">
                      <cellValueFactory>
                         <PropertyValueFactory property="data_emprestimo"/>
                      </cellValueFactory>

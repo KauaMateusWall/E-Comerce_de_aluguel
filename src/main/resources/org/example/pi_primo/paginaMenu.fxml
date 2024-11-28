@@ -38,7 +38,7 @@
                     </padding>
                     <MenuButton mnemonicParsing="false" text="Menu">
                         <items>
-                            <MenuItem mnemonicParsing="false" text="Meus pedidos"/>
+                            <MenuItem mnemonicParsing="false" text="Meus pedidos" onAction="#meusPedidosClicked"/>
                             <MenuItem mnemonicParsing="false" text="Cadastrar Produto" onAction="#CadastrarProduto"/>
                             <MenuItem fx:id="menu" mnemonicParsing="false" text="Usuário"
                                       onAction="#sairUsuarioClicked"/>

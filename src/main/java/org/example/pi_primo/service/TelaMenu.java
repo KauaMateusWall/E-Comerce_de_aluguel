@@ -72,7 +72,7 @@ public class TelaMenu {
 
     @FXML
     public void meusPedidosClicked() {
-        conexaoDB.showAlert("Informação", "Funcionalidade em desenvolvimento!", Alert.AlertType.INFORMATION);
+       helloApplication.openScreen("paginaMeusPedidos.fxml","VK",mainScene);
     }
 
     @FXML

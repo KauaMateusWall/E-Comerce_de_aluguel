@@ -36,7 +36,7 @@ public class TelaProduto {
     @FXML
     public Button alugarButton;
 
-    public boolean atualizarSituacao(){
+    public boolean produtoDisponivel(){
         String testAlugado="SELECT * FROM emprestimo WHERE id_produto=? AND data_devolucao>NOW();";
         try(PreparedStatement pstmt= conn.prepareStatement(testAlugado)) {
             pstmt.setInt(1,Session.produto.getId());
@@ -60,12 +60,12 @@ public class TelaProduto {
             return false;
         } catch (SQLException e) {
             e.printStackTrace();
-            return true;
+            return false;
         }
     }
 
     @FXML
-    public void initialize() throws SQLException {
+    public void initialize(){
         conexaoDB.conection();
         PrecoTXT.setText(String.valueOf(Session.produto.getPreco()));
         NomeTXT.setText(Session.produto.getNome());
@@ -78,7 +78,7 @@ public class TelaProduto {
             alugarButton.setDisable(true);
             alugarButton.setText("Dono");
         }
-        atualizarSituacao();
+        produtoDisponivel();
     }
 
     @FXML
@@ -89,7 +89,7 @@ public class TelaProduto {
         }
 
         conexaoDB.conection();
-        if(atualizarSituacao()){
+        if(!produtoDisponivel()){
             conexaoDB.showAlert("Já foi alugado!","O produto já foi alugado por outra pessoa", Alert.AlertType.WARNING);
             return;
         }
@@ -112,10 +112,11 @@ public class TelaProduto {
             e.printStackTrace();
         }
 
-        String UPDATEProduto="UPDATE produto SET situacao=\"Indisponível\" quantidadeDeEmprestimos=? WHERE id=?;";
+        String UPDATEProduto="UPDATE produto SET situacao=\"Indisponível\", quantidadeDeEmprestimos=? WHERE id=?;";
         try(PreparedStatement pstmt= conn.prepareStatement(UPDATEProduto)){
-            pstmt.setInt(1,Session.produto.getId());
             pstmt.setInt(1,Session.produto.getQuantidadeDeEmprestimos()+1);
+            Session.produto.setQuantidadeDeEmprestimos(Session.produto.getQuantidadeDeEmprestimos()+1);
+            pstmt.setInt(2,Session.produto.getId());
             pstmt.executeUpdate();
         }catch (SQLException e){
             e.printStackTrace();
