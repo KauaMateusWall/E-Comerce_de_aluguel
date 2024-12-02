@@ -15,8 +15,8 @@
     <children>
         <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="276.0" prefWidth="640.0" VBox.vgrow="ALWAYS">
             <children>
-                <Button fx:id="BotaoEntrar" layoutX="219.0" layoutY="254.0" mnemonicParsing="false" onAction="#onEntrarClicked" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: #0000FF;" text="Entrar" textAlignment="CENTER" textFill="WHITE" />
-                <Button fx:id="BotaoCadastrar" layoutX="355.0" layoutY="254.0" mnemonicParsing="false" onAction="#omCadastroClicked" style="-fx-background-color: #0000FF;" text="Cadastrar" textAlignment="CENTER" textFill="WHITE" />
+                <Button  layoutX="219.0" layoutY="254.0" mnemonicParsing="false" onAction="#onEntrarClicked" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: #0000FF;" text="Entrar" textAlignment="CENTER" textFill="WHITE" />
+                <Button layoutX="355.0" layoutY="254.0" mnemonicParsing="false" onAction="#omCadastroClicked" style="-fx-background-color: #0000FF;" text="Cadastrar" textAlignment="CENTER" textFill="WHITE" />
                 <TextField fx:id="UsuarioTXT" layoutX="219.0" layoutY="134.0" prefHeight="25.0" prefWidth="202.0" />
                 <CheckBox fx:id="CheckBox" onMouseClicked="#mostrarSenha" layoutX="219.0" layoutY="209.0" mnemonicParsing="false" />
                 <Label layoutX="171.0" layoutY="138.0" text="Usuário:" />

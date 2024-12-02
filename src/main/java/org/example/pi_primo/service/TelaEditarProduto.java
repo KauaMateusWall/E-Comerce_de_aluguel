@@ -39,7 +39,6 @@ public class TelaEditarProduto {
             ProprietarioTXT.setText(Session.produto.getProprietario());
             DescricaoTXT.setText(Session.produto.getDescricao());
 
-            CategoriaTXT.setDisable(true);
             ProprietarioTXT.setDisable(true);
         } else {
             conexaoDB.showAlert("Erro", "Produto não carregado corretamente!", Alert.AlertType.ERROR);
@@ -52,19 +51,22 @@ public class TelaEditarProduto {
         String nome = NomeTXT.getText();
         String preco = PrecoTXT.getText();
         String descricao = DescricaoTXT.getText();
+        String categoria =CategoriaTXT.getText();
         String id = String.valueOf(Session.produto.getId());
 
 
         String query = "UPDATE produto\n" +
                 "SET nome = ?, preco = ?, descricao = ?\n" +
+                "categoria_produto= ?\n" +
                 "WHERE id = ?;";
         try (PreparedStatement stmt = conn.prepareStatement(query)) {
             if (!validarCampos()) return;
 
             stmt.setString(1, nome);
-            stmt.setString(2,preco);
+            stmt.setString(2, preco);
             stmt.setString(3, descricao);
-            stmt.setString(4, id);
+            stmt.setString(4, categoria);
+            stmt.setString(5, id);
 
             int rowsAffected = stmt.executeUpdate();
 
