@@ -21,6 +21,7 @@ import java.util.regex.Pattern;
 
 
 import static org.example.pi_primo.config.ConexaoDB.*;
+import static sun.security.util.SignatureUtil.EdDSADigestAlgHolder.sha512;
 
 public class TelaCadastro {
 
@@ -141,7 +142,7 @@ public class TelaCadastro {
                 return;
             }
 
-            if(senha.length()<12 || senha.length()>32){
+            if(senha.length() < 6 || senha.length() > 32){
                 hc.showAlert("Sua senha não é válida","Temanho mínimo:12; Máximo: 32", Alert.AlertType.ERROR);
                 return;
             }
@@ -167,7 +168,7 @@ public class TelaCadastro {
 
             String endereco= stringBuilder.toString();
 
-
+            String hashSenha=";";
 
             InsertSMT.setString(1, nome);
             InsertSMT.setString(2, senha);

@@ -15,25 +15,20 @@
     <children>
         <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="276.0" prefWidth="640.0" VBox.vgrow="ALWAYS">
             <children>
-
+                <Button  layoutX="219.0" layoutY="254.0" mnemonicParsing="false" onAction="#onEntrarClicked" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: #0000FF;" text="Entrar" textAlignment="CENTER" textFill="WHITE" />
+                <Button layoutX="355.0" layoutY="254.0" mnemonicParsing="false" onAction="#omCadastroClicked" style="-fx-background-color: #0000FF;" text="Cadastrar" textAlignment="CENTER" textFill="WHITE" />
+                <TextField fx:id="UsuarioTXT" layoutX="219.0" layoutY="134.0" prefHeight="25.0" prefWidth="202.0" />
+                <CheckBox fx:id="CheckBox" onMouseClicked="#mostrarSenha" layoutX="219.0" layoutY="209.0" mnemonicParsing="false" />
+                <Label layoutX="171.0" layoutY="138.0" text="Usuário:" />
+                <Label layoutX="179.0" layoutY="179.0" text="Senha:" />
                 <Label layoutX="213.0" layoutY="40.0" prefHeight="56.0" prefWidth="215.0" text="Alugues VK" textOverrun="CLIP" AnchorPane.bottomAnchor="304.0" AnchorPane.leftAnchor="213.0" AnchorPane.rightAnchor="212.0" AnchorPane.topAnchor="40.0">
                     <font>
                         <Font name="System Bold Italic" size="38.0" />
                     </font>
                 </Label>
-
-                <Label layoutX="171.0" layoutY="138.0" text="Usuário:" />
-                <Label layoutX="179.0" layoutY="179.0" text="Senha:" />
-
-                <TextField fx:id="UsuarioTXT" layoutX="219.0" layoutY="134.0" prefHeight="25.0" prefWidth="202.0" />
                 <PasswordField fx:id="SenhaTXT" layoutX="220.0" layoutY="175.0" prefHeight="25.0" prefWidth="202.0" />
                 <TextField fx:id="SenhaVisivelTXT" layoutX="220.0" layoutY="175.0" prefHeight="25.0" prefWidth="202.0" />
                 <Label layoutX="235.0" layoutY="209.0" text="Mostrar senha" />
-
-                <Button fx:id="BotaoEntrar" layoutX="219.0" layoutY="254.0" mnemonicParsing="false" onAction="#onEntrarClicked" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: #0000FF;" text="Entrar" textAlignment="CENTER" textFill="WHITE" />
-                <Button fx:id="BotaoCadastrar" layoutX="355.0" layoutY="254.0" mnemonicParsing="false" onAction="#omCadastroClicked" style="-fx-background-color: #0000FF;" text="Cadastrar" textAlignment="CENTER" textFill="WHITE" />
-
-                <CheckBox fx:id="CheckBox" onMouseClicked="#mostrarSenha" layoutX="219.0" layoutY="209.0" mnemonicParsing="false" />
             </children>
         </AnchorPane>
     </children>
