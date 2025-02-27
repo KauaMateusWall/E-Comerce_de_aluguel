@@ -21,7 +21,6 @@ import java.util.regex.Pattern;
 
 
 import static org.example.pi_primo.config.ConexaoDB.*;
-import static sun.security.util.SignatureUtil.EdDSADigestAlgHolder.sha512;
 
 public class TelaCadastro {
 

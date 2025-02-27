@@ -21,7 +21,6 @@ public class TelaUsuario {
     public Label TelefoneTXT;
 
     public void initialize(){
-
         NomeTXT.setText(String.valueOf(Session.usuario.getNome()));
         EndetecoTXT.setText(String.valueOf(Session.usuario.getEndereco()));
         EmailTXT.setText(String.valueOf(Session.usuario.getEmail()));
@@ -35,5 +34,9 @@ public class TelaUsuario {
 
     public void meusPedidosClicked(ActionEvent actionEvent) {
         helloApplication.openScreen("paginaMeusPedidos.fxml","k",mainScene);
+    }
+
+    public void ediatar(ActionEvent event) {
+
     }
 }

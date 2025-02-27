@@ -14,6 +14,8 @@ module org.example.pi_primo {
     requires spring.context.support;
     requires java.mail;
     requires commons.email;
+    requires twilio;
+    requires com.google.protobuf;
 
     opens org.example.pi_primo to javafx.fxml;
     exports org.example.pi_primo;

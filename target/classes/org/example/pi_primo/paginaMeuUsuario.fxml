@@ -7,28 +7,25 @@
 <?import javafx.scene.layout.VBox?>
 
 <?import javafx.scene.Scene?>
-<Scene fx:id="mainScene" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.pi_primo.service.TelaUsuario">
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+<Scene fx:id="mainScene" fx:controller="org.example.pi_primo.service.TelaUsuario" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" >
    <children>
       <AnchorPane prefHeight="452.0" prefWidth="600.0">
          <children>
-
             <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="200.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true" />
-
 
             <Label layoutX="126.0" layoutY="200.0" text="Nome:" />
             <Label layoutX="126.0" layoutY="224.0" text="Endeteço:" />
             <Label layoutX="126.0" layoutY="251.0" text="Email:" />
             <Label layoutX="126.0" layoutY="278.0" text="Telefone:" />
-
             <Label fx:id="NomeTXT" layoutX="174.0" layoutY="200.0" text="Label" />
             <Label fx:id="EndetecoTXT" layoutX="188.0" layoutY="224.0" text="Label" />
             <Label fx:id="EmailTXT" layoutX="174.0" layoutY="251.0" text="Label" />
             <Label fx:id="TelefoneTXT" layoutX="188.0" layoutY="278.0" text="Label" />
 
-            <Button layoutX="122.0" layoutY="325.0" mnemonicParsing="false" text="Meus Produtos" onAction="#MeusProdutosClickd"/>
-            <Button layoutX="238.0" layoutY="325.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" text="Meus Pedidos" onAction="#meusPedidosClicked"/>
-
+            <Button onAction="#MeusProdutosClickd" layoutX="122.0" layoutY="325.0" mnemonicParsing="false" text="Meus Produtos" />
+            <Button onAction="#meusPedidosClicked" layoutX="238.0" layoutY="325.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" text="Meus Pedidos" />
+            <Button onAction="#ediatar" layoutX="353.0" layoutY="325.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" text="Editar" />
          </children>
       </AnchorPane>
    </children>
