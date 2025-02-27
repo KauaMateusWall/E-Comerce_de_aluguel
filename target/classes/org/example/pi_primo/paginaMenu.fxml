@@ -40,8 +40,8 @@
                         <items>
                             <MenuItem mnemonicParsing="false" text="Meus pedidos" onAction="#meusPedidosClicked"/>
                             <MenuItem mnemonicParsing="false" text="Cadastrar Produto" onAction="#CadastrarProduto"/>
-                            <MenuItem fx:id="menu" mnemonicParsing="false" text="Usuário"
-                                      onAction="#sairUsuarioClicked"/>
+                            <MenuItem fx:id="menu" mnemonicParsing="false" text="Usuário" onAction="#sairUsuarioClicked"/>
+                            <MenuItem mnemonicParsing="false" text="Ajuda" onAction="#ajudaClicked"/>
                             <MenuItem mnemonicParsing="false" text="Sair da Conta" onAction="#sairContaClicked"/>
                         </items>
                         <HBox.margin>

@@ -71,6 +71,11 @@ public class TelaMenu {
     }
 
     @FXML
+    public void  ajudaClicked(){
+        helloApplication.openScreen("paginaAjuda.fxml","pagina ajuda", mainScene);
+    }
+
+    @FXML
     public void meusPedidosClicked() {
        helloApplication.openScreen("paginaMeusPedidos.fxml","VK",mainScene);
     }

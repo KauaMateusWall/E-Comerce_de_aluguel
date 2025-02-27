@@ -13,7 +13,6 @@ module org.example.pi_primo {
     requires spring.core;
     requires spring.context.support;
     requires java.mail;
-    requires commons.email;
     requires twilio;
     requires com.google.protobuf;
 

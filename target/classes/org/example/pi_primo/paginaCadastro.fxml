@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Scene fx:id="mainScene" xmlns="http://javafx.com/javafx/1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.pi_primo.service.TelaCadastro">
+<Scene fx:id="mainScene" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.pi_primo.service.TelaCadastro">
     <VBox prefHeight="336.0" prefWidth="693.0">
         <AnchorPane prefHeight="360.0" prefWidth="693.0">
 
