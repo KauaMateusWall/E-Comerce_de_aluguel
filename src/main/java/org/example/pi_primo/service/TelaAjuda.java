@@ -10,8 +10,8 @@ import javafx.scene.control.TextArea;
 
 public class TelaAjuda {
 
-    private static final String ACCOUNT_SID = "";
-    private static final String AUTH_TOKEN = "";
+    private static final String ACCOUNT_SID = "AC366ac1ca7052def5eb6836fb7ab41d52";
+    private static final String AUTH_TOKEN = "e0e8cad6044de746d07f60312e1af9c9";
 
     @FXML
     private Button Enviar;
